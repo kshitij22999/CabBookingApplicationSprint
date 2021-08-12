@@ -69,4 +69,17 @@ public class User {
 		this.address = address;
 	}
 
+	public User(long id, String username) {
+		super();
+		this.id = id;
+		this.username = username;
+	}
+
+	public User(String username) {
+		super();
+		this.username = username;
+	}
+	
+	
+
 }

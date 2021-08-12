@@ -1,5 +1,5 @@
 package com.training.Sprint1.entities;
 
-public class TripBoolking {
+public class TripBooking {
 	
 }
