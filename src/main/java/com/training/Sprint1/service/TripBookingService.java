@@ -2,6 +2,8 @@ package com.training.Sprint1.service;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class TripBookingService implements ITripBookingService{
 	
 	@Autowired
 	private ITripBookingRepository tripBookingRepo;
+	
+	@Autowired
+	EntityManager em;
 	
 	@Autowired
 	private IDriverRepository driverRepository;
@@ -58,7 +63,6 @@ public class TripBookingService implements ITripBookingService{
 
 	@Override
 	public TripBooking deleteTripBooking(long tripbookingId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

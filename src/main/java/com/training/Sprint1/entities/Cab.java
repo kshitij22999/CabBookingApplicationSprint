@@ -15,7 +15,7 @@ public class Cab {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cabId;
 	
-	private String carType;
+	private carType carType;
 	private float perKmRate;
 	
 	public Cab() {
@@ -24,7 +24,7 @@ public class Cab {
 	}
 	
 	
-	public Cab(int cabId, String carType, float perKmRate) {
+	public Cab(int cabId, carType carType, float perKmRate) {
 		super();
 		this.cabId = cabId;
 		this.carType = carType;
@@ -38,10 +38,10 @@ public class Cab {
 	public void setCabId(int cabId) {
 		this.cabId = cabId;
 	}
-	public String getCarType() {
+	public carType getCarType() {
 		return carType;
 	}
-	public void setCarType(String carType) {
+	public void setCarType(carType carType) {
 		this.carType = carType;
 	}
 	public float getPerKmRate() {
@@ -56,5 +56,3 @@ public class Cab {
 	}
 	
 }
-
-
