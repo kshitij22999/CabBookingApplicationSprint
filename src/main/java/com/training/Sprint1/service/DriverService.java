@@ -36,7 +36,7 @@ public class DriverService implements IDriverService{
 		updatedDriver.setLisenceNo(updatedDriver.getLisenceNo());
 		
 		Driver dvr = repo.save(updatedDriver);
-		return updatedDriver;
+		return dvr;
 	}
 
 	@Override
