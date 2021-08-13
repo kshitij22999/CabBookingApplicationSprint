@@ -53,9 +53,10 @@ public class DriverService implements IDriverService{
 	}
 
 	@Override
-	@Query(value = "select d from cba_driver dri where dri.rating > 4.5")
 	public List<Driver> viewBestDrivers() {
-		return null;
+		List<Driver> retVal=null;
+		retVal = repo.viewBestDrivers();
+		return retVal;
 	}
 
 	@Override

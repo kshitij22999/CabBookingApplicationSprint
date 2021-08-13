@@ -1,5 +1,6 @@
 package com.training.Sprint1.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -63,21 +64,33 @@ public class TripBookingService implements ITripBookingService{
 	}
 
 	@Override
-	public TripBooking deleteTripBooking(long tripbookingId) {
+	public TripBooking deleteTripBooking(Long tripbookingId) {
 		return null;
 	}
 
 	@Override
-	//@Query(value="SELECT tb FROM TripBooking t WHERE t.getCustomer().getCustomerId()=:customerId")
-	public List<TripBooking> getTripsByCustomerId(@Param("customerId") long customerId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<TripBooking> getTripsByCustomerId(Long customerID) {
+		List<TripBooking> retVal = tripBookingRepo.getTripsByCustomerId(customerID);
+		return retVal;
 	}
 
 	@Override
 	public double calculateBill(TripBooking tripbooking) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<TripBooking> getAllTrips() {
+		List<TripBooking> retVal = null;
+		retVal = tripBookingRepo.findAll();
+		return retVal;
+	}
+
+	@Override
+	public List<TripBooking> getTripDateWise(LocalDateTime date) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
