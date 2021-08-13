@@ -2,11 +2,15 @@ package com.training.Sprint1.service;
 
 import java.util.List;
 
+
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.training.Sprint1.entities.TripBooking;
 
 @Service
+@Transactional
 public interface ITripBookingService {
 	public TripBooking addTripBooking(TripBooking tripbooking);
 	public TripBooking updateTripBooking(TripBooking tripbooking);

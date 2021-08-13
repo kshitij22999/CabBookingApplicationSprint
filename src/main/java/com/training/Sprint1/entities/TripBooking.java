@@ -7,10 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-enum Status{BOOKED,FREE}
+import org.hibernate.annotations.ManyToAny;
+
+enum Status{ALLOCATED,NOT_ALLOCATED}
 
 @Entity
 @Table(name="cba_tripbooking")
@@ -19,8 +22,14 @@ public class TripBooking {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Driver driver;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Customer customer;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Cab cab;
 	
 	private String fromLocation;
 	private String toLocation;
