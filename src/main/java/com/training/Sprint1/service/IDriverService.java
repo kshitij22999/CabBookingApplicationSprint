@@ -11,10 +11,14 @@ import com.training.Sprint1.exception.DriverDoesNotExistException;
 public interface IDriverService {
 	
 	public Driver addDriver(Driver driver);
-	public Driver updateDriver(Driver driver) throws DriverDoesNotExistException;
+	public Driver updateDriver(Long driverId) throws DriverDoesNotExistException;
 	public List<Driver> getAllDrivers(Driver driver);
 	public Driver deleteDriver(Long driverId) throws DriverDoesNotExistException;
 	public List<Driver> viewBestDrivers();
-	public Driver viewDriver(Long driverId) throws DriverDoesNotExistException;
+	public Driver viewDriverById(Long driverId) throws DriverDoesNotExistException;
+	public void startTrip(Driver driver);
+	public void endTrip(Driver driver);
+
+	
 
 }
