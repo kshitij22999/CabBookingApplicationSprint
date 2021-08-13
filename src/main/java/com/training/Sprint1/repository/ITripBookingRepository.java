@@ -1,5 +1,6 @@
 package com.training.Sprint1.repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,5 +15,8 @@ public interface ITripBookingRepository extends JpaRepository<TripBooking, Long>
 
 	@Query(value="SELECT tb FROM TripBooking t WHERE t.getCustomer().getCustomerId()=:customerId")
 	public List<TripBooking> getTripsByCustomerId(@Param("customerId") Long customerId);
+	
+	@Query(value="SELECT tb FROM TripBooking t WHERE t.getToDateTime()=:date")
+	public List<TripBooking> getTripDateWise(@Param("date") LocalDateTime date);
 		
 }

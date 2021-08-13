@@ -65,7 +65,19 @@ public class TripBookingService implements ITripBookingService{
 
 	@Override
 	public TripBooking deleteTripBooking(Long tripbookingId) {
-		return null;
+		TripBooking retrVal = null;
+		try {
+			retrVal=tripBookingRepo.findById(tripbookingId).orElseThrow(TripBookingNotFoundException::new);
+			if(retrVal==null) {
+				throw new TripBookingNotFoundException();
+			}else {
+				tripBookingRepo.deleteAllById(null);
+			}
+		} catch (TripBookingNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return retrVal;
 	}
 
 	@Override
@@ -89,7 +101,7 @@ public class TripBookingService implements ITripBookingService{
 
 	@Override
 	public List<TripBooking> getTripDateWise(LocalDateTime date) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
