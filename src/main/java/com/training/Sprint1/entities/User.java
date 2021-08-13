@@ -89,6 +89,11 @@ public class User {
 		this.email = email;
 		this.address = address;
 	}
+
+	public User(long id) {
+		super();
+		this.id = id;
+	}
 	
 	
 
