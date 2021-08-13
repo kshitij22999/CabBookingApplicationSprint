@@ -34,7 +34,9 @@ public class DriverService implements IDriverService{
 		updatedDriver.setDriverName(updatedDriver.getDriverName());
 		updatedDriver.setRating(updatedDriver.getRating());
 		updatedDriver.setLisenceNo(updatedDriver.getLisenceNo());
-		return updatedDriver;
+		
+		Driver dvr = repo.save(updatedDriver);
+		return dvr;
 	}
 
 	@Override
@@ -51,7 +53,7 @@ public class DriverService implements IDriverService{
 	}
 
 	@Override
-	@Query(value = "select d from driver dri where dri.rating > 4.5")
+	@Query(value = "select d from cba_driver dri where dri.rating > 4.5")
 	public List<Driver> viewBestDrivers() {
 		return null;
 	}

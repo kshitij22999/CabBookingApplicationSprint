@@ -12,6 +12,19 @@ public class Customer extends User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int customerId;
+	private int customerName;
+	
+	public Customer() {
+		super();
+	}
+
+	public Customer(int customerId, int customerName) {
+		super();
+		this.customerId = customerId;
+		this.customerName = customerName;
+	}
+
+
 
 	public int getCustomerId() {
 		return customerId;
@@ -21,16 +34,15 @@ public class Customer extends User {
 		this.customerId = customerId;
 	}
 
-	public Customer() {
-
+	public int getCustomerName() {
+		return customerName;
 	}
 
-	public Customer(int customerId) {
-		super();
-		this.customerId = customerId;
+
+
+	public void setCustomerName(int customerName) {
+		this.customerName = customerName;
 	}
-	public Customer(String username, String password, String mobileNumber, String email, String address) {
-		super(username, password, mobileNumber, email, address);
-		// TODO Auto-generated constructor stub
-	}
+
+	
 }
