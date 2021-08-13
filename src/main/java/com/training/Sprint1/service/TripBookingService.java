@@ -8,10 +8,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.training.Sprint1.entities.TripBooking;
 import com.training.Sprint1.exception.TripBookingNotFoundException;
+import com.training.Sprint1.repository.ICabRepository;
+import com.training.Sprint1.repository.ICustomerRepository;
 import com.training.Sprint1.repository.IDriverRepository;
 import com.training.Sprint1.repository.ITripBookingRepository;
 
@@ -22,17 +25,15 @@ public class TripBookingService implements ITripBookingService{
 	@Autowired
 	private ITripBookingRepository tripBookingRepo;
 	
-	@Autowired
-	EntityManager em;
 	
 	@Autowired
 	private IDriverRepository driverRepository;
 	
-	//@Autowired
-	//private ICustomerRepository customerRepository;
+	@Autowired
+	private ICustomerRepository customerRepository;
 	
-	//@Autowired
-	//private IDriverRepository driverRepository;
+	@Autowired
+	private ICabRepository cabRepository;
 	
 	@Override
 	public TripBooking addTripBooking(TripBooking tripbooking) {
@@ -67,8 +68,8 @@ public class TripBookingService implements ITripBookingService{
 	}
 
 	@Override
-	//@Query(value="SELECT tb FROM TripBooking t WHERE t.")
-	public List<TripBooking> getTripsByCustomerId(long customerId) {
+	//@Query(value="SELECT tb FROM TripBooking t WHERE t.getCustomer().getCustomerId()=:customerId")
+	public List<TripBooking> getTripsByCustomerId(@Param("customerId") long customerId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

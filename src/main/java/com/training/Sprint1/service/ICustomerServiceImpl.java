@@ -24,7 +24,7 @@ public abstract class ICustomerServiceImpl implements ICustomerService {
 
 	@Override
 	public Customer updateCustomer(Customer customer) throws CustomerNotFoundException{
-		Customer cus = cRepo.findById(customer.getCustomerId()).get();
+		Customer cus = cRepo.findById(customer.getId()).get();
 		if (cus != null) {
 			cus.setEmail(customer.getEmail());
 			cus.setMobileNumber(customer.getMobileNumber());
@@ -51,7 +51,7 @@ public abstract class ICustomerServiceImpl implements ICustomerService {
 	}
 	
 	@Override
-	public Customer viewCustomer(int customerId)throws CustomerNotFoundException {
+	public Customer viewCustomer(Long customerId)throws CustomerNotFoundException {
 		return cRepo.findById(customerId).get();
 	}
 

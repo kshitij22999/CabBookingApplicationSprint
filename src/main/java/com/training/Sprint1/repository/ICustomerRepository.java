@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.training.Sprint1.entities.Customer;
 
 @Repository
-public interface ICustomerRepository extends  JpaRepository<Customer,Integer> {
+public interface ICustomerRepository extends  JpaRepository<Customer,Long> {
 
 }

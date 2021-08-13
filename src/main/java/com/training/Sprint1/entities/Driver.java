@@ -1,5 +1,7 @@
 package com.training.Sprint1.entities;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
@@ -20,7 +22,7 @@ public class Driver extends User{
 	private Cab cab;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	private TripBooking tripbooking;
+	private List<TripBooking> tripbooking;
 	
 	@Enumerated
 	private VaccinationStatus vaccinationStatus;
@@ -34,18 +36,43 @@ public class Driver extends User{
 	}
 
 
-	public Driver(long id, String driverName, String lisenceNo, float rating, Cab cab, TripBooking tripbooking,
-			VaccinationStatus vaccinationStatus, AvailabilityStatus availabilityStatus) {
-		super(id);
-		this.driverName = driverName;
-		this.lisenceNo = lisenceNo;
-		this.rating = rating;
-		this.cab = cab;
-		this.tripbooking = tripbooking;
-		this.vaccinationStatus = vaccinationStatus;
-		this.availabilityStatus = availabilityStatus;
+	
+
+
+	
+
+
+	
+
+
+	public Driver(String username) {
+		super(username);
+		// TODO Auto-generated constructor stub
 	}
 
+
+
+	public Driver(long id, String username) {
+		super(id, username);
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+	public Driver(long id) {
+		super(id);
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+	public Driver(long id, String username, String password, String mobileNumber, String email, String address) {
+		super(id, username, password, mobileNumber, email, address);
+		
+		// TODO Auto-generated constructor stub
+	}
 
 	public Driver(String driverName, String lisenceNo, float rating, VaccinationStatus vaccinationStatus,
 			AvailabilityStatus availabilityStatus) {
@@ -106,12 +133,15 @@ public class Driver extends User{
 	}
 
 
-	public TripBooking getTripbooking() {
+	
+
+
+	public List<TripBooking> getTripbooking() {
 		return tripbooking;
 	}
 
 
-	public void setTripbooking(TripBooking tripbooking) {
+	public void setTripbooking(List<TripBooking> tripbooking) {
 		this.tripbooking = tripbooking;
 	}
 

@@ -19,10 +19,10 @@ enum Status{ALLOCATED,NOT_ALLOCATED}
 @Table(name="cba_tripbooking")
 public class TripBooking {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Driver driver;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -33,15 +33,16 @@ public class TripBooking {
 	
 	private String fromLocation;
 	private String toLocation;
+	
 	private LocalDateTime fromDateTime;
 	private LocalDateTime toDateTime;
 	private Status status;
 	private float distanceInKm;
 	private float bill;
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getFromLocation() {
@@ -85,6 +86,15 @@ public class TripBooking {
 	}
 	public void setBill(float bill) {
 		this.bill = bill;
+	}
+	public Driver getDriver() {
+		return driver;
+	}
+	public Customer getCustomer() {
+		return customer;
+	}
+	public Cab getCab() {
+		return cab;
 	}
 	@Override
 	public String toString() {
