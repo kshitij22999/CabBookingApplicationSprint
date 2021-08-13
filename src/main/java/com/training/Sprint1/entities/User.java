@@ -79,6 +79,16 @@ public class User {
 		super();
 		this.username = username;
 	}
+
+	public User(long id, String username, String password, String mobileNumber, String email, String address) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.mobileNumber = mobileNumber;
+		this.email = email;
+		this.address = address;
+	}
 	
 	
 

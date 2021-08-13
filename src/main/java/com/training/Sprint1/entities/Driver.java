@@ -10,11 +10,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
  
-	enum VaccinationStatus{
+enum VaccinationStatus{
 	FirstDose_Done,SecondDose_Done,Not_Vaccinated;
 	
 }
-
+	enum AvailabilityStatus{
+		Available,Busy
+}
 @Entity
 @Table(name="cba_driver")
 public class Driver { 
@@ -35,12 +37,16 @@ public class Driver {
 	@Enumerated
 	private VaccinationStatus vaccinationStatus;
 	
+	@Enumerated
+	private AvailabilityStatus availabilityStatus;
+	
+	
 	public Driver() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Driver(Long driverId, String driverName, String lisenceNo, float rating, Cab cab, TripBooking tripbooking,
-			VaccinationStatus vaccinationStatus) {
+			VaccinationStatus vaccinationStatus, AvailabilityStatus availabilityStatus) {
 		super();
 		this.driverId = driverId;
 		this.driverName = driverName;
@@ -49,10 +55,11 @@ public class Driver {
 		this.cab = cab;
 		this.tripbooking = tripbooking;
 		this.vaccinationStatus = vaccinationStatus;
+		this.availabilityStatus = availabilityStatus;
 	}
 
 	public Driver(String driverName, String lisenceNo, float rating, Cab cab, TripBooking tripbooking,
-			VaccinationStatus vaccinationStatus) {
+			VaccinationStatus vaccinationStatus, AvailabilityStatus availabilityStatus) {
 		super();
 		this.driverName = driverName;
 		this.lisenceNo = lisenceNo;
@@ -60,15 +67,27 @@ public class Driver {
 		this.cab = cab;
 		this.tripbooking = tripbooking;
 		this.vaccinationStatus = vaccinationStatus;
+		this.availabilityStatus = availabilityStatus;
 	}
 
-	public Driver(String driverName, float rating, Cab cab, VaccinationStatus vaccinationStatus) {
+	public Driver(String driverName, float rating, Cab cab, VaccinationStatus vaccinationStatus,
+			AvailabilityStatus availabilityStatus) {
 		super();
 		this.driverName = driverName;
 		this.rating = rating;
 		this.cab = cab;
 		this.vaccinationStatus = vaccinationStatus;
+		this.availabilityStatus = availabilityStatus;
 	}
+
+	public Driver(Long driverId, String driverName, float rating) {
+		super();
+		this.driverId = driverId;
+		this.driverName = driverName;
+		this.rating = rating;
+	}
+	
+	
 
 	public Long getDriverId() {
 		return driverId;
@@ -126,10 +145,19 @@ public class Driver {
 		this.vaccinationStatus = vaccinationStatus;
 	}
 
+	public AvailabilityStatus getAvailabilityStatus() {
+		return availabilityStatus;
+	}
+
+	public void setAvailabilityStatus(AvailabilityStatus availabilityStatus) {
+		this.availabilityStatus = availabilityStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "Driver [driverId=" + driverId + ", driverName=" + driverName + ", lisenceNo=" + lisenceNo + ", rating="
-				+ rating + ", vaccinationStatus=" + vaccinationStatus + "]";
+				+ rating + ", cab=" + cab + ", tripbooking=" + tripbooking + ", vaccinationStatus=" + vaccinationStatus
+				+ ", availabilityStatus=" + availabilityStatus + "]";
 	}
 	
 	
