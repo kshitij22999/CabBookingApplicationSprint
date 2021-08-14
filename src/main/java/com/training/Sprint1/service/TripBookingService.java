@@ -123,4 +123,16 @@ public class TripBookingService implements ITripBookingService{
 		return retVal;
 	}
 
+	@Override
+	public Float getDistanceInKm(TripBooking tripbooking) {
+		TripBooking retVal = null;
+		try {
+			retVal = tripBookingRepo.findById(tripbooking.getId()).orElseThrow(TripBookingNotFoundException::new);
+		} catch (TripBookingNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return retVal.getDistanceInKm();
+	}
+
 }

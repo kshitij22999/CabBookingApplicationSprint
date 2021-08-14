@@ -20,4 +20,5 @@ public interface ITripBookingService {
 	public List<TripBooking> getAllTrips();
 	public List<TripBooking> getTripDateWise(LocalDateTime date);
 	List<TripBooking> getTripsByCustomerId(Long customerID);
+	Float getDistanceInKm(TripBooking tripbooking);
 }
