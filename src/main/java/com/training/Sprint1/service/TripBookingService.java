@@ -12,7 +12,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
+import com.training.Sprint1.entities.Customer;
 import com.training.Sprint1.entities.TripBooking;
+import com.training.Sprint1.exception.CustomerNotFoundException;
 import com.training.Sprint1.exception.TripBookingNotFoundException;
 import com.training.Sprint1.repository.ICabRepository;
 import com.training.Sprint1.repository.ICustomerRepository;
@@ -26,15 +28,9 @@ public class TripBookingService implements ITripBookingService{
 	@Autowired
 	private ITripBookingRepository tripBookingRepo;
 	
-	
 	@Autowired
-	private IDriverRepository driverRepository;
+	private ICustomerRepository customerRepo;
 	
-	@Autowired
-	private ICustomerRepository customerRepository;
-	
-	@Autowired
-	private ICabRepository cabRepository;
 	
 	@Override
 	public TripBooking addTripBooking(TripBooking tripbooking) {
@@ -81,15 +77,37 @@ public class TripBookingService implements ITripBookingService{
 	}
 
 	@Override
-	public List<TripBooking> getTripsByCustomerId(Long customerID) {
-		List<TripBooking> retVal = tripBookingRepo.getTripsByCustomerId(customerID);
+	public List<TripBooking> getTripsByCustomerId(Long id) {
+		Customer customer;
+		List<TripBooking> retVal=null;
+		try {
+			customer = customerRepo.findById(id).orElseThrow(CustomerNotFoundException::new);
+			retVal = tripBookingRepo.findByCustomer(customer);
+		} catch (CustomerNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return retVal;
 	}
 
 	@Override
-	public double calculateBill(TripBooking tripbooking) {
-		// TODO Auto-generated method stub
-		return 0;
+	public TripBooking calculateBill(TripBooking tripbooking) {
+		TripBooking retrVal = null;
+		try {
+			retrVal=tripBookingRepo.findById(tripbooking.getId()).orElseThrow(TripBookingNotFoundException::new);
+			if(retrVal==null) {
+				throw new TripBookingNotFoundException();
+			}else {
+				Float bill = retrVal.getDistanceInKm()*retrVal.getCab().getPerKmRate();
+				retrVal.setBill(bill);
+				tripBookingRepo.save(retrVal);
+			}
+		} catch (TripBookingNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return retrVal;
 	}
 
 	@Override
@@ -101,8 +119,8 @@ public class TripBookingService implements ITripBookingService{
 
 	@Override
 	public List<TripBooking> getTripDateWise(LocalDateTime date) {
-		
-		return null;
+		List<TripBooking> retVal = tripBookingRepo.getTripDateWise(date);
+		return retVal;
 	}
 
 }

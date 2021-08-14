@@ -16,7 +16,7 @@ public interface ITripBookingService {
 	public TripBooking addTripBooking(TripBooking tripbooking);
 	public TripBooking updateTripBooking(TripBooking tripbooking);
 	public TripBooking deleteTripBooking(Long tripbookingId);
-	public double calculateBill(TripBooking tripbooking);
+	public TripBooking calculateBill(TripBooking tripbooking);
 	public List<TripBooking> getAllTrips();
 	public List<TripBooking> getTripDateWise(LocalDateTime date);
 	List<TripBooking> getTripsByCustomerId(Long customerID);

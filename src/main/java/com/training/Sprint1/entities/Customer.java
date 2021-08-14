@@ -1,9 +1,12 @@
 package com.training.Sprint1.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Table(name="cba_customer")
@@ -12,6 +15,17 @@ public class Customer extends User {
 	
 	private String customerName;
 	
+	@OneToMany(mappedBy = "customer")
+	private List<TripBooking> tripBookings;
+	
+	public List<TripBooking> getTripBookings() {
+		return tripBookings;
+	}
+
+	public void setTripBookings(List<TripBooking> tripBookings) {
+		this.tripBookings = tripBookings;
+	}
+
 	public Customer() {
 		super();
 	}
