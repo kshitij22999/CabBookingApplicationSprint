@@ -58,6 +58,28 @@ public class Driver extends User{
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
+
+	public Driver(Long id, String driverName, String lisenceNo, float rating, Cab cab) {
+		super(id);
+		this.driverName = driverName;
+		this.lisenceNo = lisenceNo;
+		this.rating = rating;
+		this.cab = cab;
+	}
+
+
+
+
+	public Driver(Long id, String driverName, String lisenceNo, Cab cab, List<TripBooking> tripbooking) {
+		super(id);
+		this.driverName = driverName;
+		this.lisenceNo = lisenceNo;
+		this.cab = cab;
+		this.tripbooking = tripbooking;
+	}
+
 
 
 

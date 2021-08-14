@@ -5,7 +5,6 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.training.Sprint1.entities.AvailabilityStatus;
@@ -29,8 +28,14 @@ public class DriverService implements IDriverService{
 	}
 	
 	@Override
-	public Driver updateDriver(Long driverId) throws DriverDoesNotExistException {
-		Driver updatedDriver = repo.getById(driverId);
+	public Driver updateDriver(Driver driver){
+		Driver updatedDriver = null;
+		try {
+			updatedDriver = repo.findById(driver.getId()).orElseThrow(DriverDoesNotExistException::new);
+		} catch (DriverDoesNotExistException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		updatedDriver.setDriverName(updatedDriver.getDriverName());
 		updatedDriver.setRating(updatedDriver.getRating());
 		updatedDriver.setLisenceNo(updatedDriver.getLisenceNo());
@@ -46,8 +51,14 @@ public class DriverService implements IDriverService{
 	}
 
 	@Override
-	public Driver deleteDriver(Long driverId) throws DriverDoesNotExistException {
-		Driver deletedDriver =repo.getById(driverId);
+	public Driver deleteDriver(Long id)  {
+		Driver deletedDriver=null;
+		try {
+			deletedDriver = repo.findById(id).orElseThrow(DriverDoesNotExistException::new);
+		} catch (DriverDoesNotExistException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		repo.delete(deletedDriver);
 		return deletedDriver;
 	}
@@ -60,8 +71,14 @@ public class DriverService implements IDriverService{
 	}
 
 	@Override
-	public Driver viewDriverById(Long driverId) throws DriverDoesNotExistException {
-		Driver dr = repo.getById(driverId);
+	public Driver viewDriverById(Long id){
+		Driver dr=null;
+		try {
+			dr = repo.findById(id).orElseThrow(DriverDoesNotExistException::new);
+		} catch (DriverDoesNotExistException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return dr;
 	}
 

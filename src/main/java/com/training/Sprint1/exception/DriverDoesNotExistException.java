@@ -1,6 +1,18 @@
 package com.training.Sprint1.exception;
 
+@SuppressWarnings("serial")
 public class DriverDoesNotExistException extends Exception {
+
+	private String message;
+	
+	
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
 
 	public DriverDoesNotExistException() {
 		// TODO Auto-generated constructor stub
