@@ -72,6 +72,18 @@ public class Driver extends User{
 
 
 
+	public Driver(String driverName, String lisenceNo, float rating, Cab cab, VaccinationStatus vaccinationStatus) {
+		super();
+		this.driverName = driverName;
+		this.lisenceNo = lisenceNo;
+		this.rating = rating;
+		this.cab = cab;
+		this.vaccinationStatus = vaccinationStatus;
+	}
+
+
+
+
 	public Driver(Long id, String driverName, String lisenceNo, Cab cab, List<TripBooking> tripbooking) {
 		super(id);
 		this.driverName = driverName;

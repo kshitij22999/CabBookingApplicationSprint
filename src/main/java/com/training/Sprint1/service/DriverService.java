@@ -33,7 +33,7 @@ public class DriverService implements IDriverService{
 		try {
 			updatedDriver = repo.findById(driver.getId()).orElseThrow(DriverDoesNotExistException::new);
 		} catch (DriverDoesNotExistException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		updatedDriver.setDriverName(updatedDriver.getDriverName());
@@ -45,38 +45,37 @@ public class DriverService implements IDriverService{
 	}
 
 	@Override
-	public List<Driver> getAllDrivers(Driver driver) {
+	public List<Driver> getAllDrivers() {
 		List<Driver> list = repo.findAll();
 		return list;
 	}
 
 	@Override
-	public Driver deleteDriver(Long id)  {
-		Driver deletedDriver=null;
+	public void deleteDriver(Long id)  {
 		try {
-			deletedDriver = repo.findById(id).orElseThrow(DriverDoesNotExistException::new);
+		Driver deletedDriver = repo.findById(id).orElseThrow(DriverDoesNotExistException::new);
+		repo.delete(deletedDriver);
 		} catch (DriverDoesNotExistException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
-		repo.delete(deletedDriver);
-		return deletedDriver;
+		
 	}
+	
 
 	@Override
-	public List<Driver> viewBestDrivers() {
+	public List<Driver> getBestDrivers() {
 		List<Driver> retVal=null;
-		retVal = repo.viewBestDrivers();
+		retVal = repo.getBestDrivers();
 		return retVal;
 	}
 
 	@Override
-	public Driver viewDriverById(Long id){
+	public Driver getDriverById(Long id){
 		Driver dr=null;
 		try {
 			dr = repo.findById(id).orElseThrow(DriverDoesNotExistException::new);
 		} catch (DriverDoesNotExistException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return dr;
