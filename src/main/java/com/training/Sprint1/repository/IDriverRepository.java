@@ -9,7 +9,7 @@ import com.training.Sprint1.entities.Driver;
 
 public interface IDriverRepository extends JpaRepository<Driver ,Long> {
 	
-	//@Query(value = "select d from Driver dri where dri.getRating() >= 4.5")
-	//public List<Driver> viewBestDrivers();
+	@Query(value = "select d from Driver dri where dri.getRating() >= 4.5")
+	public List<Driver> viewBestDrivers();
 
 }
