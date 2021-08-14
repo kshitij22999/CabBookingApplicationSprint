@@ -36,7 +36,7 @@ public class Cab {
 		this.perKmRate = perKmRate;
 	}
 
-	public Long getCabId() {
+	public Long getCabId() {   
 		return cabId;
 	}
 

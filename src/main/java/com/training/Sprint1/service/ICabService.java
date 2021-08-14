@@ -10,9 +10,10 @@ import com.training.Sprint1.entities.carType;
 
 public interface ICabService {
 	public Cab insertCab(Cab cab);
-	public Cab updateCab(String cabId);
+	public Cab updateCab(Cab cab);
 	public Cab deleteCab(String cabId);
-	public List<Cab> viewCabsOfType(carType carType);
+	public List<Cab> viewCabsOfType(String cabId);
+	public List<Cab> getAllCabs();
 	public int countCabsOfType(carType carType);
 
 }

@@ -1,6 +1,7 @@
 package com.training.Sprint1.service;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.training.Sprint1.entities.Cab;
@@ -11,28 +12,34 @@ import com.training.Sprint1.service.ICabService;
 
 @Service
 public class CabService implements ICabService {
+	@Autowired
+	ICabRepository iCabRepository;
 
 	@Override
 	public Cab insertCab(Cab cab) {
-		// TODO Auto-generated method stub
-		return null;
+		return iCabRepository.save(cab);
 	}
 
-	@Override
-	public Cab updateCab(String cabId) {
-		// TODO Auto-generated method stub
-		return null;
+	@Override 
+	public Cab updateCab(Cab cab) {
+		Cab obj = iCabRepository.findById(cab.getCabId()).get();
+		if (obj != null) {
+			obj.setCarType(cab.getCarType());
+			obj.setPerKmRate(cab.getPerKmRate());
+		}
+		return obj;
+		
 	}
 
 	@Override
 	public Cab deleteCab(String cabId) {
-		// TODO Auto-generated method stub
+	//	return iCabRepository.deleteById(cabId);
 		return null;
 	}
 
 	@Override
-	public List<Cab> viewCabsOfType(carType carType) {
-		// TODO Auto-generated method stub
+	public List<Cab> viewCabsOfType(String cabId) {
+	//	return iCabRepository.findById(cabId);
 		return null;
 	}
 
@@ -40,6 +47,10 @@ public class CabService implements ICabService {
 	public int countCabsOfType(carType carType) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	@Override
+	public List<Cab> getAllCabs() {
+		return iCabRepository.findAll();
 	}
 
 
