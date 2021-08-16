@@ -25,22 +25,18 @@ public class Cab {
 		// TODO Auto-generated constructor stub
 	}
 
-<<<<<<< HEAD
+
 	public Cab(Long cabId, com.training.Sprint1.entities.CarType carType, float perKmRate) {
-=======
-	public Cab(Long cabId, com.training.Sprint1.entities.carType carType, float perKmRate) {
->>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
+
 		super();
 		this.cabId = cabId;
 		this.carType = carType;
 		this.perKmRate = perKmRate;
 	}
 
-<<<<<<< HEAD
+
 	public Cab(com.training.Sprint1.entities.CarType carType, float perKmRate) {
-=======
-	public Cab(com.training.Sprint1.entities.carType carType, float perKmRate) {
->>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
+
 		super();
 		this.carType = carType;
 		this.perKmRate = perKmRate;
@@ -54,19 +50,15 @@ public class Cab {
 		this.cabId = cabId;
 	}
 
-<<<<<<< HEAD
+
 	public CarType getCarType() {
 		return carType;
 	}
 
-	public void setCarType(CarType carType) {
-=======
-	public carType getCarType() {
-		return carType;
-	}
 
-	public void setCarType(carType carType) {
->>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
+
+	public void setCarType(CarType carType) {
+
 		this.carType = carType;
 	}
 

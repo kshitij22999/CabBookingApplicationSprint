@@ -93,7 +93,7 @@ public class Driver extends User{
 	}
 
 
-	public Driver(long id, String username, String password, String mobileNumber, String email, String address) {
+	public Driver(long id, String username, String password, String mobileNumber, String email, Address address) {
 
 		super(id, username, password, mobileNumber, email, address);
 		

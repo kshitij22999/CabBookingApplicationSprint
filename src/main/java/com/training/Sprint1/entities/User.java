@@ -16,11 +16,9 @@ public class User{
 	private String password;
 	private String mobileNumber;
 	private String email;
-<<<<<<< HEAD
+
 	private Address address;
-=======
-	private String address;
->>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
+
 	
 	
 	public Long getId() {
@@ -88,29 +86,17 @@ public class User{
 		this.username = username;
 	}
 
-<<<<<<< HEAD
-	public User(Long id, String username, String password, String mobileNumber, String email, Address address) {
-=======
 	
 
-	public User(String username) {
-		super();
-		this.username = username;
-	}
 
-	public User(Long id, String username, String password, String mobileNumber, String email, String address) {
->>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
+	public User(Long id, String username, String password, String mobileNumber, String email, Address address) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.mobileNumber = mobileNumber;
 		this.email = email;
-<<<<<<< HEAD
-		this.setAddress(address);
-=======
 		this.address = address;
->>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
 	}
 
 	public User(Long id, String username, String password) {
@@ -120,20 +106,14 @@ public class User{
 		this.password = password;
 	}
 
-<<<<<<< HEAD
+
 	public User(Long id, String mobileNumber, String email, Address address) {
-=======
-	public User(Long id, String mobileNumber, String email, String address) {
->>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
 		super();
 		this.id = id;
 		this.mobileNumber = mobileNumber;
 		this.email = email;
-<<<<<<< HEAD
-		this.setAddress(address);
-=======
 		this.address = address;
->>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
+
 	}
 
 	public User(String username, String password) {
@@ -153,11 +133,9 @@ public class User{
 		this.id = id;
 	}
 
-<<<<<<< HEAD
-=======
-	
 
->>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
+
+
 	
 	
 
