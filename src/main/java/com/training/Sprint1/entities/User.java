@@ -1,4 +1,5 @@
 package com.training.Sprint1.entities;
+import javax.persistence.Embedded;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +18,7 @@ public class User{
 	private String password;
 	private String mobileNumber;
 	private String email;
-	@OneToOne(mappedBy="user")
+	@Embedded
 	private Address address;
 
 	
