@@ -18,8 +18,4 @@ public interface ICabService {
 
 	public List<Cab> viewCabsOfType(CarType carType);
 	public int countCabsOfType(CarType carType);
-
-
-
-
 }

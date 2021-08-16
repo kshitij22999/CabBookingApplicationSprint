@@ -10,9 +10,6 @@ import com.training.Sprint1.entities.User;
 public class Admin extends User{
 
 	public Admin(long id, String username, String password, String mobileNumber, String email, Address address) {
-		
-	}
-	public Admin(long id, String username, String password, String mobileNumber, String email, String address) {
 		super(id, username, password, mobileNumber, email, address);
 		// TODO Auto-generated constructor stub
 	}

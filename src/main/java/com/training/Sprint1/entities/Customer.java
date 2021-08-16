@@ -13,12 +13,9 @@ import javax.persistence.Table;
 @Table(name="cba_customer")
 @Entity
 public class Customer extends User {
-<<<<<<< HEAD
+
 private String customerName;
-=======
-	
-	private String customerName;
->>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
+
 	
 	@OneToMany(mappedBy = "customer")
 	private List<TripBooking> tripBookings;
@@ -33,7 +30,7 @@ private String customerName;
 
 	public Customer() {
 		super();
-<<<<<<< HEAD
+
 	}
 
 	public Customer(Long customerId, String customerName) {
@@ -62,29 +59,6 @@ private String customerName;
 		this.customerName = customerName;
 	}
 
-=======
-	}
 
-	public Customer(Long customerId, String customerName) {
-		super(customerId);
-
-		this.customerName = customerName;
-	}
-
-
-
-
-
-	public String getCustomerName() {
-		return customerName;
-	}
-
-
-
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
-	}
-
->>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
 	
 }
