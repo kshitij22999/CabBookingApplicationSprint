@@ -3,12 +3,15 @@ package com.training.Sprint1.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import com.training.Sprint1.entities.Driver;
 import com.training.Sprint1.exception.DriverDoesNotExistException;
 
 @Service
+@Transactional
 public interface IDriverService {
 	
 	public Driver addDriver(Driver driver);

@@ -53,6 +53,13 @@ public class DriverController {
 		return new ResponseEntity<Driver>(HttpStatus.OK);
 	}
 	
+	@GetMapping("/drivers/best")
+	public ResponseEntity<List<Driver>> getBestDrivers(){
+	List<Driver> bestDrivers = service.getBestDrivers();
+	return new ResponseEntity<List<Driver>>(bestDrivers,HttpStatus.OK);
+	}
+	
+	
 	
 
 }
