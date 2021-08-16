@@ -93,6 +93,8 @@ public class DriverService implements IDriverService{
 	public void endTrip(Driver driver) {
 	driver.setAvailabilityStatus(AvailabilityStatus.Available);	
 	}
+
+
 	
 	
 
