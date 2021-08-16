@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.training.Sprint1.entities.Customer;
 import com.training.Sprint1.entities.TripBooking;
 
+
 @SuppressWarnings("unused")
 @Repository
 public interface ICustomerRepository extends  JpaRepository<Customer,Long> {
