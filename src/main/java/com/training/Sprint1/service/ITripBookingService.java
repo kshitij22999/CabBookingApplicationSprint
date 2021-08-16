@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.training.Sprint1.entities.Customer;
 import com.training.Sprint1.entities.TripBooking;
 
+
 @Service
 @Transactional
 public interface ITripBookingService {
@@ -20,6 +21,9 @@ public interface ITripBookingService {
 	public TripBooking calculateBill(TripBooking tripbooking);
 	public List<TripBooking> getAllTrips();
 	public List<TripBooking> getTripDateWise(LocalDateTime date);
+
 	List<TripBooking> getTripsByCustomer(Customer customer);
+
 	Float getDistanceInKm(TripBooking tripbooking);
+
 }

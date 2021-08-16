@@ -95,7 +95,11 @@ public class Driver extends User{
 
 
 
+<<<<<<< HEAD
+	public Driver(long id, String username, String password, String mobileNumber, String email, Address address) {
+=======
 	public Driver(long id, String username, String password, String mobileNumber, String email, String address) {
+>>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
 		super(id, username, password, mobileNumber, email, address);
 		
 		// TODO Auto-generated constructor stub
@@ -201,16 +205,23 @@ public class Driver extends User{
 	}
 
 
+<<<<<<< HEAD
+=======
 
 	
 	
 }	
 
 
+>>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
+	
+
+	
+<<<<<<< HEAD
+}	
+=======
 	
 
 	
 	
-
-	
-	
+>>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4

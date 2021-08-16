@@ -4,15 +4,17 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-
+import com.training.Sprint1.entities.*;
 import com.training.Sprint1.entities.Cab;
 import com.training.Sprint1.entities.Driver;
 import com.training.Sprint1.entities.VaccinationStatus;
@@ -29,12 +31,20 @@ class DriverTest {
 	@InjectMocks
 	DriverService service;
 	
+	@BeforeAll
+	static void setUpBeforeClass() throws Exception {
+	}
+
+	@AfterAll
+	static void tearDownAfterClass() throws Exception {
+	}
+	
 	Driver d1,d2,d3;
 	List<Driver> driverList;
 
 	@SuppressWarnings("deprecation")
 	@BeforeEach
-	void setUpBeforeClass() throws Exception {
+	void setUp() throws Exception{
 		MockitoAnnotations.initMocks(this);
 		
 		driverList = new ArrayList<>();
@@ -49,23 +59,28 @@ class DriverTest {
 		driverList.add(d2);
 		driverList.add(d3);
 	}
+	
+	@AfterEach
+	void tearDown() throws Exception {
+	}
+	
+	
 	@Test
 	public void testAddDriver() {
 		when(repo.save(d1)).thenReturn(d1);
-		Assertions.assertThat(service.addDriver(d1));
+		Assertions.assertEquals(d1,service.addDriver(d1));
 	}
 	
 	@Test
 	public void testGetAllDrivers() {
 		when(repo.findAll()).thenReturn(driverList);
-		Assertions.assertThat(service.getAllDrivers().size());
+		Assertions.assertEquals(3,service.getAllDrivers().size());
 	}
 	
-	@Test
-	public void getDriverById() {
-		when(repo.findById(d1.getId());
-		Assertions.assertThat(service.getDriverById(id));
-	}
 	
+
 	}
 
+
+	
+	

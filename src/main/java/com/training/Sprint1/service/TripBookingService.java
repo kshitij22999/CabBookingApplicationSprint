@@ -21,6 +21,10 @@ import com.training.Sprint1.repository.ICustomerRepository;
 import com.training.Sprint1.repository.IDriverRepository;
 import com.training.Sprint1.repository.ITripBookingRepository;
 
+<<<<<<< HEAD
+@SuppressWarnings("unused")
+=======
+>>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
 @Service
 @Transactional
 public class TripBookingService implements ITripBookingService{
@@ -122,6 +126,8 @@ public class TripBookingService implements ITripBookingService{
 		return retVal;
 	}
 
+<<<<<<< HEAD
+=======
 	@Override
 	public Float getDistanceInKm(TripBooking tripbooking) {
 		TripBooking retVal = null;
@@ -134,4 +140,5 @@ public class TripBookingService implements ITripBookingService{
 		return retVal.getDistanceInKm();
 	}
 
+>>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
 }
