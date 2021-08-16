@@ -13,7 +13,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.ManyToAny;
 
-enum Status{ALLOCATED,NOT_ALLOCATED}
 
 @Entity
 @Table(name="cba_tripbooking")
@@ -30,6 +29,7 @@ public class TripBooking {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Cab cab;
+	
 	
 	private String fromLocation;
 	private String toLocation;
@@ -96,17 +96,21 @@ public class TripBooking {
 	public Cab getCab() {
 		return cab;
 	}
+	
 	@Override
 	public String toString() {
-		return "TripBooking [id=" + id + ", driver=" + driver + ", fromLocation=" + fromLocation + ", toLocation="
-				+ toLocation + ", fromDateTime=" + fromDateTime + ", toDateTime=" + toDateTime + ", status=" + status
-				+ ", distanceInKm=" + distanceInKm + ", bill=" + bill + "]";
+		return "TripBooking [id=" + id + ", driver=" + driver + ", customer=" + customer + ", cab=" + cab
+				+ ", fromLocation=" + fromLocation + ", toLocation=" + toLocation + ", fromDateTime=" + fromDateTime
+				+ ", toDateTime=" + toDateTime + ", status=" + status + ", distanceInKm=" + distanceInKm + ", bill="
+				+ bill + "]";
 	}
-	public TripBooking(long id, Driver driver, String fromLocation, String toLocation, LocalDateTime fromDateTime,
-			LocalDateTime toDateTime, Status status, float distanceInKm, float bill) {
+	public TripBooking(Long id, Driver driver, Customer customer, Cab cab, String fromLocation, String toLocation,
+			LocalDateTime fromDateTime, LocalDateTime toDateTime, Status status, float distanceInKm, float bill) {
 		super();
 		this.id = id;
 		this.driver = driver;
+		this.customer = customer;
+		this.cab = cab;
 		this.fromLocation = fromLocation;
 		this.toLocation = toLocation;
 		this.fromDateTime = fromDateTime;
