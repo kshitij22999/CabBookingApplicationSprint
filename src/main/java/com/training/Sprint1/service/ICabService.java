@@ -4,7 +4,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.training.Sprint1.entities.Cab;
-import com.training.Sprint1.entities.carType;
+import com.training.Sprint1.entities.CarType;
+
 
 @Service
 
@@ -15,6 +16,6 @@ public interface ICabService {
 	public Cab deleteCab(String cabId);
 	public List<Cab> viewCabsOfType(String cabId);
 	public List<Cab> getAllCabs();
-	public int countCabsOfType(carType carType);
+	public int countCabsOfType(CarType carType);
 
 }
