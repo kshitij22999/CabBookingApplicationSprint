@@ -1,8 +1,10 @@
 package com.training.Sprint1.exception;
 
 
+
 @SuppressWarnings("serial")
 public class TripBookingNotFoundException extends Exception{
+
 
 	private String msg;
 

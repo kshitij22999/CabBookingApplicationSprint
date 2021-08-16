@@ -3,7 +3,6 @@ package com.training.Sprint1.exception;
 
 @SuppressWarnings("serial")
 public class DriverDoesNotExistException extends Exception {
-
 	private String message;
 	
 	
@@ -39,6 +38,5 @@ public class DriverDoesNotExistException extends Exception {
 		super(message, cause, enableSuppression, writableStackTrace);
 		// TODO Auto-generated constructor stub
 	}
-
 }
 
