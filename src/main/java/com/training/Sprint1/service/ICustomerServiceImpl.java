@@ -10,7 +10,7 @@ import com.training.Sprint1.exception.CustomerNotFoundException;
 import com.training.Sprint1.repository.ICustomerRepository;
 
 @Service("customerService")
-public abstract class ICustomerServiceImpl implements ICustomerService {
+public class ICustomerServiceImpl implements ICustomerService {
 	@Autowired
 	ICustomerRepository cRepo;
 
@@ -60,9 +60,7 @@ public abstract class ICustomerServiceImpl implements ICustomerService {
 
 		return null;
 	}
+
 	
-
+	
 }
-
-
-
