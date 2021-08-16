@@ -53,15 +53,18 @@ public class DriverService implements IDriverService{
 	}
 
 	@Override
-	public void deleteDriver(Long id)  {
+	public Driver deleteDriver(Driver driver)  {
+		Driver deletedDriver = null;
 		try {
-		Driver deletedDriver = repo.findById(id).orElseThrow(DriverDoesNotExistException::new);
-		repo.delete(deletedDriver);
+		deletedDriver = repo.findById(driver.getId()).orElseThrow(DriverDoesNotExistException::new);
+		repo.delete(deletedDriver); 
+		
 		} catch (DriverDoesNotExistException e) {
 			
 			e.printStackTrace();
 		}
 		
+		return deletedDriver;
 	}
 	
 

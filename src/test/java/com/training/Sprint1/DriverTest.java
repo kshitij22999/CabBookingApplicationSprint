@@ -16,7 +16,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
 
 
 import com.training.Sprint1.entities.*;
@@ -88,19 +87,20 @@ class DriverTest {
 	
 	@Test
 	public void getDriverByIdTest() {
-		when(repo.getById(d1.getId())).thenReturn(d1);
-		Assertions.assertEquals(d1, service.getDriverById(d1.getId()));
-	}
+		when(repo.findById(d1.getId())).thenReturn(Optional.of(d1));
+		Assertions.assertEquals(d1, service.getDriverById(d1.getId()));	
+		}
 	
 	@Test
 	public void deleteDriverTest() {
-		
+		when(repo.findById(d1.getId())).thenReturn(Optional.of(d1));
+		Assertions.assertEquals(d1 , service.deleteDriver(d1));
 	}
 	
 	@Test
 	public void getBestDriversTest() {
 		when(repo.getBestDrivers()).thenReturn(driverList);
-		Assertions.assertEquals(service.getBestDrivers(), HttpStatus.OK);
+		Assertions.assertEquals(3, service.getBestDrivers().size());
 	}
 }
 
