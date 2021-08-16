@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.training.Sprint1.entities.Cab;
-import com.training.Sprint1.entities.carType;
+import com.training.Sprint1.entities.CarType;
 import com.training.Sprint1.repository.ICabRepository;
 import com.training.Sprint1.service.ICabService;
 
@@ -44,7 +44,7 @@ public class CabService implements ICabService {
 	}
 
 	@Override
-	public int countCabsOfType(carType carType) {
+	public int countCabsOfType(CarType carType) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
