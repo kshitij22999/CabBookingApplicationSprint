@@ -48,9 +48,10 @@ public class DriverController {
 	}
 	
 	@DeleteMapping("/drivers/delete/{id}")
-	public ResponseEntity<Driver> deleteDriver(@RequestParam Long id) throws DriverDoesNotExistException{
-		service.deleteDriver(id);
+	public ResponseEntity<Driver> deleteDriver(@RequestBody Driver driver) throws DriverDoesNotExistException{
+		service.deleteDriver(driver);
 		return new ResponseEntity<Driver>(HttpStatus.OK);
+		
 	}
 	
 	@GetMapping("/drivers/best")
@@ -58,6 +59,7 @@ public class DriverController {
 	List<Driver> bestDrivers = service.getBestDrivers();
 	return new ResponseEntity<List<Driver>>(bestDrivers,HttpStatus.OK);
 	}
+	
 	
 	
 	
