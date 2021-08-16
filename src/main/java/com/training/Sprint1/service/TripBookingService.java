@@ -1,6 +1,7 @@
 package com.training.Sprint1.service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,8 +13,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
+import com.training.Sprint1.entities.Cab;
+import com.training.Sprint1.entities.CarType;
 import com.training.Sprint1.entities.Customer;
+import com.training.Sprint1.entities.Driver;
+import com.training.Sprint1.entities.Status;
 import com.training.Sprint1.entities.TripBooking;
+import com.training.Sprint1.entities.VaccinationStatus;
 import com.training.Sprint1.exception.CustomerNotFoundException;
 import com.training.Sprint1.exception.TripBookingNotFoundException;
 import com.training.Sprint1.repository.ICabRepository;
@@ -36,6 +42,32 @@ public class TripBookingService implements ITripBookingService{
 	
 	@Override
 	public TripBooking addTripBooking(TripBooking tripbooking) {
+		LocalDateTime date = LocalDateTime.now();
+		
+		Customer customer1 = new Customer(11L,"Kshitij");
+		
+		Cab cab1 = new Cab(5L,CarType.Alto, 12);
+		
+		Cab cab2 = new Cab(6L,CarType.SwiftDzire, 25);
+		
+		Cab cab3 =new Cab(7L,CarType.Etios, 18);
+		
+		Driver d1 = new Driver("Hari", "DL2012MAH",4.9F ,cab1,VaccinationStatus.Not_Vaccinated);
+		
+		Driver d2 = new Driver("Bhanu", "DL2018XYZ",3.7F,cab2 , VaccinationStatus.SecondDose_Done);
+		
+		Driver d3 = new Driver("HansRaj","DL2015GIF", 4.1F, cab3, VaccinationStatus.FirstDose_Done);
+	
+		
+		TripBooking tb1 = new TripBooking(101L,d1, customer1,cab1,"Andheri","Bandra", date, date,Status.ALLOCATED,11, 400);
+
+		TripBooking tb2 = new TripBooking(102L,d2, customer1,cab2,"Mumbai", "Pune", date, date,Status.NOT_ALLOCATED,80, 3000);
+		
+		TripBooking tb3 = new TripBooking(104L,d3, customer1,cab3,"Delhi", "Mumbai", date, date,Status.ALLOCATED,3002, 40000);
+		
+		TripBooking temp1 = tripBookingRepo.save(tb1);
+		temp1 = tripBookingRepo.save(tb2);
+		temp1 = tripBookingRepo.save(tb3);
 		TripBooking newBooking = tripBookingRepo.save(tripbooking);
 		return newBooking;
 	}
@@ -95,9 +127,9 @@ public class TripBookingService implements ITripBookingService{
 		List<TripBooking> retVal=null;
 		try {
 			Customer temp = customerRepo.findById(customer.getId()).orElseThrow(CustomerNotFoundException::new);
-			System.out.println(temp);
+			System.out.println(temp.getId());
+			System.out.println(tripBookingRepo.findByCustomer(temp));
 			retVal = tripBookingRepo.findByCustomer(temp);
-			System.out.println(retVal);
 		} catch (CustomerNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

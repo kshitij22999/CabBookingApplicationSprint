@@ -200,4 +200,34 @@ public class Driver extends User{
 	}
 
 
+
+
+	public Driver(Long id, String username, String password, String mobileNumber, String email, Address address,
+			String driverName, String lisenceNo, float rating, Cab cab, List<TripBooking> tripbooking,
+			VaccinationStatus vaccinationStatus, AvailabilityStatus availabilityStatus) {
+		super(id, username, password, mobileNumber, email, address);
+		this.driverName = driverName;
+		this.lisenceNo = lisenceNo;
+		this.rating = rating;
+		this.cab = cab;
+		this.tripbooking = tripbooking;
+		this.vaccinationStatus = vaccinationStatus;
+		this.availabilityStatus = availabilityStatus;
+	}
+
+
+
+
+	public Driver(Long id, String driverName, String lisenceNo, float rating, Cab cab,
+			VaccinationStatus vaccinationStatus, AvailabilityStatus availabilityStatus) {
+		super(id);
+		this.driverName = driverName;
+		this.lisenceNo = lisenceNo;
+		this.rating = rating;
+		this.cab = cab;
+		this.vaccinationStatus = vaccinationStatus;
+		this.availabilityStatus = availabilityStatus;
+	}
+
+	
 }

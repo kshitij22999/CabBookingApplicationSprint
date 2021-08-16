@@ -129,6 +129,7 @@ public class TripBookingTest {
 	@Test
 	public void getTripsByCustomer() {
 		when(customerRepo.findById(customer1.getId())).thenReturn(Optional.of(customer1));
+		when(tripBookingRepo.findByCustomer(customer1)).thenReturn(lstTripBooking);
 		Assertions.assertEquals(lstTripBooking, tripBookingService.getTripsByCustomer(customer1));
 	}
 }

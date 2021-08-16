@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,7 +40,9 @@ public class TripBooking {
 	
 	private LocalDateTime fromDateTime;
 	private LocalDateTime toDateTime;
+	@Enumerated
 	private Status status;
+	
 	private float distanceInKm;
 	private float bill;
 	public Long getId() {
@@ -122,6 +125,34 @@ public class TripBooking {
 		this.distanceInKm = distanceInKm;
 		this.bill = bill;
 	}
+	public TripBooking(Long id) {
+		super();
+		this.id = id;
+	}
+	public TripBooking(Long id, Driver driver, Customer customer, Cab cab) {
+		super();
+		this.id = id;
+		this.driver = driver;
+		this.customer = customer;
+		this.cab = cab;
+	}
+	public TripBooking(Status status) {
+		super();
+		this.status = status;
+	}
+	public TripBooking(Long id, Status status) {
+		super();
+		this.id = id;
+		this.status = status;
+	}
+	public TripBooking(Long id, Status status, float distanceInKm, float bill) {
+		super();
+		this.id = id;
+		this.status = status;
+		this.distanceInKm = distanceInKm;
+		this.bill = bill;
+	}
+	
 	
 	
 }

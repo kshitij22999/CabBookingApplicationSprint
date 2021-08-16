@@ -14,8 +14,8 @@ import com.training.Sprint1.entities.TripBooking;
 @Repository
 public interface ITripBookingRepository extends JpaRepository<TripBooking, Long>{
 	
-	@Query(value="from TripBooking where customer=:c")
-	public List<TripBooking> findByCustomer(@Param("c") Customer customer);
+
+	public List<TripBooking> findByCustomer(Customer customer);
 	
 	
 	//@Query(value="from TripBooking where customer in (from Customer where id=:customerId)")
