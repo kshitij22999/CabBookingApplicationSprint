@@ -21,7 +21,7 @@ import com.training.Sprint1.entities.Driver;
 import com.training.Sprint1.entities.Status;
 import com.training.Sprint1.entities.TripBooking;
 import com.training.Sprint1.entities.VaccinationStatus;
-import com.training.Sprint1.entities.carType;
+import com.training.Sprint1.entities.CarType;
 import com.training.Sprint1.repository.ICustomerRepository;
 import com.training.Sprint1.repository.ITripBookingRepository;
 import com.training.Sprint1.service.ICustomerService;
@@ -63,11 +63,11 @@ public class TripBookingTest {
 		
 		customer1 = new Customer(11L,"Kshitij");
 		
-		cab1 = new Cab(5L,carType.Alto, 12);
+		cab1 = new Cab(5L,CarType.Alto, 12);
 		
-		cab2 = new Cab(6L,carType.SwiftDzire, 25);
+		cab2 = new Cab(6L,CarType.SwiftDzire, 25);
 		
-		cab3 =new Cab(7L,carType.Etios, 18);
+		cab3 =new Cab(7L,CarType.Etios, 18);
 		
 		d1 = new Driver("Hari", "DL2012MAH",4.9F ,cab1,VaccinationStatus.Not_Vaccinated);
 		
