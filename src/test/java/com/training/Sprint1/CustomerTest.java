@@ -88,8 +88,8 @@ public class CustomerTest {
 	@Test
 	public void updateCustomerTest() throws CustomerNotFoundException {
 		when(customerRepo.findById(cust1.getId())).thenReturn(Optional.of(cust1));
-		when(customerRepo.save(cust1)).thenReturn(cust1);
-		Assertions.assertEquals(cust1,customerService.updateCustomer(cust1));
+		when(customerRepo.save(cust1)).thenReturn(cust3);
+		Assertions.assertEquals(cust3,customerService.updateCustomer(cust1));
 	}
 	
 	
