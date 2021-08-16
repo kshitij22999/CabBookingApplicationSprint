@@ -4,9 +4,10 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.junit.jupiter.api.Assertions;
 import org.aspectj.lang.annotation.Before;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -63,32 +64,32 @@ public class CustomerTest {
 	@Test
 	public void viewCustomersTest() throws CustomerNotFoundException {
 		when(customerRepo.findAll()).thenReturn(customerList);
-		Assertions.assertThat(customerService.viewCustomers().size());
+		Assertions.assertEquals(3,customerService.viewCustomers().size());
 	}
 	
 	@Test
 	public void viewCustomerTest() throws CustomerNotFoundException {
 		when(customerRepo.findById(cust1.getId()));
-		Assertions.assertThat(customerService.viewCustomer(cust1.getId()));
+		Assertions.assertEquals(cust1,customerService.viewCustomer(cust1.getId()));
 	}
 	
 	@Test
 	public void insertCustomerTest() {
 		when(customerRepo.save(cust1)).thenReturn(cust1);
-		Assertions.assertThat(customerService.insertCustomer(cust1));
+		Assertions.assertEquals(cust1,customerService.insertCustomer(cust1));
 	}
 	
 	@Test
 	public void deleteCustomerTest() throws CustomerNotFoundException {
-		when(customerRepo.findById(cust1.getId()));
-		Assertions.assertThat(customerService.deleteCustomer(cust1));
+		when(customerRepo.findById(cust1.getId())).thenReturn(Optional.of(cust1));
+		Assertions.assertEquals(cust1,customerService.deleteCustomer(cust1));
 	}
 	
 	@Test
 	public void updateCustomerTest() throws CustomerNotFoundException {
-		when(customerRepo.findById(cust1.getId()));
+		when(customerRepo.findById(cust1.getId())).thenReturn(Optional.of(cust1));
 		when(customerRepo.save(cust1)).thenReturn(cust2);
-		Assertions.assertThat(customerService.updateCustomer(cust1));
+		Assertions.assertEquals(cust2,customerService.updateCustomer(cust1));
 	}
 	
 	
