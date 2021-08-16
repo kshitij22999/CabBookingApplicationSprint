@@ -21,7 +21,10 @@ import com.training.Sprint1.repository.ICustomerRepository;
 import com.training.Sprint1.repository.IDriverRepository;
 import com.training.Sprint1.repository.ITripBookingRepository;
 
+<<<<<<< HEAD
 @SuppressWarnings("unused")
+=======
+>>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
 @Service
 @Transactional
 public class TripBookingService implements ITripBookingService{
@@ -124,4 +127,19 @@ public class TripBookingService implements ITripBookingService{
 		return retVal;
 	}
 
+<<<<<<< HEAD
+=======
+	@Override
+	public Float getDistanceInKm(TripBooking tripbooking) {
+		TripBooking retVal = null;
+		try {
+			retVal = tripBookingRepo.findById(tripbooking.getId()).orElseThrow(TripBookingNotFoundException::new);
+		} catch (TripBookingNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return retVal.getDistanceInKm();
+	}
+
+>>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
 }

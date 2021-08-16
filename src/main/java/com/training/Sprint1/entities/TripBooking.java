@@ -11,7 +11,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+<<<<<<< HEAD
 @SuppressWarnings("unused")
+=======
+import org.hibernate.annotations.ManyToAny;
+
+>>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
 enum Status{ALLOCATED,NOT_ALLOCATED}
 
 @Entity
