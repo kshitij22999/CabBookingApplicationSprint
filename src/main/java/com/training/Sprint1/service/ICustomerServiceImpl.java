@@ -23,17 +23,22 @@ public class ICustomerServiceImpl implements ICustomerService {
 	}
 
 	@Override
-	public Customer updateCustomer(Customer customer) throws CustomerNotFoundException{
-		Customer cus = cRepo.findById(customer.getId()).get();
-		if (cus != null) {
-			cus.setEmail(customer.getEmail());
-			cus.setMobileNumber(customer.getMobileNumber());
-			cus.setUsername(customer.getUsername());
-			cus.setPassword(customer.getPassword());
-			cus.setAddress(customer.getAddress());
-			cRepo.save(cus);
+	public Customer updateCustomer(Customer customer){
+		Customer updatedCustomer = null;
+		try {
+			updatedCustomer= cRepo.findById(customer.getId()).orElseThrow(CustomerNotFoundException::new);
+		} catch (CustomerNotFoundException e) {
+			
+			e.printStackTrace();
 		}
-		return cus;
+		updatedCustomer.setEmail(updatedCustomer.getEmail());
+		updatedCustomer.setMobileNumber(updatedCustomer.getMobileNumber());
+		updatedCustomer.setUsername(updatedCustomer.getUsername());
+		updatedCustomer.setPassword(updatedCustomer.getPassword());
+		updatedCustomer.setAddress(updatedCustomer.getAddress());
+		
+		Customer cust = cRepo.save(updatedCustomer);
+		return cust;
 	}
 
 	
