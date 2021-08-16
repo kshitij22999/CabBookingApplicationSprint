@@ -1,46 +1,58 @@
 package com.training.Sprint1.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+@SuppressWarnings("unused")
 @Table(name="cba_customer")
 @Entity
 public class Customer extends User {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int customerId;
-	private int customerName;
+private String customerName;
 	
+	@OneToMany(mappedBy = "customer")
+	private List<TripBooking> tripBookings;
+	
+	public List<TripBooking> getTripBookings() {
+		return tripBookings;
+	}
+
+	public void setTripBookings(List<TripBooking> tripBookings) {
+		this.tripBookings = tripBookings;
+	}
+
 	public Customer() {
 		super();
 	}
 
-	public Customer(int customerId, int customerName) {
-		super();
-		this.customerId = customerId;
+	public Customer(Long customerId, String customerName) {
+		super(customerId);
+
 		this.customerName = customerName;
 	}
+	
 
 
 
-	public int getCustomerId() {
-		return customerId;
+
+
+	public Customer(String username, String password, String mobileNumber, String email, Address address) {
+		super(username, password, mobileNumber, email, address);
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}
-
-	public int getCustomerName() {
+	public String getCustomerName() {
 		return customerName;
 	}
 
 
 
-	public void setCustomerName(int customerName) {
+	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
 

@@ -9,7 +9,7 @@ import com.training.Sprint1.entities.User;
 @Table(name="cba_admin")
 public class Admin extends User{
 
-	public Admin(long id, String username, String password, String mobileNumber, String email, String address) {
+	public Admin(long id, String username, String password, String mobileNumber, String email, Address address) {
 		super(id, username, password, mobileNumber, email, address);
 		// TODO Auto-generated constructor stub
 	}
@@ -24,9 +24,8 @@ public class Admin extends User{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Admin(String username, String password, String mobileNumber, String email, String address) {
+	public Admin(String username, String password, String mobileNumber, String email, Address address) {
 		super(username, password, mobileNumber, email, address);
 		// TODO Auto-generated constructor stub
-	}	
-
+	}
 }

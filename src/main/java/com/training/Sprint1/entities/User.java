@@ -7,16 +7,25 @@ import javax.persistence.Table;
 
 @MappedSuperclass
 @Table(name="cba_user")
-public class User {
+public class User{
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	
 	private String username;
 	private String password;
 	private String mobileNumber;
 	private String email;
-	private String address;
+	private Address address;
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getUsername() {
 		return username;
@@ -49,30 +58,25 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
+	
 	public User() {
 		super();
 	}
 
-	public User(String username, String password, String mobileNumber, String email, String address) {
+	public User(String username, String password, String mobileNumber, String email, Address address) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.mobileNumber = mobileNumber;
 		this.email = email;
-		this.address = address;
-	}
-
-	public User(long id, String username) {
-		super();
-		this.id = id;
-		this.username = username;
+		this.setAddress(address);
 	}
 
 	public User(String username) {
@@ -80,15 +84,48 @@ public class User {
 		this.username = username;
 	}
 
-	public User(long id, String username, String password, String mobileNumber, String email, String address) {
+	public User(Long id, String username, String password, String mobileNumber, String email, Address address) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.mobileNumber = mobileNumber;
 		this.email = email;
-		this.address = address;
+		this.setAddress(address);
 	}
+
+	public User(Long id, String username, String password) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+	}
+
+	public User(Long id, String mobileNumber, String email, Address address) {
+		super();
+		this.id = id;
+		this.mobileNumber = mobileNumber;
+		this.email = email;
+		this.setAddress(address);
+	}
+
+	public User(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
+
+	public User(Long id, String username) {
+		super();
+		this.id = id;
+		this.username = username;
+	}
+
+	public User(Long id) {
+		super();
+		this.id = id;
+	}
+
 	
 	
 

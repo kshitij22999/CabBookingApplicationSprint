@@ -1,29 +1,19 @@
 package com.training.Sprint1.entities;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
- 
-enum VaccinationStatus{
-	FirstDose_Done,SecondDose_Done,Not_Vaccinated;
 	
-}
-	enum AvailabilityStatus{
-		Available,Busy
-}
+
 @Entity
 @Table(name="cba_driver")
-public class Driver { 
+public class Driver extends User{ 
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long driverId;
 	private String driverName;
 	private String lisenceNo;
 	private float rating;
@@ -32,7 +22,7 @@ public class Driver {
 	private Cab cab;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	private TripBooking tripbooking;
+	private List<TripBooking> tripbooking;
 	
 	@Enumerated
 	private VaccinationStatus vaccinationStatus;
@@ -45,122 +35,172 @@ public class Driver {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Driver(Long driverId, String driverName, String lisenceNo, float rating, Cab cab, TripBooking tripbooking,
-			VaccinationStatus vaccinationStatus, AvailabilityStatus availabilityStatus) {
-		super();
-		this.driverId = driverId;
+
+
+
+	public Driver(String username) {
+		super(username);
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public Driver(long id, String username) {
+		super(id, username);
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+	public Driver(long id) {
+		super(id);
+		// TODO Auto-generated constructor stub
+	}
+
+	
+
+
+	public Driver(Long id, String driverName, String lisenceNo, float rating, Cab cab) {
+		super(id);
 		this.driverName = driverName;
 		this.lisenceNo = lisenceNo;
 		this.rating = rating;
 		this.cab = cab;
-		this.tripbooking = tripbooking;
-		this.vaccinationStatus = vaccinationStatus;
-		this.availabilityStatus = availabilityStatus;
 	}
 
-	public Driver(String driverName, String lisenceNo, float rating, Cab cab, TripBooking tripbooking,
-			VaccinationStatus vaccinationStatus, AvailabilityStatus availabilityStatus) {
+
+
+
+	public Driver(String driverName, String lisenceNo, float rating, Cab cab, VaccinationStatus vaccinationStatus) {
 		super();
 		this.driverName = driverName;
 		this.lisenceNo = lisenceNo;
 		this.rating = rating;
 		this.cab = cab;
-		this.tripbooking = tripbooking;
 		this.vaccinationStatus = vaccinationStatus;
-		this.availabilityStatus = availabilityStatus;
 	}
 
-	public Driver(String driverName, float rating, Cab cab, VaccinationStatus vaccinationStatus,
+
+
+
+	public Driver(Long id, String driverName, String lisenceNo, Cab cab, List<TripBooking> tripbooking) {
+		super(id);
+		this.driverName = driverName;
+		this.lisenceNo = lisenceNo;
+		this.cab = cab;
+		this.tripbooking = tripbooking;
+	}
+
+
+
+
+	public Driver(long id, String username, String password, String mobileNumber, String email, Address address) {
+		super(id, username, password, mobileNumber, email, address);
+		
+		// TODO Auto-generated constructor stub
+	}
+
+	public Driver(String driverName, String lisenceNo, float rating, VaccinationStatus vaccinationStatus,
 			AvailabilityStatus availabilityStatus) {
 		super();
 		this.driverName = driverName;
+		this.lisenceNo = lisenceNo;
 		this.rating = rating;
-		this.cab = cab;
 		this.vaccinationStatus = vaccinationStatus;
 		this.availabilityStatus = availabilityStatus;
 	}
 
-	public Driver(Long driverId, String driverName, float rating) {
+
+	public Driver(String driverName, String lisenceNo, Cab cab) {
 		super();
-		this.driverId = driverId;
 		this.driverName = driverName;
-		this.rating = rating;
-	}
-	
-	
-
-	public Long getDriverId() {
-		return driverId;
+		this.lisenceNo = lisenceNo;
+		this.cab = cab;
 	}
 
-	public void setDriverId(Long driverId) {
-		this.driverId = driverId;
-	}
 
 	public String getDriverName() {
 		return driverName;
 	}
 
+
 	public void setDriverName(String driverName) {
 		this.driverName = driverName;
 	}
+
 
 	public String getLisenceNo() {
 		return lisenceNo;
 	}
 
+
 	public void setLisenceNo(String lisenceNo) {
 		this.lisenceNo = lisenceNo;
 	}
+
 
 	public float getRating() {
 		return rating;
 	}
 
+
 	public void setRating(float rating) {
 		this.rating = rating;
 	}
+
 
 	public Cab getCab() {
 		return cab;
 	}
 
+
 	public void setCab(Cab cab) {
 		this.cab = cab;
 	}
 
-	public TripBooking getTripbooking() {
+
+	
+
+
+	public List<TripBooking> getTripbooking() {
 		return tripbooking;
 	}
 
-	public void setTripbooking(TripBooking tripbooking) {
+
+	public void setTripbooking(List<TripBooking> tripbooking) {
 		this.tripbooking = tripbooking;
 	}
+
 
 	public VaccinationStatus getVaccinationStatus() {
 		return vaccinationStatus;
 	}
 
+
 	public void setVaccinationStatus(VaccinationStatus vaccinationStatus) {
 		this.vaccinationStatus = vaccinationStatus;
 	}
+
 
 	public AvailabilityStatus getAvailabilityStatus() {
 		return availabilityStatus;
 	}
 
+
 	public void setAvailabilityStatus(AvailabilityStatus availabilityStatus) {
 		this.availabilityStatus = availabilityStatus;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Driver [driverId=" + driverId + ", driverName=" + driverName + ", lisenceNo=" + lisenceNo + ", rating="
-				+ rating + ", cab=" + cab + ", tripbooking=" + tripbooking + ", vaccinationStatus=" + vaccinationStatus
-				+ ", availabilityStatus=" + availabilityStatus + "]";
+		return "Driver [driverName=" + driverName + ", lisenceNo=" + lisenceNo + ", rating=" + rating + ", cab=" + cab
+				+ ", tripbooking=" + tripbooking + ", vaccinationStatus=" + vaccinationStatus + ", availabilityStatus="
+				+ availabilityStatus + "]";
 	}
+
+
 	
 	
-	
-	
-}
+}	
