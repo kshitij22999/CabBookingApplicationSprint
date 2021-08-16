@@ -15,7 +15,6 @@ import javax.persistence.Table;
 public class Customer extends User {
 
 private String customerName;
-
 	
 	@OneToMany(mappedBy = "customer")
 	private List<TripBooking> tripBookings;
@@ -33,22 +32,16 @@ private String customerName;
 
 	}
 
-	public Customer(Long customerId, String customerName) {
-		super(customerId);
-
-		this.customerName = customerName;
-	}
-	
-
-
-
-
-
 	public Customer(String username, String password, String mobileNumber, String email, Address address) {
 		super(username, password, mobileNumber, email, address);
 		// TODO Auto-generated constructor stub
 	}
 
+	public Customer(Long customerId, String customerName) {
+		super(customerId);
+
+		this.customerName = customerName;
+	}
 	public String getCustomerName() {
 		return customerName;
 	}
@@ -60,5 +53,4 @@ private String customerName;
 	}
 
 
-	
 }

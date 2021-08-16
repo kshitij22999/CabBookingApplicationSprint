@@ -3,6 +3,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @MappedSuperclass
@@ -16,7 +17,7 @@ public class User{
 	private String password;
 	private String mobileNumber;
 	private String email;
-
+	@OneToOne(mappedBy="user")
 	private Address address;
 
 	
@@ -86,8 +87,6 @@ public class User{
 		this.username = username;
 	}
 
-	
-
 
 	public User(Long id, String username, String password, String mobileNumber, String email, Address address) {
 		super();
@@ -97,6 +96,7 @@ public class User{
 		this.mobileNumber = mobileNumber;
 		this.email = email;
 		this.address = address;
+
 	}
 
 	public User(Long id, String username, String password) {
@@ -132,11 +132,5 @@ public class User{
 		super();
 		this.id = id;
 	}
-
-
-
-
-	
-	
 
 }
