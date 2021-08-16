@@ -41,6 +41,7 @@ class DriverTest {
 	
 	Driver d1,d2,d3;
 	List<Driver> driverList;
+	List<Driver> bestDrivers;
 
 	@SuppressWarnings("deprecation")
 	@BeforeEach
@@ -58,6 +59,9 @@ class DriverTest {
 		driverList.add(d1);
 		driverList.add(d2);
 		driverList.add(d3);
+	
+		bestDrivers = new ArrayList<Driver>();
+		bestDrivers.add(d1);
 	}
 	
 	@AfterEach
@@ -99,8 +103,8 @@ class DriverTest {
 	
 	@Test
 	public void getBestDriversTest() {
-		when(repo.getBestDrivers()).thenReturn(driverList);
-		Assertions.assertEquals(3, service.getBestDrivers().size());
+		when(repo.getBestDrivers()).thenReturn(bestDrivers);
+		Assertions.assertEquals(1, service.getBestDrivers().size());
 	}
 }
 
