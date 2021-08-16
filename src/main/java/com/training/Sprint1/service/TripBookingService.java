@@ -39,7 +39,19 @@ public class TripBookingService implements ITripBookingService{
 		TripBooking newBooking = tripBookingRepo.save(tripbooking);
 		return newBooking;
 	}
-
+	
+	@Override
+	public TripBooking getTripBookingById(Long id) {
+		TripBooking retVal=null;
+		try {
+			retVal = tripBookingRepo.findById(id).orElseThrow(TripBookingNotFoundException::new);
+		} catch (TripBookingNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return retVal;
+	}
+	
 	@Override
 	public TripBooking updateTripBooking(TripBooking tripbooking) {
 		TripBooking retrievedTripBookingDb = null;

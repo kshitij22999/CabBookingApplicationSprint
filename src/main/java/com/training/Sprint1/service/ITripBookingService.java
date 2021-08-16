@@ -25,5 +25,6 @@ public interface ITripBookingService {
 	List<TripBooking> getTripsByCustomer(Customer customer);
 
 	Float getDistanceInKm(TripBooking tripbooking);
+	TripBooking getTripBookingById(Long id);
 
 }
