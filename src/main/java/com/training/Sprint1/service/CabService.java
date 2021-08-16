@@ -21,7 +21,7 @@ public class CabService implements ICabService {
 	}
 
 	@Override
-	public Cab updateCab(String cabId) {
+	public Cab updateCab(Cab cab) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -45,6 +45,12 @@ public class CabService implements ICabService {
 
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<Cab> getAllCabs() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

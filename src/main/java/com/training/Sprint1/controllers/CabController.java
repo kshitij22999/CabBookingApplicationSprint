@@ -1,4 +1,4 @@
-package com.training.Sprint1.controller;
+package com.training.Sprint1.controllers;
 
 import java.util.List;
 
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.training.Sprint1.entities.Cab;
+import com.training.Sprint1.entities.CarType;
 import com.training.Sprint1.service.ICabService;
 
 @RestController 
@@ -45,8 +46,8 @@ public class CabController {
 	}
 	
 	@GetMapping(path="viewCabsOfType")
-	public List<Cab> viewCabsOfType(@RequestParam String cabId){
-		return iCabService.viewCabsOfType(cabId);
+	public List<Cab> viewCabsOfType(@RequestParam CarType carType){
+		return iCabService.viewCabsOfType(carType);
 	}
 	
 
