@@ -40,6 +40,7 @@ public class DriverService implements IDriverService{
 		updatedDriver.setDriverName(updatedDriver.getDriverName());
 		updatedDriver.setRating(updatedDriver.getRating());
 		updatedDriver.setLisenceNo(updatedDriver.getLisenceNo());
+		updatedDriver.setVaccinationStatus(updatedDriver.getVaccinationStatus());
 		
 		Driver dvr = repo.save(updatedDriver);
 		return dvr;
