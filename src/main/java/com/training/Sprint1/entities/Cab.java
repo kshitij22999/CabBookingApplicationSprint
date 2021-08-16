@@ -15,11 +15,9 @@ public class Cab {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long cabId;
 	
-<<<<<<< HEAD
+
 	private CarType carType;
-=======
-	private carType carType;
->>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
+
 	private float perKmRate;
 	
 	public Cab() {

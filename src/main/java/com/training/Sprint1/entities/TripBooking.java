@@ -11,13 +11,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-<<<<<<< HEAD
-@SuppressWarnings("unused")
-=======
+
+
 import org.hibernate.annotations.ManyToAny;
 
->>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
-enum Status{ALLOCATED,NOT_ALLOCATED}
+
 
 @Entity
 @Table(name="cba_tripbooking")
@@ -34,6 +32,7 @@ public class TripBooking {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Cab cab;
+	
 	
 	private String fromLocation;
 	private String toLocation;
@@ -100,17 +99,21 @@ public class TripBooking {
 	public Cab getCab() {
 		return cab;
 	}
+	
 	@Override
 	public String toString() {
-		return "TripBooking [id=" + id + ", driver=" + driver + ", fromLocation=" + fromLocation + ", toLocation="
-				+ toLocation + ", fromDateTime=" + fromDateTime + ", toDateTime=" + toDateTime + ", status=" + status
-				+ ", distanceInKm=" + distanceInKm + ", bill=" + bill + "]";
+		return "TripBooking [id=" + id + ", driver=" + driver + ", customer=" + customer + ", cab=" + cab
+				+ ", fromLocation=" + fromLocation + ", toLocation=" + toLocation + ", fromDateTime=" + fromDateTime
+				+ ", toDateTime=" + toDateTime + ", status=" + status + ", distanceInKm=" + distanceInKm + ", bill="
+				+ bill + "]";
 	}
-	public TripBooking(long id, Driver driver, String fromLocation, String toLocation, LocalDateTime fromDateTime,
-			LocalDateTime toDateTime, Status status, float distanceInKm, float bill) {
+	public TripBooking(Long id, Driver driver, Customer customer, Cab cab, String fromLocation, String toLocation,
+			LocalDateTime fromDateTime, LocalDateTime toDateTime, Status status, float distanceInKm, float bill) {
 		super();
 		this.id = id;
 		this.driver = driver;
+		this.customer = customer;
+		this.cab = cab;
 		this.fromLocation = fromLocation;
 		this.toLocation = toLocation;
 		this.fromDateTime = fromDateTime;

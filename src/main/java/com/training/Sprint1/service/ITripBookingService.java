@@ -8,12 +8,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.training.Sprint1.entities.Customer;
 import com.training.Sprint1.entities.TripBooking;
 
-<<<<<<< HEAD
-@SuppressWarnings("unused")
-=======
->>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
+
 @Service
 @Transactional
 public interface ITripBookingService {
@@ -23,9 +21,9 @@ public interface ITripBookingService {
 	public TripBooking calculateBill(TripBooking tripbooking);
 	public List<TripBooking> getAllTrips();
 	public List<TripBooking> getTripDateWise(LocalDateTime date);
-	List<TripBooking> getTripsByCustomerId(Long customerID);
-<<<<<<< HEAD
-=======
+
+	List<TripBooking> getTripsByCustomer(Customer customer);
+
 	Float getDistanceInKm(TripBooking tripbooking);
->>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
+
 }

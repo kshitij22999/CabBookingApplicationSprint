@@ -1,4 +1,4 @@
-ackage com.training.Sprint1;
+package com.training.Sprint1;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -21,16 +21,14 @@ import com.training.Sprint1.repository.ICustomerRepository;
 import com.training.Sprint1.repository.IDriverRepository;
 import com.training.Sprint1.repository.ITripBookingRepository;
 
-<<<<<<< HEAD
-@SuppressWarnings("unused")
-=======
->>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
+
 @Service
 @Transactional
 public class TripBookingService implements ITripBookingService{
 	
 	@Autowired
 	private ITripBookingRepository tripBookingRepo;
+	
 	
 	@Autowired
 	private ICustomerRepository customerRepo;
@@ -81,12 +79,13 @@ public class TripBookingService implements ITripBookingService{
 	}
 
 	@Override
-	public List<TripBooking> getTripsByCustomerId(Long id) {
-		Customer customer;
+	public List<TripBooking> getTripsByCustomer(Customer customer) {
 		List<TripBooking> retVal=null;
 		try {
-			customer = customerRepo.findById(id).orElseThrow(CustomerNotFoundException::new);
-			retVal = tripBookingRepo.findByCustomer(customer);
+			Customer temp = customerRepo.findById(customer.getId()).orElseThrow(CustomerNotFoundException::new);
+			System.out.println(temp);
+			retVal = tripBookingRepo.findByCustomer(temp);
+			System.out.println(retVal);
 		} catch (CustomerNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -100,13 +99,10 @@ public class TripBookingService implements ITripBookingService{
 		TripBooking retrVal = null;
 		try {
 			retrVal=tripBookingRepo.findById(tripbooking.getId()).orElseThrow(TripBookingNotFoundException::new);
-			if(retrVal==null) {
-				throw new TripBookingNotFoundException();
-			}else {
 				Float bill = retrVal.getDistanceInKm()*retrVal.getCab().getPerKmRate();
 				retrVal.setBill(bill);
 				tripBookingRepo.save(retrVal);
-			}
+			
 		} catch (TripBookingNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -127,8 +123,6 @@ public class TripBookingService implements ITripBookingService{
 		return retVal;
 	}
 
-<<<<<<< HEAD
-=======
 	@Override
 	public Float getDistanceInKm(TripBooking tripbooking) {
 		TripBooking retVal = null;
@@ -141,5 +135,4 @@ public class TripBookingService implements ITripBookingService{
 		return retVal.getDistanceInKm();
 	}
 
->>>>>>> 3f78c0ae3dea4d2a27cc58bc35e07772819557f4
 }
