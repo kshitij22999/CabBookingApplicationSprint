@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @SuppressWarnings("unused")
-@Table(name="cba_customer2")
+@Table(name="cba_customer1")
 @Entity
 public class Customer extends User {
 
@@ -37,8 +37,8 @@ private String customerName;
 		// TODO Auto-generated constructor stub
 	}
 
-	public Customer(Long customerId, String customerName) {
-		super(customerId);
+	public Customer(Long id, String customerName) {
+		super(id);
 
 		this.customerName = customerName;
 	}
