@@ -40,10 +40,10 @@ public class CabService implements ICabService {
 	
 	
 	@Override
-	public Cab deleteCab(Cab cab)  {
+	public Cab deleteCab(Long cabId)  {
 		Cab deletedCab = null;
 		try {
-		deletedCab = cRepo.findById(cab.getCabId()).orElseThrow(CabNotFoundException::new);
+		deletedCab = cRepo.findById(cabId).orElseThrow(CabNotFoundException::new);
 		 cRepo.delete(deletedCab); 
 		
 		} catch (CabNotFoundException e) {
@@ -78,13 +78,19 @@ public class CabService implements ICabService {
 		Cab retcab=cRepo.save(cab);
 		return retcab;
 	}
-	
-	
 
+	@Override
+	public Cab getByCabId(Long cabId) {
+		Cab getCab=null;
+		try {
+			getCab = cRepo.findById(cabId).orElseThrow(CabNotFoundException::new);
+		} catch (CabNotFoundException e) {
+			e.printStackTrace();
+		}
+		return getCab;
 	
-	
-
 }
+	}
 
 	
 

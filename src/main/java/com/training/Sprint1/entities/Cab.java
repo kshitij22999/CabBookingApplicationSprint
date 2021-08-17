@@ -65,10 +65,7 @@ public class Cab {
 		return "Cab [cabId=" + cabId + ", carType=" + carType + ", perKmRate=" + perKmRate + "]";
 	}
 
-	public Long getId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	
 	
 	

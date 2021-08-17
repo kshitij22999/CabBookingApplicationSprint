@@ -28,7 +28,7 @@ public class CabController {
 	
 	
 	@PostMapping(path="/add")
-	public ResponseEntity<Cab>insertCab(@RequestBody Cab cab){
+	public ResponseEntity<Cab> insertCab(@RequestBody Cab cab){
 		Cab addedCab =  iCabService.addCab(cab);
 		return new ResponseEntity<Cab>(addedCab, HttpStatus.OK);
 	}
@@ -41,8 +41,8 @@ public class CabController {
 	}
 	
 	@DeleteMapping(path="/delete")
-	public ResponseEntity<Cab>  deleteCab(@RequestParam Cab cab) throws CabNotFoundException {
-		return new ResponseEntity<Cab>(iCabService.deleteCab(cab), HttpStatus.OK);
+	public ResponseEntity<Cab>  deleteCab(@RequestParam Long cabId) throws CabNotFoundException {
+		return new ResponseEntity<Cab>(iCabService.deleteCab(cabId), HttpStatus.OK);
 	}
 	
 	
@@ -57,5 +57,9 @@ public class CabController {
 		return  new ResponseEntity<List<Cab>>(iCabService.viewCabsOfType(carType),HttpStatus.OK);
 	}
 	
+	@GetMapping(path="/getByCabId")
+	public ResponseEntity<Cab>  getByCabId(@RequestParam Long cabId) throws CabNotFoundException {
+		return new ResponseEntity<Cab>(iCabService.getByCabId(cabId), HttpStatus.OK);
+	}
 
 }
