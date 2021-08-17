@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.training.Sprint1.entities.Cab;
 import com.training.Sprint1.entities.CarType;
+import com.training.Sprint1.exception.CabNotFoundException;
 
 
 @Service
@@ -12,10 +13,13 @@ import com.training.Sprint1.entities.CarType;
 public interface ICabService {
 	public Cab insertCab(Cab cab);
 	//public List<Cab> addAll(List<Cab> cabList);
-	public Cab updateCab(Cab cab);
-	public Cab deleteCab(String cabId);
-	public List<Cab> viewCabsOfType(String cabId);
+	public Cab updateCab(Cab cab) throws CabNotFoundException ;
+	public Cab deleteCab(Cab cab) throws CabNotFoundException;
+	public List<Cab> viewCabsOfType(CarType carType);
 	public List<Cab> getAllCabs();
-	public int countCabsOfType(CarType carType);
+	public int countCabs(CarType carType);
+	public Cab addCab(Cab cab);
+	
+	
 
 }
