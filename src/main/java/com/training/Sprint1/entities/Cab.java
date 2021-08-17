@@ -1,8 +1,6 @@
 package com.training.Sprint1.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,31 +8,29 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="cba_cab1")
+@Table(name="cba_cab")
 public class Cab {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long cabId;
 	
-	@Enumerated(EnumType.STRING)
 	private CarType carType;
-	
-	private Double perKmRate;
+	private float perKmRate;
 	
 	public Cab() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cab(Long cabId, CarType carType, Double perKmRate) {
+	public Cab(Long cabId, com.training.Sprint1.entities.CarType carType, float perKmRate) {
 		super();
 		this.cabId = cabId;
 		this.carType = carType;
 		this.perKmRate = perKmRate;
 	}
 
-	public Cab(CarType carType, Double perKmRate) {
+	public Cab(com.training.Sprint1.entities.CarType carType, float perKmRate) {
 		super();
 		this.carType = carType;
 		this.perKmRate = perKmRate;
@@ -55,13 +51,12 @@ public class Cab {
 	public void setCarType(CarType carType) {
 		this.carType = carType;
 	}
-	
 
-	public Double getPerKmRate() {
+	public float getPerKmRate() {
 		return perKmRate;
 	}
 
-	public void setPerKmRate(Double perKmRate) {
+	public void setPerKmRate(float perKmRate) {
 		this.perKmRate = perKmRate;
 	}
 
