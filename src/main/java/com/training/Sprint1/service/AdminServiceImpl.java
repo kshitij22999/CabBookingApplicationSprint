@@ -96,7 +96,7 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public List<Cab> viewCabsOfType(CarType carType) {
 		// TODO Auto-generated method stub
-		return cabRepository.findByCarType(carType);		
+		return cabRepository.viewCabsOfType(carType);		
 	}
 
 

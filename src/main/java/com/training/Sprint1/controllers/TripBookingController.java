@@ -1,5 +1,7 @@
 package com.training.Sprint1.controllers;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,7 @@ public class TripBookingController {
 	ITripBookingService tripbookingService;
 	
 	@GetMapping("tripbookings/{id}")
-	public ResponseEntity<TripBooking> getTripBookingById(@RequestParam Long id) throws TripBookingNotFoundException{
+	public ResponseEntity<TripBooking> getTripBookingById(@PathParam("id") Long id) throws TripBookingNotFoundException{
 		return new ResponseEntity<TripBooking>(tripbookingService.getTripBookingById(id),HttpStatus.OK);
 	}
 	

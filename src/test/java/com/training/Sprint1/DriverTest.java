@@ -50,11 +50,11 @@ class DriverTest {
 		
 		driverList = new ArrayList<>();
 		
-		d1 = new Driver("Hari", "DL2012MAH",4.9F ,new Cab(CarType.Alto, 12D),VaccinationStatus.Not_Vaccinated);
+		d1 = new Driver("Hari", "DL2012MAH",4.9F ,new Cab(CarType.Alto, 12),VaccinationStatus.Not_Vaccinated);
 		
-		d2 = new Driver("Bhanu", "DL2018XYZ",3.7F, new Cab(CarType.SwiftDzire, 25D), VaccinationStatus.SecondDose_Done);
+		d2 = new Driver("Bhanu", "DL2018XYZ",3.7F, new Cab(CarType.SwiftDzire, 25), VaccinationStatus.SecondDose_Done);
 		
-		d3 = new Driver("HansRaj","DL2015GIF", 4.1F, new Cab(CarType.Etios, 18D), VaccinationStatus.FirstDose_Done);
+		d3 = new Driver("HansRaj","DL2015GIF", 4.1F, new Cab(CarType.Etios, 18), VaccinationStatus.FirstDose_Done);
 		
 		driverList.add(d1);
 		driverList.add(d2);

@@ -117,9 +117,9 @@ public class AdminController {
 	
 	
 	@GetMapping("/cab/CarType/{CarType}")
-	public List<Cab>viewCabOfTypes(@RequestParam String cabId)
+	public List<Cab>viewCabOfTypes(@PathVariable("CarType") CarType carType)
 	{
-		return cabService.viewCabsOfType(cabId) ;
+		return cabService.viewCabsOfType(carType) ;
 	}
 	
 	@GetMapping("/tripBooking/all")
