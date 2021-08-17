@@ -11,7 +11,7 @@ import javax.persistence.Table;
 	
 
 @Entity
-@Table(name="cba_driver1")
+@Table(name="cba_driver2")
 public class Driver extends User{ 
 	
 	private String driverName;

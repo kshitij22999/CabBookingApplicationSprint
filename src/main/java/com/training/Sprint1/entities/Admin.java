@@ -6,7 +6,7 @@ import com.training.Sprint1.entities.User;
 
 @SuppressWarnings("unused")
 @Entity
-@Table(name="cba_admin1")
+@Table(name="cba_admin2")
 public class Admin extends User{
 
 	public Admin(long id, String username, String password, String mobileNumber, String email, Address address) {

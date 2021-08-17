@@ -19,7 +19,7 @@ import org.hibernate.annotations.ManyToAny;
 
 
 @Entity
-@Table(name="cba_tripbooking1")
+@Table(name="cba_tripbooking2")
 public class TripBooking {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
