@@ -15,7 +15,7 @@ public class Cab {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long cabId;
 	
-	private carType carType;
+	private CarType carType;
 	private float perKmRate;
 	
 	public Cab() {
@@ -23,14 +23,14 @@ public class Cab {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cab(Long cabId, com.training.Sprint1.entities.carType carType, float perKmRate) {
+	public Cab(Long cabId, com.training.Sprint1.entities.CarType carType, float perKmRate) {
 		super();
 		this.cabId = cabId;
 		this.carType = carType;
 		this.perKmRate = perKmRate;
 	}
 
-	public Cab(com.training.Sprint1.entities.carType carType, float perKmRate) {
+	public Cab(com.training.Sprint1.entities.CarType carType, float perKmRate) {
 		super();
 		this.carType = carType;
 		this.perKmRate = perKmRate;
@@ -44,11 +44,11 @@ public class Cab {
 		this.cabId = cabId;
 	}
 
-	public carType getCarType() {
+	public CarType getCarType() {
 		return carType;
 	}
 
-	public void setCarType(carType carType) {
+	public void setCarType(CarType carType) {
 		this.carType = carType;
 	}
 
@@ -63,6 +63,11 @@ public class Cab {
 	@Override
 	public String toString() {
 		return "Cab [cabId=" + cabId + ", carType=" + carType + ", perKmRate=" + perKmRate + "]";
+	}
+
+	public Long getId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

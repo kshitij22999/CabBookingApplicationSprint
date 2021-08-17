@@ -1,4 +1,6 @@
 package com.training.Sprint1.exception;
+@SuppressWarnings("serial")
+
 
 public class CabNotFoundException  extends Exception {
 	/**
@@ -15,7 +17,7 @@ public class CabNotFoundException  extends Exception {
 		this.message = message;
 	}
 	public CabNotFoundException() {
-		// TODO Auto-generated constructor stub
+	 	//throw new CabNotFoundException();
 	}
 
 	public CabNotFoundException(String message) {
