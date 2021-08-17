@@ -2,21 +2,24 @@ package com.training.Sprint1.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @SuppressWarnings("unused")
-@Table(name="cba_customer1")
+@Table(name="cba_customer5")
 @Entity
 public class Customer extends User {
 
 private String customerName;
 	
-	@OneToMany(mappedBy = "customer")
+	@OneToMany(cascade = CascadeType.ALL,targetEntity = TripBooking.class)
+	@JoinColumn(referencedColumnName="id")
 	private List<TripBooking> tripBookings;
 	
 	public List<TripBooking> getTripBookings() {

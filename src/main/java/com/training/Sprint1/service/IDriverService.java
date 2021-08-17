@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.training.Sprint1.entities.Driver;
+import com.training.Sprint1.entities.TripBooking;
 import com.training.Sprint1.exception.DriverDoesNotExistException;
 
 @Service
@@ -22,6 +23,7 @@ public interface IDriverService {
 	public Driver getDriverById(Long id) throws DriverDoesNotExistException;
 	public void startTrip(Driver driver);
 	public void endTrip(Driver driver);
+	public TripBooking acceptBooking(Long id,Driver driver);
 	
 
 	

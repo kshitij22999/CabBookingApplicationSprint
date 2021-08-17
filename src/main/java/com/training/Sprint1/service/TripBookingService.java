@@ -43,6 +43,7 @@ public class TripBookingService implements ITripBookingService{
 	@Override
 	public TripBooking addTripBooking(TripBooking tripbooking) {
 		TripBooking newBooking = tripBookingRepo.save(tripbooking);
+		System.out.println(newBooking+"****************");
 		return newBooking;
 	}
 	
@@ -84,11 +85,8 @@ public class TripBookingService implements ITripBookingService{
 		TripBooking retrVal = null;
 		try {
 			retrVal=tripBookingRepo.findById(tripbookingId).orElseThrow(TripBookingNotFoundException::new);
-			if(retrVal==null) {
-				throw new TripBookingNotFoundException();
-			}else {
-				tripBookingRepo.deleteAllById(null);
-			}
+				tripBookingRepo.deleteById(tripbookingId);
+			
 		} catch (TripBookingNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -113,11 +111,12 @@ public class TripBookingService implements ITripBookingService{
 	}
 
 	@Override
-	public TripBooking calculateBill(TripBooking tripbooking) {
+	public Float calculateBill(TripBooking tripbooking) {
 		TripBooking retrVal = null;
+		Float bill=null;
 		try {
 			retrVal=tripBookingRepo.findById(tripbooking.getId()).orElseThrow(TripBookingNotFoundException::new);
-				Float bill = retrVal.getDistanceInKm()*retrVal.getCab().getPerKmRate();
+				bill = retrVal.getDistanceInKm()*retrVal.getCab().getPerKmRate();
 				retrVal.setBill(bill);
 				tripBookingRepo.save(retrVal);
 			
@@ -125,7 +124,7 @@ public class TripBookingService implements ITripBookingService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return retrVal;
+		return bill;
 	}
 
 	@Override
@@ -152,6 +151,21 @@ public class TripBookingService implements ITripBookingService{
 			e.printStackTrace();
 		}
 		return retVal.getDistanceInKm();
+	}
+
+	@Override
+	public TripBooking addUnassignedTripBooking(Long id, TripBooking tripBooking) {
+		TripBooking trip = null;
+		try {
+			tripBooking.setStatus(Status.NOT_ALLOCATED);
+			Customer c = customerRepo.findById(id).orElseThrow(CustomerNotFoundException::new);
+			tripBooking.setCustomer(c);
+			trip = tripBookingRepo.save(tripBooking);
+		} catch (CustomerNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return trip;
 	}
 
 }

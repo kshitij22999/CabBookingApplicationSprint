@@ -18,10 +18,10 @@ public interface ITripBookingService {
 	public TripBooking addTripBooking(TripBooking tripbooking);
 	public TripBooking updateTripBooking(TripBooking tripbooking);
 	public TripBooking deleteTripBooking(Long tripbookingId);
-	public TripBooking calculateBill(TripBooking tripbooking);
+	public Float calculateBill(TripBooking tripbooking);
 	public List<TripBooking> getAllTrips();
 	public List<TripBooking> getTripDateWise(LocalDateTime date);
-
+	public TripBooking addUnassignedTripBooking(Long id,TripBooking tripBooking);
 	List<TripBooking> getTripsByCustomer(Customer customer);
 
 	Float getDistanceInKm(TripBooking tripbooking);

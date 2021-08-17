@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.training.Sprint1.entities.Customer;
+import com.training.Sprint1.entities.TripBooking;
 import com.training.Sprint1.exception.CustomerNotFoundException;
 //import com.training.Sprint1.exception.InvalidUserOrPasswordException;
 import com.training.Sprint1.service.ICustomerService;
+import com.training.Sprint1.service.ITripBookingService;
 //import com.training.Sprint1.service.LoginService;
 
 @SuppressWarnings("unused")
@@ -27,6 +29,9 @@ import com.training.Sprint1.service.ICustomerService;
 public class CustomerController {
 	@Autowired
 	ICustomerService customerService;
+	
+	@Autowired
+	ITripBookingService tripbookingService;
 
 
 	@PostMapping("/customers/insert")
@@ -57,5 +62,18 @@ public class CustomerController {
 	@GetMapping("/customers/{customerId}")
 	public ResponseEntity<Customer> viewCustomer(@PathVariable("customerId")  Long customerId) throws CustomerNotFoundException {
 		return new ResponseEntity<Customer>(customerService.viewCustomer(customerId), HttpStatus.OK);
+	}
+	
+
+	@PostMapping("customers/book/{id}")
+	public ResponseEntity<TripBooking> addUnassignedTrip(@PathVariable("id") Long id,@RequestBody TripBooking tripbooking){
+		TripBooking trip = tripbookingService.addUnassignedTripBooking(id, tripbooking);
+		return new ResponseEntity<TripBooking>(trip,HttpStatus.OK);
+	}
+	
+	@GetMapping("customer/status/{id}")
+	public ResponseEntity<TripBooking> checkStatusOfBooking(@PathVariable("id") Long id){
+		TripBooking trip = tripbookingService.getTripBookingById(id);
+		return new ResponseEntity<TripBooking>(trip,HttpStatus.OK);
 	}
 }

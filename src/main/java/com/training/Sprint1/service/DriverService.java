@@ -10,8 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.training.Sprint1.entities.AvailabilityStatus;
 import com.training.Sprint1.entities.Driver;
+import com.training.Sprint1.entities.Status;
+import com.training.Sprint1.entities.TripBooking;
 import com.training.Sprint1.exception.DriverDoesNotExistException;
+import com.training.Sprint1.exception.TripBookingNotFoundException;
 import com.training.Sprint1.repository.IDriverRepository;
+import com.training.Sprint1.repository.ITripBookingRepository;
 
 @Service
 @Transactional
@@ -20,6 +24,12 @@ public class DriverService implements IDriverService{
 	
 	@Autowired
 	private IDriverRepository repo;
+	
+	@Autowired
+	private ITripBookingRepository tripbookingRepo;
+	
+	@Autowired
+	private ITripBookingService tripbookingService;
 	
 	
 	@Override
@@ -95,6 +105,26 @@ public class DriverService implements IDriverService{
 	@Override
 	public void endTrip(Driver driver) {
 	driver.setAvailabilityStatus(AvailabilityStatus.Available);	
+	}
+
+	@Override
+	public TripBooking acceptBooking(Long id,Driver driver) {
+		TripBooking trip = null;
+		try {
+			trip = tripbookingRepo.findById(id).orElseThrow(TripBookingNotFoundException::new);
+			if(driver.getAvailabilityStatus()==AvailabilityStatus.Available) {
+			driver.setAvailabilityStatus(AvailabilityStatus.Busy);
+			trip.setDriver(driver);
+			trip.setCab(driver.getCab());
+			trip.setStatus(Status.ALLOCATED);
+			Float bill = tripbookingService.calculateBill(trip);
+			trip.setBill(bill);
+			}
+		} catch (TripBookingNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return trip;
 	}
 
 

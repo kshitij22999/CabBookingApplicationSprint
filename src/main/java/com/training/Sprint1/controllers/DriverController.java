@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.training.Sprint1.entities.Driver;
+import com.training.Sprint1.entities.TripBooking;
 import com.training.Sprint1.exception.DriverDoesNotExistException;
 import com.training.Sprint1.service.IDriverService;
+import com.training.Sprint1.service.ITripBookingService;
 
 @Controller
 @RequestMapping("/rest/api")
@@ -24,6 +27,9 @@ public class DriverController {
 
 	@Autowired
 	IDriverService service;
+	
+	@Autowired
+	ITripBookingService tripbookingService;
 	
 	@PostMapping("/drivers")
 	public ResponseEntity<Driver> addDriver(@RequestBody Driver driver){
@@ -60,6 +66,11 @@ public class DriverController {
 	return new ResponseEntity<List<Driver>>(bestDrivers,HttpStatus.OK);
 	}
 	
+	@PutMapping("/drivers/accept/{id}")
+	public ResponseEntity<TripBooking> acceptBooking(@PathVariable("id") Long id,@RequestBody Driver driver){
+		TripBooking trip = service.acceptBooking(id,driver);
+		return new ResponseEntity<TripBooking>(trip,HttpStatus.OK);
+	}
 	
 
 }

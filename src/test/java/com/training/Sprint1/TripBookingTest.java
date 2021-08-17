@@ -115,7 +115,7 @@ public class TripBookingTest {
 	@Test
 	public void calculateBillTest() {
 		when(tripBookingRepo.findById(tb1.getId())).thenReturn(Optional.of(tb1));
-		Assertions.assertEquals(11*12, tripBookingService.calculateBill(tb1).getBill());
+		Assertions.assertEquals(11*12, tripBookingService.calculateBill(tb1));
 	}
 	
 	@Test

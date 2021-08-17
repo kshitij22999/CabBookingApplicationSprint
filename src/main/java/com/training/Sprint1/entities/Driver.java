@@ -5,13 +5,14 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 	
 
 @Entity
-@Table(name="cba_driver2")
+@Table(name="cba_driver5")
 public class Driver extends User{ 
 	
 	private String driverName;
@@ -21,7 +22,8 @@ public class Driver extends User{
 	@OneToOne(cascade = CascadeType.ALL)
 	private Cab cab;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL,targetEntity = TripBooking.class)
+	@JoinColumn(referencedColumnName="id")
 	private List<TripBooking> tripbooking;
 	
 	@Enumerated
@@ -250,6 +252,15 @@ public class Driver extends User{
 		this.rating = rating;
 		this.cab = cab;
 		this.vaccinationStatus = vaccinationStatus;
+		this.availabilityStatus = availabilityStatus;
+	}
+
+
+
+
+	public Driver(Long id, Cab cab, AvailabilityStatus availabilityStatus) {
+		super(id);
+		this.cab = cab;
 		this.availabilityStatus = availabilityStatus;
 	}
 

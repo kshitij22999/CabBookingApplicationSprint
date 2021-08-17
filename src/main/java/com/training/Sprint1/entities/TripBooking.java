@@ -4,7 +4,9 @@ import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,41 +14,53 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
-
+import org.hibernate.annotations.ForeignKey;
 import org.hibernate.annotations.ManyToAny;
 
 
 
 @Entity
-@Table(name="cba_tripbooking2")
+@Table(name="cba_tripbooking5")
 public class TripBooking {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@ForeignKey(name = "tripId")
 	private Long id;
 	
 
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = Customer.class)
 	private Customer customer;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Cab cab;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Driver driver;
-	
-	
+
 	private String fromLocation;
 	private String toLocation;
 	
 	private LocalDateTime fromDateTime;
 	private LocalDateTime toDateTime;
-	@Enumerated
+	
+	@Enumerated(EnumType.STRING)
 	private Status status;
 	
 	private float distanceInKm;
 	private float bill;
+	
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	public void setCab(Cab cab) {
+		this.cab = cab;
+	}
+	public void setDriver(Driver driver) {
+		this.driver = driver;
+	}
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -146,11 +160,34 @@ public class TripBooking {
 		this.id = id;
 		this.status = status;
 	}
+	public TripBooking() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public TripBooking( Status status, float distanceInKm, float bill) {
 		super();
 		this.status = status;
 		this.distanceInKm = distanceInKm;
 		this.bill = bill;
+	}
+	public TripBooking(Customer customer, String fromLocation, String toLocation, Status status, float distanceInKm) {
+		super();
+		this.customer = customer;
+		this.fromLocation = fromLocation;
+		this.toLocation = toLocation;
+		this.status = status;
+		this.distanceInKm = distanceInKm;
+	}
+	public TripBooking(String fromLocation, String toLocation) {
+		super();
+		this.fromLocation = fromLocation;
+		this.toLocation = toLocation;
+	}
+	public TripBooking(String fromLocation, String toLocation, float distanceInKm) {
+		super();
+		this.fromLocation = fromLocation;
+		this.toLocation = toLocation;
+		this.distanceInKm = distanceInKm;
 	}
 	
 	
