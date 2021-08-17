@@ -11,20 +11,20 @@ import javax.persistence.OneToMany;
 @SuppressWarnings("unused")
 @Embeddable
 public class Address{
-	private String address;
+	private String addr;
 	
 	private String city;
 	
-	private String country;
+	private String state;
 	
 	private String pincode;
 	
-	public String getAddress() {
-		return address;
+	public String getAddr() {
+		return addr;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAddr(String addr) {
+		this.addr = addr;
 	}
 
 	public String getCity() {
@@ -35,12 +35,12 @@ public class Address{
 		this.city = city;
 	}
 
-	public String getCountry() {
-		return country;
+	public String getState() {
+		return state;
 	}
 
-	public void setCountry(String country) {
-		this.country = country;
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	public String getPincode() {
@@ -54,12 +54,13 @@ public class Address{
 		super();
 	}
 
-	public Address(String address, String city, String country, String pincode) {
+	public Address(String addr, String city, String state, String pincode) {
 		super();
-		this.address = address;
+		this.addr = addr;
 		this.city = city;
-		this.country = country;
+		this.state = state;
 		this.pincode = pincode;
 	}
 	
 }
+

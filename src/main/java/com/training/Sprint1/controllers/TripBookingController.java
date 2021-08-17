@@ -26,7 +26,7 @@ public class TripBookingController {
 		return new ResponseEntity<TripBooking>(tripbookingService.getTripBookingById(id),HttpStatus.OK);
 	}
 	
-	@PostMapping("tripbookings/add")
+	@PostMapping("tripbookings/")
 	public ResponseEntity<TripBooking> addTripBooking(@RequestParam TripBooking tripbooking){
 		TripBooking newVal = tripbookingService.addTripBooking(tripbooking);
 		return new ResponseEntity<TripBooking>(newVal,HttpStatus.OK);

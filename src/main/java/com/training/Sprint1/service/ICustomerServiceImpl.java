@@ -18,8 +18,8 @@ public class ICustomerServiceImpl implements ICustomerService {
 
 	@Override
 	public Customer insertCustomer(Customer customer) {
-		cRepo.saveAndFlush(customer);
-		return customer;
+		Customer insertedCustomer=cRepo.save(customer);
+		return insertedCustomer;
 	}
 
 	@Override
@@ -52,12 +52,19 @@ public class ICustomerServiceImpl implements ICustomerService {
 	@Override
 	public List<Customer> viewCustomers() {
 
-		return cRepo.findAll();
+		List<Customer> list= cRepo.findAll();
+		return list;
 	}
 	
 	@Override
 	public Customer viewCustomer(Long customerId)throws CustomerNotFoundException {
-		return cRepo.findById(customerId).get();
+		Customer cust=null;
+		try {
+			cust = cRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);
+		} catch (CustomerNotFoundException e) {
+			e.printStackTrace();
+		}
+		return cust;
 	}
 
 	@Override
