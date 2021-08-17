@@ -10,7 +10,7 @@ import com.training.Sprint1.exception.CustomerNotFoundException;
 import com.training.Sprint1.repository.ICustomerRepository;
 
 @Service("customerService")
-public abstract class ICustomerServiceImpl implements ICustomerService {
+public class ICustomerServiceImpl implements ICustomerService {
 	@Autowired
 	ICustomerRepository cRepo;
 
@@ -18,22 +18,27 @@ public abstract class ICustomerServiceImpl implements ICustomerService {
 
 	@Override
 	public Customer insertCustomer(Customer customer) {
-		cRepo.saveAndFlush(customer);
-		return customer;
+		Customer insertedCustomer=cRepo.save(customer);
+		return insertedCustomer;
 	}
 
 	@Override
-	public Customer updateCustomer(Customer customer) throws CustomerNotFoundException{
-		Customer cus = cRepo.findById(customer.getId()).get();
-		if (cus != null) {
-			cus.setEmail(customer.getEmail());
-			cus.setMobileNumber(customer.getMobileNumber());
-			cus.setUsername(customer.getUsername());
-			cus.setPassword(customer.getPassword());
-			cus.setAddress(customer.getAddress());
-			cRepo.save(cus);
+	public Customer updateCustomer(Customer customer){
+		Customer updatedCustomer = null;
+		try {
+			updatedCustomer= cRepo.findById(customer.getId()).orElseThrow(CustomerNotFoundException::new);
+		} catch (CustomerNotFoundException e) {
+			
+			e.printStackTrace();
 		}
-		return cus;
+		updatedCustomer.setEmail(updatedCustomer.getEmail());
+		updatedCustomer.setMobileNumber(updatedCustomer.getMobileNumber());
+		updatedCustomer.setUsername(updatedCustomer.getUsername());
+		updatedCustomer.setPassword(updatedCustomer.getPassword());
+		updatedCustomer.setAddress(updatedCustomer.getAddress());
+		
+		Customer cust = cRepo.save(updatedCustomer);
+		return cust;
 	}
 
 	
@@ -47,12 +52,19 @@ public abstract class ICustomerServiceImpl implements ICustomerService {
 	@Override
 	public List<Customer> viewCustomers() {
 
-		return cRepo.findAll();
+		List<Customer> list= cRepo.findAll();
+		return list;
 	}
 	
 	@Override
 	public Customer viewCustomer(Long customerId)throws CustomerNotFoundException {
-		return cRepo.findById(customerId).get();
+		Customer cust=null;
+		try {
+			cust = cRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);
+		} catch (CustomerNotFoundException e) {
+			e.printStackTrace();
+		}
+		return cust;
 	}
 
 	@Override
@@ -60,5 +72,7 @@ public abstract class ICustomerServiceImpl implements ICustomerService {
 
 		return null;
 	}
+
+	
 	
 }

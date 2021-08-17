@@ -65,8 +65,4 @@ public class Cab {
 		return "Cab [cabId=" + cabId + ", carType=" + carType + ", perKmRate=" + perKmRate + "]";
 	}
 
-	
-	
-	
-	
 }

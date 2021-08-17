@@ -21,5 +21,4 @@ public interface ICabService {
 	public Cab addCab(Cab cab);
 	public Cab getByCabId(Long cabId) throws CabNotFoundException;
 	
-
 }

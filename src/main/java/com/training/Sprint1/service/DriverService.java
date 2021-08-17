@@ -1,3 +1,4 @@
+
 package com.training.Sprint1.service;
 
 import java.util.List;
@@ -5,7 +6,6 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.training.Sprint1.entities.AvailabilityStatus;
@@ -29,38 +29,60 @@ public class DriverService implements IDriverService{
 	}
 	
 	@Override
-	public Driver updateDriver(Long driverId) throws DriverDoesNotExistException {
-		Driver updatedDriver = repo.getById(driverId);
+	public Driver updateDriver(Driver driver){
+		Driver updatedDriver = null;
+		try {
+			updatedDriver = repo.findById(driver.getId()).orElseThrow(DriverDoesNotExistException::new);
+		} catch (DriverDoesNotExistException e) {
+			
+			e.printStackTrace();
+		}
 		updatedDriver.setDriverName(updatedDriver.getDriverName());
 		updatedDriver.setRating(updatedDriver.getRating());
 		updatedDriver.setLisenceNo(updatedDriver.getLisenceNo());
+		updatedDriver.setVaccinationStatus(updatedDriver.getVaccinationStatus());
 		
 		Driver dvr = repo.save(updatedDriver);
 		return dvr;
 	}
 
 	@Override
-	public List<Driver> getAllDrivers(Driver driver) {
+	public List<Driver> getAllDrivers() {
 		List<Driver> list = repo.findAll();
 		return list;
 	}
 
 	@Override
-	public Driver deleteDriver(Long driverId) throws DriverDoesNotExistException {
-		Driver deletedDriver =repo.getById(driverId);
-		repo.delete(deletedDriver);
+	public Driver deleteDriver(Driver driver)  {
+		Driver deletedDriver = null;
+		try {
+		deletedDriver = repo.findById(driver.getId()).orElseThrow(DriverDoesNotExistException::new);
+		repo.delete(deletedDriver); 
+		
+		} catch (DriverDoesNotExistException e) {
+
+			e.printStackTrace();
+		}
+		
 		return deletedDriver;
 	}
+	
 
 	@Override
-	@Query(value = "select d from cba_driver dri where dri.rating > 4.5")
-	public List<Driver> viewBestDrivers() {
-		return null;
+	public List<Driver> getBestDrivers() {
+		List<Driver> retVal=null;
+		retVal = repo.getBestDrivers();
+		return retVal;
 	}
 
 	@Override
-	public Driver viewDriverById(Long driverId) throws DriverDoesNotExistException {
-		Driver dr = repo.getById(driverId);
+	public Driver getDriverById(Long id){
+		Driver dr=null;
+		try {
+			dr = repo.findById(id).orElseThrow(DriverDoesNotExistException::new);
+		} catch (DriverDoesNotExistException e) {
+			e.printStackTrace();
+		}
 		return dr;
 	}
 
@@ -74,8 +96,11 @@ public class DriverService implements IDriverService{
 	public void endTrip(Driver driver) {
 	driver.setAvailabilityStatus(AvailabilityStatus.Available);	
 	}
+
+
 	
 	
 
 	
 }
+

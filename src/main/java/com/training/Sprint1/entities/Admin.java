@@ -2,14 +2,14 @@ package com.training.Sprint1.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-
 import com.training.Sprint1.entities.User;
 
+@SuppressWarnings("unused")
 @Entity
-@Table(name="cba_admin")
+@Table(name="cba_admin2")
 public class Admin extends User{
 
-	public Admin(long id, String username, String password, String mobileNumber, String email, String address) {
+	public Admin(long id, String username, String password, String mobileNumber, String email, Address address) {
 		super(id, username, password, mobileNumber, email, address);
 		// TODO Auto-generated constructor stub
 	}
@@ -24,12 +24,9 @@ public class Admin extends User{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Admin(String username, String password, String mobileNumber, String email, String address) {
+	public Admin(String username, String password, String mobileNumber, String email, Address address) {
 		super(username, password, mobileNumber, email, address);
 		// TODO Auto-generated constructor stub
 	}
-
-	
-	
 
 }

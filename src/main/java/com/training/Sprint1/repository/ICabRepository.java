@@ -17,8 +17,5 @@ public interface ICabRepository  extends JpaRepository<Cab ,Long>  {
 	@Query("SELECT COUNT(*) FROM Cab c WHERE c.carType=?1")
 	public int countCabsOfType(CarType carType);
 	
-
-	
-	
-
 }
+

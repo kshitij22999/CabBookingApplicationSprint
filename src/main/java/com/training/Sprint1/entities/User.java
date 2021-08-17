@@ -1,13 +1,15 @@
 package com.training.Sprint1.entities;
+import javax.persistence.Embedded;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @MappedSuperclass
-@Table(name="cba_user")
-public class User {
+@Table(name="cba_user2")
+public class User{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -16,7 +18,9 @@ public class User {
 	private String password;
 	private String mobileNumber;
 	private String email;
-	private String address;
+	@Embedded
+	private Address address;
+
 	
 	
 	public Long getId() {
@@ -58,34 +62,34 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
+	
 	public User() {
 		super();
 	}
 
-	public User(String username, String password, String mobileNumber, String email, String address) {
+	public User(String username, String password, String mobileNumber, String email, Address address) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.mobileNumber = mobileNumber;
 		this.email = email;
-		this.address = address;
+		this.setAddress(address);
 	}
-
-	
 
 	public User(String username) {
 		super();
 		this.username = username;
 	}
 
-	public User(Long id, String username, String password, String mobileNumber, String email, String address) {
+
+	public User(Long id, String username, String password, String mobileNumber, String email, Address address) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -93,6 +97,7 @@ public class User {
 		this.mobileNumber = mobileNumber;
 		this.email = email;
 		this.address = address;
+
 	}
 
 	public User(Long id, String username, String password) {
@@ -102,12 +107,14 @@ public class User {
 		this.password = password;
 	}
 
-	public User(Long id, String mobileNumber, String email, String address) {
+
+	public User(Long id, String mobileNumber, String email, Address address) {
 		super();
 		this.id = id;
 		this.mobileNumber = mobileNumber;
 		this.email = email;
 		this.address = address;
+
 	}
 
 	public User(String username, String password) {
@@ -126,10 +133,5 @@ public class User {
 		super();
 		this.id = id;
 	}
-
-	
-
-	
-	
 
 }

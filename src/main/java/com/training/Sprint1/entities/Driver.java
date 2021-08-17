@@ -11,12 +11,12 @@ import javax.persistence.Table;
 	
 
 @Entity
-@Table(name="cba_driver")
+@Table(name="cba_driver2")
 public class Driver extends User{ 
 	
 	private String driverName;
 	private String lisenceNo;
-	private float rating;
+	private float rating; 
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Cab cab;
@@ -36,13 +36,6 @@ public class Driver extends User{
 	}
 
 
-	
-
-
-	
-
-
-	
 
 
 	public Driver(String username) {
@@ -57,6 +50,19 @@ public class Driver extends User{
 		// TODO Auto-generated constructor stub
 	}
 
+	 
+
+
+	public Driver(String username, String password, String driverName, String lisenceNo, float rating, Cab cab,
+			VaccinationStatus vaccinationStatus) {
+		super(username, password);
+		this.driverName = driverName;
+		this.lisenceNo = lisenceNo;
+		this.rating = rating;
+		this.cab = cab;
+		this.vaccinationStatus = vaccinationStatus;
+	}
+
 
 
 
@@ -65,10 +71,54 @@ public class Driver extends User{
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
+
+	public Driver(Long id, String driverName, String lisenceNo, float rating, Cab cab) {
+		super(id);
+		this.driverName = driverName;
+		this.lisenceNo = lisenceNo;
+		this.rating = rating;
+		this.cab = cab;
+	}
 
 
 
-	public Driver(long id, String username, String password, String mobileNumber, String email, String address) {
+
+	public Driver(String driverName, String lisenceNo, float rating, Cab cab, VaccinationStatus vaccinationStatus) {
+		super();
+		this.driverName = driverName;
+		this.lisenceNo = lisenceNo;
+		this.rating = rating;
+		this.cab = cab;
+		this.vaccinationStatus = vaccinationStatus;
+	}
+
+	
+
+
+
+	public Driver(String driverName, String lisenceNo, float rating) {
+		super();
+		this.driverName = driverName;
+		this.lisenceNo = lisenceNo;
+		this.rating = rating;
+	}
+
+	
+
+
+	public Driver(Long id, String driverName, String lisenceNo, Cab cab, List<TripBooking> tripbooking) {
+		super(id);
+		this.driverName = driverName;
+		this.lisenceNo = lisenceNo;
+		this.cab = cab;
+		this.tripbooking = tripbooking;
+	}
+
+
+	public Driver(long id, String username, String password, String mobileNumber, String email, Address address) {
+
 		super(id, username, password, mobileNumber, email, address);
 		
 		// TODO Auto-generated constructor stub
@@ -175,15 +225,33 @@ public class Driver extends User{
 
 
 
-	
-	
-}	
+
+	public Driver(Long id, String username, String password, String mobileNumber, String email, Address address,
+			String driverName, String lisenceNo, float rating, Cab cab, List<TripBooking> tripbooking,
+			VaccinationStatus vaccinationStatus, AvailabilityStatus availabilityStatus) {
+		super(id, username, password, mobileNumber, email, address);
+		this.driverName = driverName;
+		this.lisenceNo = lisenceNo;
+		this.rating = rating;
+		this.cab = cab;
+		this.tripbooking = tripbooking;
+		this.vaccinationStatus = vaccinationStatus;
+		this.availabilityStatus = availabilityStatus;
+	}
 
 
-	
+
+
+	public Driver(Long id, String driverName, String lisenceNo, float rating, Cab cab,
+			VaccinationStatus vaccinationStatus, AvailabilityStatus availabilityStatus) {
+		super(id);
+		this.driverName = driverName;
+		this.lisenceNo = lisenceNo;
+		this.rating = rating;
+		this.cab = cab;
+		this.vaccinationStatus = vaccinationStatus;
+		this.availabilityStatus = availabilityStatus;
+	}
 
 	
-	
-
-	
-	
+}

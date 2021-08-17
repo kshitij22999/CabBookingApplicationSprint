@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,19 +12,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+
+
 import org.hibernate.annotations.ManyToAny;
 
-enum Status{ALLOCATED,NOT_ALLOCATED}
+
 
 @Entity
-@Table(name="cba_tripbooking")
+@Table(name="cba_tripbooking2")
 public class TripBooking {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@ManyToOne
-	private Driver driver;
+
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Customer customer;
@@ -31,12 +33,18 @@ public class TripBooking {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Cab cab;
 	
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Driver driver;
+	
+	
 	private String fromLocation;
 	private String toLocation;
 	
 	private LocalDateTime fromDateTime;
 	private LocalDateTime toDateTime;
+	@Enumerated
 	private Status status;
+	
 	private float distanceInKm;
 	private float bill;
 	public Long getId() {
@@ -96,17 +104,21 @@ public class TripBooking {
 	public Cab getCab() {
 		return cab;
 	}
+	
 	@Override
 	public String toString() {
-		return "TripBooking [id=" + id + ", driver=" + driver + ", fromLocation=" + fromLocation + ", toLocation="
-				+ toLocation + ", fromDateTime=" + fromDateTime + ", toDateTime=" + toDateTime + ", status=" + status
-				+ ", distanceInKm=" + distanceInKm + ", bill=" + bill + "]";
+		return "TripBooking [id=" + id + ", driver=" + driver + ", customer=" + customer + ", cab=" + cab
+				+ ", fromLocation=" + fromLocation + ", toLocation=" + toLocation + ", fromDateTime=" + fromDateTime
+				+ ", toDateTime=" + toDateTime + ", status=" + status + ", distanceInKm=" + distanceInKm + ", bill="
+				+ bill + "]";
 	}
-	public TripBooking(long id, Driver driver, String fromLocation, String toLocation, LocalDateTime fromDateTime,
-			LocalDateTime toDateTime, Status status, float distanceInKm, float bill) {
+	public TripBooking(Long id, Driver driver, Customer customer, Cab cab, String fromLocation, String toLocation,
+			LocalDateTime fromDateTime, LocalDateTime toDateTime, Status status, float distanceInKm, float bill) {
 		super();
 		this.id = id;
 		this.driver = driver;
+		this.customer = customer;
+		this.cab = cab;
 		this.fromLocation = fromLocation;
 		this.toLocation = toLocation;
 		this.fromDateTime = fromDateTime;
@@ -115,6 +127,32 @@ public class TripBooking {
 		this.distanceInKm = distanceInKm;
 		this.bill = bill;
 	}
+	public TripBooking(Long id) {
+		super();
+		this.id = id;
+	}
+	public TripBooking(Driver driver, Customer customer, Cab cab) {
+		super();
+		this.driver = driver;
+		this.customer = customer;
+		this.cab = cab;
+	}
+	public TripBooking(Status status) {
+		super();
+		this.status = status;
+	}
+	public TripBooking(Long id, Status status) {
+		super();
+		this.id = id;
+		this.status = status;
+	}
+	public TripBooking( Status status, float distanceInKm, float bill) {
+		super();
+		this.status = status;
+		this.distanceInKm = distanceInKm;
+		this.bill = bill;
+	}
+	
 	
 	
 }
