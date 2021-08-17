@@ -2,12 +2,15 @@ package com.training.Sprint1.controllers;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +35,7 @@ public class DriverController {
 	}
 	
 	@GetMapping("/drivers/{id}")
-	public ResponseEntity<Driver> getDriverById(@RequestParam Long id) throws DriverDoesNotExistException{
+	public ResponseEntity<Driver> getDriverById(@PathVariable("id") Long id) throws DriverDoesNotExistException{
 		return new ResponseEntity<Driver>(service.getDriverById(id), HttpStatus.OK);
 	}
 	

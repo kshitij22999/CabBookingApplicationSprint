@@ -143,7 +143,7 @@ public class TripBookingService implements ITripBookingService{
 		TripBooking retrVal = null;
 		try {
 			retrVal=tripBookingRepo.findById(tripbooking.getId()).orElseThrow(TripBookingNotFoundException::new);
-				Float bill = retrVal.getDistanceInKm()*retrVal.getCab().getPerKmRate();
+				Float bill = (retrVal.getDistanceInKm()*retrVal.getCab().getPerKmRate());
 				retrVal.setBill(bill);
 				tripBookingRepo.save(retrVal);
 			
