@@ -25,14 +25,16 @@ public class TripBooking {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@ManyToOne
-	private Driver driver;
+
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Customer customer;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Cab cab;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Driver driver;
 	
 	
 	private String fromLocation;
@@ -129,9 +131,8 @@ public class TripBooking {
 		super();
 		this.id = id;
 	}
-	public TripBooking(Long id, Driver driver, Customer customer, Cab cab) {
+	public TripBooking(Driver driver, Customer customer, Cab cab) {
 		super();
-		this.id = id;
 		this.driver = driver;
 		this.customer = customer;
 		this.cab = cab;
@@ -145,9 +146,8 @@ public class TripBooking {
 		this.id = id;
 		this.status = status;
 	}
-	public TripBooking(Long id, Status status, float distanceInKm, float bill) {
+	public TripBooking( Status status, float distanceInKm, float bill) {
 		super();
-		this.id = id;
 		this.status = status;
 		this.distanceInKm = distanceInKm;
 		this.bill = bill;

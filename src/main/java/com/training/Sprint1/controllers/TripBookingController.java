@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -31,7 +32,10 @@ public class TripBookingController {
 		return new ResponseEntity<TripBooking>(newVal,HttpStatus.OK);
 	}
 	
-	
-	
+	@PutMapping("tripbooings/update")
+	public ResponseEntity<TripBooking> updateTripBooking(@RequestParam TripBooking tripbooking){
+		TripBooking newVal = tripbookingService.updateTripBooking(tripbooking);
+		return new ResponseEntity<TripBooking>(newVal,HttpStatus.OK);
+	}
 	
 }
