@@ -8,11 +8,8 @@ import javax.persistence.Table;
 
 
 @Entity
-<<<<<<< HEAD
-@Table(name="cba_cab2")
-=======
 @Table(name="cba_cab")
->>>>>>> 6927d90e11a878f738627678486f9e59a7c30db4
+
 public class Cab {
 	
 	@Id

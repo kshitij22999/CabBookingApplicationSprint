@@ -1,4 +1,4 @@
-package com.training.Sprint1.controller;
+package com.training.Sprint1.controllers;
 
 import java.util.List;
 
