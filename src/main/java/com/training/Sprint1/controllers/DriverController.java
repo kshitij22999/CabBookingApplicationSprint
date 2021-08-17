@@ -47,7 +47,7 @@ public class DriverController {
 		return new ResponseEntity<Driver>(service.updateDriver(driver), HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/drivers/delete/{id}")
+	@DeleteMapping("/drivers/{id}")
 	public ResponseEntity<Driver> deleteDriver(@RequestBody Driver driver) throws DriverDoesNotExistException{
 		service.deleteDriver(driver);
 		return new ResponseEntity<Driver>(HttpStatus.OK);

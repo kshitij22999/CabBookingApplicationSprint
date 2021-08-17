@@ -61,11 +61,11 @@ public class TripBookingTest {
 		
 		customer1 = new Customer(11L,"Kshitij");
 		
-		cab1 = new Cab(5L,CarType.Alto, 12);
+		cab1 = new Cab(5L,CarType.Alto, 12D);
 		
-		cab2 = new Cab(6L,CarType.SwiftDzire, 25);
+		cab2 = new Cab(6L,CarType.SwiftDzire, 25D);
 		
-		cab3 =new Cab(7L,CarType.Etios, 18);
+		cab3 =new Cab(7L,CarType.Etios, 18D);
 		
 		d1 = new Driver("Hari", "DL2012MAH",4.9F ,cab1,VaccinationStatus.Not_Vaccinated);
 		

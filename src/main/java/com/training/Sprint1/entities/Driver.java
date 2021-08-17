@@ -50,6 +50,19 @@ public class Driver extends User{
 		// TODO Auto-generated constructor stub
 	}
 
+	 
+
+
+	public Driver(String username, String password, String driverName, String lisenceNo, float rating, Cab cab,
+			VaccinationStatus vaccinationStatus) {
+		super(username, password);
+		this.driverName = driverName;
+		this.lisenceNo = lisenceNo;
+		this.rating = rating;
+		this.cab = cab;
+		this.vaccinationStatus = vaccinationStatus;
+	}
+
 
 
 

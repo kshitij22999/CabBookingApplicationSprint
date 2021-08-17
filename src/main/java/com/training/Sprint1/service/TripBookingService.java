@@ -46,11 +46,11 @@ public class TripBookingService implements ITripBookingService{
 		
 		Customer customer1 = new Customer(11L,"Kshitij");
 		
-		Cab cab1 = new Cab(5L,CarType.Alto, 12);
+		Cab cab1 = new Cab(5L,CarType.Alto, 12D);
 		
-		Cab cab2 = new Cab(6L,CarType.SwiftDzire, 25);
+		Cab cab2 = new Cab(6L,CarType.SwiftDzire, 25D);
 		
-		Cab cab3 =new Cab(7L,CarType.Etios, 18);
+		Cab cab3 =new Cab(7L,CarType.Etios, 18D);
 		
 		Driver d1 = new Driver("Hari", "DL2012MAH",4.9F ,cab1,VaccinationStatus.Not_Vaccinated);
 		
@@ -161,6 +161,7 @@ public class TripBookingService implements ITripBookingService{
 		return retVal;
 	}
 
+	
 	@Override
 	public List<TripBooking> getTripDateWise(LocalDateTime date) {
 		List<TripBooking> retVal = tripBookingRepo.getTripDateWise(date);

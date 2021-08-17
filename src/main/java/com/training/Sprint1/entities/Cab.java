@@ -20,21 +20,21 @@ public class Cab {
 	@Enumerated(EnumType.STRING)
 	private CarType carType;
 	
-	private float perKmRate;
+	private Double perKmRate;
 	
 	public Cab() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cab(Long cabId, CarType carType, float perKmRate) {
+	public Cab(Long cabId, CarType carType, Double perKmRate) {
 		super();
 		this.cabId = cabId;
 		this.carType = carType;
 		this.perKmRate = perKmRate;
 	}
 
-	public Cab(CarType carType, float perKmRate) {
+	public Cab(CarType carType, Double perKmRate) {
 		super();
 		this.carType = carType;
 		this.perKmRate = perKmRate;
@@ -55,12 +55,13 @@ public class Cab {
 	public void setCarType(CarType carType) {
 		this.carType = carType;
 	}
+	
 
-	public float getPerKmRate() {
+	public Double getPerKmRate() {
 		return perKmRate;
 	}
 
-	public void setPerKmRate(float perKmRate) {
+	public void setPerKmRate(Double perKmRate) {
 		this.perKmRate = perKmRate;
 	}
 
