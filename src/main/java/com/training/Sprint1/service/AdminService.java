@@ -26,14 +26,13 @@ public interface AdminService {
 	public void deleteAdmin(Admin admin);
 	public Driver getDriverById(Long id);
 	List<Cab>getAllCabs();
-	List<Cab>viewCabsOfType(String cabId);
+	List<Cab>viewCabsOfType(CarType carType);
 	List<Driver>getAllDrivers();
 	public Driver addDriver(Driver driver);
 	public void deleteDriver(Long driverId);
 	List<TripBooking>getAllTrips();
 	List<TripBooking>getTripsByCustomer(Customer customer);
 	List<TripBooking>getTripDateWise(LocalDateTime date);
-	Float getDistanceInKm(TripBooking tripbooking);
 	
 }
 

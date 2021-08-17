@@ -24,7 +24,7 @@ public class DriverController {
 	@Autowired
 	IDriverService service;
 	
-	@PostMapping("/drivers/add")
+	@PostMapping("/drivers")
 	public ResponseEntity<Driver> addDriver(@RequestBody Driver driver){
 		Driver addedDriver = service.addDriver(driver);
 		return new ResponseEntity<Driver>(service.addDriver(addedDriver),HttpStatus.OK);

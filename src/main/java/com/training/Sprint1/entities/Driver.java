@@ -11,12 +11,12 @@ import javax.persistence.Table;
 	
 
 @Entity
-@Table(name="cba_driver")
+@Table(name="cba_driver1")
 public class Driver extends User{ 
 	
 	private String driverName;
 	private String lisenceNo;
-	private float rating;
+	private float rating; 
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Cab cab;
@@ -81,7 +81,18 @@ public class Driver extends User{
 		this.vaccinationStatus = vaccinationStatus;
 	}
 
+	
 
+
+
+	public Driver(String driverName, String lisenceNo, float rating) {
+		super();
+		this.driverName = driverName;
+		this.lisenceNo = lisenceNo;
+		this.rating = rating;
+	}
+
+	
 
 
 	public Driver(Long id, String driverName, String lisenceNo, Cab cab, List<TripBooking> tripbooking) {

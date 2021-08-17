@@ -94,17 +94,11 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public List<Cab> viewCabsOfType(String cabId) {
+	public List<Cab> viewCabsOfType(CarType carType) {
 		// TODO Auto-generated method stub
-		return cabRepository.findById(cabId);
-		
+		return cabRepository.findByCarType(carType);		
 	}
 
-	@Override
-	 public Float getDistanceInKm(TripBooking tripbooking) {
-		// TODO Auto-generated method stub
-		return tripRepository.getDistanceInKm();
-	}
 
 	@Override
 	public List<Driver> getAllDrivers() {
