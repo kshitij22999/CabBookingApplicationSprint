@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ import com.training.Sprint1.exception.CustomerNotFoundException;
 import com.training.Sprint1.service.ICustomerService;
 //import com.training.Sprint1.service.LoginService;
 
+@SuppressWarnings("unused")
 @RestController
 @RequestMapping("/rest/api")
 public class CustomerController {
@@ -53,7 +55,7 @@ public class CustomerController {
 
 
 	@GetMapping("/customers/{customerId}")
-	public ResponseEntity<Customer> viewCustomer(@RequestParam Long customerId) throws CustomerNotFoundException {
+	public ResponseEntity<Customer> viewCustomer(@PathVariable("customerId")  Long customerId) throws CustomerNotFoundException {
 		return new ResponseEntity<Customer>(customerService.viewCustomer(customerId), HttpStatus.OK);
 	}
 }
