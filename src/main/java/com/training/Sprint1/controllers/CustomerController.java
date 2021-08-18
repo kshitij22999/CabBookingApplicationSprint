@@ -21,10 +21,8 @@ import com.training.Sprint1.entities.Customer;
 import com.training.Sprint1.entities.Driver;
 import com.training.Sprint1.entities.TripBooking;
 import com.training.Sprint1.exception.CustomerNotFoundException;
-//import com.training.Sprint1.exception.InvalidUserOrPasswordException;
 import com.training.Sprint1.service.ICustomerService;
 import com.training.Sprint1.service.ITripBookingService;
-//import com.training.Sprint1.service.LoginService;
 
 @SuppressWarnings("unused")
 @RestController
