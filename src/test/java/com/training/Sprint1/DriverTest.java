@@ -42,6 +42,7 @@ class DriverTest {
 	Driver d1,d2,d3;
 	List<Driver> driverList;
 	List<Driver> bestDrivers;
+	List<Driver> badDrivers;
 
 	@SuppressWarnings("deprecation")
 	@BeforeEach
@@ -54,7 +55,7 @@ class DriverTest {
 		
 		d2 = new Driver("Bhanu", "DL2018XYZ",3.7F, new Cab(CarType.SwiftDzire, 25), VaccinationStatus.SecondDose_Done);
 		
-		d3 = new Driver("HansRaj","DL2015GIF", 4.1F, new Cab(CarType.Etios, 18), VaccinationStatus.FirstDose_Done);
+		d3 = new Driver("HansRaj","DL2015GIF", 1.9F, new Cab(CarType.Etios, 18), VaccinationStatus.FirstDose_Done);
 		
 		driverList.add(d1);
 		driverList.add(d2);
@@ -62,6 +63,9 @@ class DriverTest {
 	
 		bestDrivers = new ArrayList<Driver>();
 		bestDrivers.add(d1);
+		
+		badDrivers = new ArrayList<Driver>();
+		badDrivers.add(d3);
 	}
 	
 	@AfterEach
@@ -105,6 +109,12 @@ class DriverTest {
 	public void getBestDriversTest() {
 		when(repo.getBestDrivers()).thenReturn(bestDrivers);
 		Assertions.assertEquals(1, service.getBestDrivers().size());
+	}
+	
+	@Test
+	public void getBadDriversTest() {
+		when(repo.getBestDrivers()).thenReturn(badDrivers);
+		Assertions.assertEquals(1, service.getBadDrivers().size());
 	}
 }
 
