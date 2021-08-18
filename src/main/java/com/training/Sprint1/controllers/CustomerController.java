@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.training.Sprint1.entities.Customer;
+import com.training.Sprint1.entities.Driver;
 import com.training.Sprint1.entities.TripBooking;
 import com.training.Sprint1.exception.CustomerNotFoundException;
 //import com.training.Sprint1.exception.InvalidUserOrPasswordException;
@@ -71,9 +72,27 @@ public class CustomerController {
 		return new ResponseEntity<TripBooking>(trip,HttpStatus.OK);
 	}
 	
-	@GetMapping("customer/status/{id}")
+	@GetMapping("customers/status/{id}")
 	public ResponseEntity<TripBooking> checkStatusOfBooking(@PathVariable("id") Long id){
 		TripBooking trip = tripbookingService.getTripBookingById(id);
 		return new ResponseEntity<TripBooking>(trip,HttpStatus.OK);
+	}
+	
+	@PostMapping("/customers/register")
+	public ResponseEntity<Customer> registerCustomer(@RequestBody Customer customer){
+		Customer temp = customerService.registerCustomer(customer);
+		return new ResponseEntity<Customer>(temp,HttpStatus.OK);
+	}
+	
+	@PutMapping("/customers/login")
+	public ResponseEntity<Customer> loginCustomer(@RequestBody Customer customer){
+		Customer temp = customerService.loginCustomer(customer);
+		return new ResponseEntity<Customer>(temp,HttpStatus.OK);
+	}
+	
+	@PutMapping("/customers/logout")
+	public ResponseEntity<Customer> logoutCustomer(@RequestBody Customer customer){
+		Customer temp = customerService.logoutCustomer(customer);
+		return new ResponseEntity<Customer>(temp,HttpStatus.OK);
 	}
 }

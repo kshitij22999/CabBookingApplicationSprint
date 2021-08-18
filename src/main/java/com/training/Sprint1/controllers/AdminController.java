@@ -171,4 +171,21 @@ public class AdminController {
 		return new ResponseEntity<Driver>(dr,HttpStatus.OK);
 	}
 	
+	@PostMapping("/admin/register")
+	public ResponseEntity<Admin> registerAdmin(@RequestBody Admin admin){
+		Admin temp = adminService.registerAdmin(admin);
+		return new ResponseEntity<Admin>(temp,HttpStatus.OK);
+	}
+	
+	@PutMapping("/admin/login")
+	public ResponseEntity<Admin> loginAdmin(@RequestBody Admin admin){
+		Admin temp = adminService.loginAdmin(admin);
+		return new ResponseEntity<Admin>(temp,HttpStatus.OK);
+	}
+	
+	@PutMapping("/admin/logout")
+	public ResponseEntity<Admin> logoutCustomer(@RequestBody Admin admin){
+		Admin temp = adminService.logoutAdmin(admin);
+		return new ResponseEntity<Admin>(temp,HttpStatus.OK);
+	}
 }

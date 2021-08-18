@@ -14,9 +14,12 @@ import com.training.Sprint1.entities.Cab;
 import com.training.Sprint1.entities.CarType;
 import com.training.Sprint1.entities.Customer;
 import com.training.Sprint1.entities.Driver;
+import com.training.Sprint1.entities.LoginStatus;
 import com.training.Sprint1.entities.TripBooking;
 import com.training.Sprint1.exception.DriverDoesNotExistException;
+import com.training.Sprint1.exception.InvalidCredentials;
 import com.training.Sprint1.exception.CabNotFoundException;
+import com.training.Sprint1.exception.CustomerNotFoundException;
 import com.training.Sprint1.repository.AdminRepository;
 import com.training.Sprint1.repository.ICabRepository;
 import com.training.Sprint1.repository.IDriverRepository;
@@ -122,6 +125,48 @@ public class AdminServiceImpl implements AdminService{
     public List<TripBooking> getTripDateWise(LocalDateTime date) {
     // TODO Auto-generated method stub
 		return tripRepository.getTripDateWise(date);
+	}
+
+	@Override
+	public Admin registerAdmin(Admin admin) {
+		admin.setAccountStatus(LoginStatus.LOGGEDOUT);
+		Admin insertedAdmin=adminRepository.save(admin);
+		return insertedAdmin;
+	}
+
+	@Override
+	public Admin loginAdmin(Admin admin) {
+		Admin retCust=null;
+		try {
+			retCust = adminRepository.findById(admin.getId()).orElseThrow(CustomerNotFoundException::new);
+			if(retCust.getUsername().equals(admin.getUsername()) && retCust.getPassword().equals(admin.getPassword())) {
+				retCust.setAccountStatus(LoginStatus.LOGGEDIN);
+				retCust = adminRepository.save(retCust);
+			}else {
+				throw new InvalidCredentials("Wrong credentials");
+			}
+		} catch (CustomerNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch(InvalidCredentials i) {
+			i.printStackTrace();
+		}
+		return retCust;
+	}
+
+	@Override
+	public Admin logoutAdmin(Admin admin) {
+		Admin retCust=null;
+		try {
+			retCust = adminRepository.findById(admin.getId()).orElseThrow(CustomerNotFoundException::new);
+			retCust.setAccountStatus(LoginStatus.LOGGEDOUT);
+			retCust = adminRepository.save(retCust);
+		} catch (CustomerNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return retCust;
 	}
    
     

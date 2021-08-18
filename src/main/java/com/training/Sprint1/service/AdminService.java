@@ -34,5 +34,8 @@ public interface AdminService {
 	List<TripBooking>getTripsByCustomer(Customer customer);
 	List<TripBooking>getTripDateWise(LocalDateTime date);
 	
+	public Admin registerAdmin(Admin admin);
+	public Admin loginAdmin(Admin admin);
+	public Admin logoutAdmin(Admin admin);
 }
 

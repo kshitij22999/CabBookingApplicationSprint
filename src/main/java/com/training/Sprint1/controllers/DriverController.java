@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.training.Sprint1.entities.Customer;
 import com.training.Sprint1.entities.Driver;
 import com.training.Sprint1.entities.TripBooking;
 import com.training.Sprint1.exception.DriverDoesNotExistException;
@@ -70,6 +71,24 @@ public class DriverController {
 	public ResponseEntity<TripBooking> acceptBooking(@PathVariable("id") Long id,@RequestBody Driver driver){
 		TripBooking trip = service.acceptBooking(id,driver);
 		return new ResponseEntity<TripBooking>(trip,HttpStatus.OK);
+	}
+	
+	@PostMapping("/drivers/register")
+	public ResponseEntity<Driver> registerDriver(@RequestBody Driver driver){
+		Driver temp = service.registerDriver(driver);
+		return new ResponseEntity<Driver>(temp,HttpStatus.OK);
+	}
+	
+	@PutMapping("/drivers/login")
+	public ResponseEntity<Driver> loginDriver(@RequestBody Driver driver){
+		Driver temp = service.loginDriver(driver);
+		return new ResponseEntity<Driver>(temp,HttpStatus.OK);
+	}
+	
+	@PutMapping("/drivers/logout")
+	public ResponseEntity<Driver> logoutDriver(@RequestBody Driver driver){
+		Driver temp = service.logoutDriver(driver);
+		return new ResponseEntity<Driver>(temp,HttpStatus.OK);
 	}
 	
 

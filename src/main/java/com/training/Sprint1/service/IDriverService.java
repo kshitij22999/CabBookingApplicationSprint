@@ -25,6 +25,10 @@ public interface IDriverService {
 	public void endTrip(Driver driver);
 	public TripBooking acceptBooking(Long id,Driver driver);
 	
+	public Driver registerDriver(Driver driver);
+	public Driver loginDriver(Driver driver);
+	public Driver logoutDriver(Driver driver);
+	
 
 	
 

@@ -32,9 +32,25 @@ public class Driver extends User{
 	@Enumerated
 	private AvailabilityStatus availabilityStatus;
 	
+	@Enumerated
+	private LoginStatus accountStatus;
 	
 	public Driver() {
 		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+	public LoginStatus getAccountStatus() {
+		return accountStatus;
+	}
+
+
+
+
+	public void setAccountStatus(LoginStatus accountStatus) {
+		this.accountStatus = accountStatus;
 	}
 
 
@@ -262,6 +278,36 @@ public class Driver extends User{
 		super(id);
 		this.cab = cab;
 		this.availabilityStatus = availabilityStatus;
+	}
+
+
+
+
+	public Driver( String username, String password) {
+		super( username, password);
+	}
+
+
+
+
+	public Driver(Long id, String username, String password, String driverName) {
+		super(id, username, password);
+		this.driverName = driverName;
+	}
+
+
+
+
+	public Driver(String username, String password, LoginStatus accountStatus) {
+		super(username, password);
+		this.accountStatus = accountStatus;
+	}
+
+
+
+
+	public Driver(Long id, String username, String password) {
+		super(id, username, password);
 	}
 
 	

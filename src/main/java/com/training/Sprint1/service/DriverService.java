@@ -9,10 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.training.Sprint1.entities.AvailabilityStatus;
+import com.training.Sprint1.entities.Customer;
 import com.training.Sprint1.entities.Driver;
+import com.training.Sprint1.entities.LoginStatus;
 import com.training.Sprint1.entities.Status;
 import com.training.Sprint1.entities.TripBooking;
+import com.training.Sprint1.exception.CustomerNotFoundException;
 import com.training.Sprint1.exception.DriverDoesNotExistException;
+import com.training.Sprint1.exception.InvalidCredentials;
 import com.training.Sprint1.exception.TripBookingNotFoundException;
 import com.training.Sprint1.repository.IDriverRepository;
 import com.training.Sprint1.repository.ITripBookingRepository;
@@ -125,6 +129,48 @@ public class DriverService implements IDriverService{
 			e.printStackTrace();
 		}
 		return trip;
+	}
+
+	@Override
+	public Driver registerDriver(Driver driver) {
+		driver.setAccountStatus(LoginStatus.LOGGEDOUT);
+		Driver insertedDriver=repo.save(driver);
+		return insertedDriver;
+	}
+
+	@Override
+	public Driver loginDriver(Driver driver) {
+		Driver retCust=null;
+		try {
+			retCust = repo.findById(driver.getId()).orElseThrow(CustomerNotFoundException::new);
+			if(retCust.getUsername().equals(driver.getUsername()) && retCust.getPassword().equals(driver.getPassword())) {
+				retCust.setAccountStatus(LoginStatus.LOGGEDIN);
+				retCust = repo.save(retCust);
+			}else {
+				throw new InvalidCredentials("Wrong credentials");
+			}
+		} catch (CustomerNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch(InvalidCredentials i) {
+			i.printStackTrace();
+		}
+		return retCust;
+	}
+
+	@Override
+	public Driver logoutDriver(Driver driver) {
+		Driver retCust=null;
+		try {
+			retCust = repo.findById(driver.getId()).orElseThrow(CustomerNotFoundException::new);
+			retCust.setAccountStatus(LoginStatus.LOGGEDOUT);
+			retCust = repo.save(retCust);
+		} catch (CustomerNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return retCust;
 	}
 
 

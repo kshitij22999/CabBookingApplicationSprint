@@ -55,7 +55,7 @@ public class CabController {
 	
 	@GetMapping(path="viewCabsOfType")
 	public ResponseEntity<List<Cab>>viewCabsOfType(@RequestParam CarType carType){
-		return  new ResponseEntity<List<Cab>>(iCabService.viewCabsOfType(carType),HttpStatus.OK);
+		return new ResponseEntity<List<Cab>>(iCabService.viewCabsOfType(carType),HttpStatus.OK);
 	}
 	
 

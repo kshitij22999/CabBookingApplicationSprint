@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,12 +23,24 @@ private String customerName;
 	@JoinColumn(referencedColumnName="id")
 	private List<TripBooking> tripBookings;
 	
+	@Enumerated
+	private LoginStatus accountStatus;
+	
 	public List<TripBooking> getTripBookings() {
 		return tripBookings;
 	}
 
 	public void setTripBookings(List<TripBooking> tripBookings) {
 		this.tripBookings = tripBookings;
+	}
+
+	
+	public LoginStatus getAccountStatus() {
+		return accountStatus;
+	}
+
+	public void setAccountStatus(LoginStatus accountStatus) {
+		this.accountStatus = accountStatus;
 	}
 
 	public Customer() {
@@ -50,6 +63,11 @@ private String customerName;
 	}
 
 
+
+	public Customer(Long id, String username, String password, LoginStatus accountStatus) {
+		super(id, username, password);
+		this.accountStatus = accountStatus;
+	}
 
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;

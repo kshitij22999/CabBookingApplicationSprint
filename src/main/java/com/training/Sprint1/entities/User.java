@@ -1,5 +1,6 @@
 package com.training.Sprint1.entities;
 import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +21,7 @@ public class User{
 	private String email;
 	@Embedded
 	private Address address;
-
+	
 	
 	
 	public Long getId() {
@@ -69,6 +70,7 @@ public class User{
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+	
 	
 	public User() {
 		super();
@@ -133,5 +135,8 @@ public class User{
 		super();
 		this.id = id;
 	}
+
+	
+
 
 }
