@@ -3,7 +3,6 @@ package com.training.Sprint1.service;
 import java.time.LocalDateTime;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +20,7 @@ public interface AdminService {
 
 	public List<Admin> getAllAdmin();
 	public Admin createAdmin(Admin admin);
-	public Optional<Admin>getAdminById(Long id);
+	public Admin getAdminById(Long id);
 	public Admin updateAdmin(Admin admin);
 	public Admin deleteAdmin(Admin admin);
 	public Driver getDriverById(Long id);

@@ -1,9 +1,10 @@
 package com.training.Sprint1;
 import com.training.Sprint1.repository.AdminRepository;
-import com.training.Sprint1.service.AdminService;
+import com.training.Sprint1.service.AdminServiceImpl;
 
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +25,7 @@ public class AdminTest {
 	AdminRepository adminRepo;
 	
 	@InjectMocks
-	AdminService adminService;
+	AdminServiceImpl adminService;
 	
 	@BeforeAll
 	static void setUpBeforeClass()throws Exception {
@@ -44,7 +45,7 @@ public class AdminTest {
 	void setUp() throws Exception{
 		MockitoAnnotations.initMocks(this);
 		
-	
+	adminList = new ArrayList<Admin>();
 
 	a1=new Address("A/P Ashta","Sangli","India","416301");
 	a2=new Address("A/P Karad","Satara","India","415124");
@@ -81,7 +82,7 @@ public void updateAdminTest() {
 @Test
 public void getAdminByIdTest() {
 	when(adminRepo.findById(admin1.getId())).thenReturn(Optional.of(admin1));
-	Assertions.assertEquals(admin1, adminService.getDriverById(admin1.getId()));	
+	Assertions.assertEquals(admin1, adminService.getAdminById(admin1.getId()));	
 	}
 @Test
 public void deleteAdminTest() {

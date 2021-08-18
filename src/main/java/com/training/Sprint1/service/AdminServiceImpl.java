@@ -48,8 +48,15 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public Optional<Admin> getAdminById(Long id) {
-			return adminRepository.findById(id);
+	public Admin getAdminById(Long id) {
+			Admin adm = null;;
+			try {
+				adm = adminRepository.findById(id).orElseThrow(AdminNotFoundException::new);
+			} catch (AdminNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return adm;
 	}
 
 	@Override

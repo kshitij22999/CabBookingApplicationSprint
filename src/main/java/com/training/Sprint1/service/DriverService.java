@@ -37,10 +37,6 @@ public class DriverService implements IDriverService{
 	@Autowired
 	private ICabRepository cabRepo;
 	
-	@Autowired
-	private ICabService cabService;
-	
-	
 	
 	@Override
 	public Driver addDriver(Driver driver) {
