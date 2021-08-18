@@ -22,6 +22,8 @@ public class Driver extends User{
 	@OneToOne(cascade = CascadeType.ALL)
 	private Cab cab;
 	
+	
+	
 	@OneToMany(cascade = CascadeType.ALL,targetEntity = TripBooking.class)
 	@JoinColumn(referencedColumnName="id")
 	private List<TripBooking> tripbooking;

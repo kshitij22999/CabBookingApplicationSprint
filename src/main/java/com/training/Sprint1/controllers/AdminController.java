@@ -58,6 +58,8 @@ public class AdminController {
 		return adminService.createAdmin(admin);
 	}
 	
+	
+	
 	@GetMapping("/admin/id/{id}")
 	public ResponseEntity<Admin> getAdminById(@PathVariable(value="id") Long id) throws AdminNotFoundException 
 	{
@@ -70,6 +72,8 @@ public class AdminController {
 	{
 		return adminService.getAllAdmin();
 	}
+	
+	
 	
 	
 	@PutMapping("/admin/update/{id}")

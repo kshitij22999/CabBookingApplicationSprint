@@ -18,6 +18,7 @@ import com.training.Sprint1.entities.TripBooking;
 @Transactional
 public interface AdminService {
 
+	
 	public List<Admin> getAllAdmin();
 	public Admin createAdmin(Admin admin);
 	public Admin getAdminById(Long id);

@@ -23,7 +23,6 @@ public interface ITripBookingService {
 	public List<TripBooking> getTripDateWise(LocalDateTime date);
 	public TripBooking addUnassignedTripBooking(Long id,TripBooking tripBooking);
 	List<TripBooking> getTripsByCustomer(Customer customer);
-
 	Float getDistanceInKm(TripBooking tripbooking);
 	TripBooking getTripBookingById(Long id);
 

@@ -18,8 +18,6 @@ public class Cab {
 	private Long cabId;
 	
 
-
-
 	@OneToOne(mappedBy = "cab")
 	private Driver driver;
 	@Enumerated

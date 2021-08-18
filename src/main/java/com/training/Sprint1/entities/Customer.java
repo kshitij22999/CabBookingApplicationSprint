@@ -21,6 +21,8 @@ public class Customer extends User {
 	@JoinColumn(referencedColumnName="id")
 	private List<TripBooking> tripBookings;
 	
+	
+	
 	@Enumerated
 	private LoginStatus accountStatus;
 	

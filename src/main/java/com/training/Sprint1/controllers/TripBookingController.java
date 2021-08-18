@@ -36,10 +36,14 @@ public class TripBookingController {
 	@Autowired
 	ICustomerService customerService;
 	
+	
+	
 	@GetMapping("/tripbookings/{id}")
 	public ResponseEntity<TripBooking> getTripBookingById(@PathVariable("id") Long id) throws TripBookingNotFoundException{
 		return new ResponseEntity<TripBooking>(tripbookingService.getTripBookingById(id),HttpStatus.OK);
 	}
+	
+	
 	
 	@PostMapping("/tripbookings")
 	public ResponseEntity<TripBooking> addTripBooking(@RequestBody TripBooking tripbooking){

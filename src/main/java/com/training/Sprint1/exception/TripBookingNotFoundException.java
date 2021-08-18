@@ -6,6 +6,8 @@ package com.training.Sprint1.exception;
 public class TripBookingNotFoundException extends Exception{
 
 
+	
+	
 	private String msg;
 
 	public String getMsg() {

@@ -22,8 +22,6 @@ public interface ICustomerService {
 	Customer viewCustomer(Long customerId) throws CustomerNotFoundException;
 	
 	public Customer registerCustomer(Customer customer);
-	
 	public Customer loginCustomer(Customer customer);
-	
 	public Customer logoutCustomer(Customer customer);
 }

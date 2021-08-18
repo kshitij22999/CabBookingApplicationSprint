@@ -29,6 +29,7 @@ import com.training.Sprint1.repository.ICabRepository;
 import com.training.Sprint1.repository.IDriverRepository;
 import com.training.Sprint1.repository.ITripBookingRepository;
 
+
 @Service
 @Transactional
 public class AdminServiceImpl implements AdminService{

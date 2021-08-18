@@ -13,6 +13,8 @@ public class Admin extends User{
 	@Enumerated
 	private LoginStatus accountStatus;
 	
+	
+	
 	public Admin(Long id, String username, String password, LoginStatus accountStatus) {
 		super(id, username, password);
 		this.accountStatus = accountStatus;

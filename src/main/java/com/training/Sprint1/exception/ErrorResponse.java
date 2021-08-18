@@ -12,6 +12,8 @@ public class ErrorResponse
         this.details = details;
     }
  
+    
+    
     //General error message about nature of error
     private String message;
  

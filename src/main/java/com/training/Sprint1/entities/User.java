@@ -22,8 +22,6 @@ public class User{
 	@Embedded
 	private Address address;
 	
-	
-	
 	public Long getId() {
 		return id;
 	}

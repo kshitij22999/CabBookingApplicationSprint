@@ -27,8 +27,6 @@ public class TripBooking {
 	@ForeignKey(name = "tripId")
 	private Long id;
 	
-
-	
 	@ManyToOne(targetEntity = Customer.class)
 	private Customer customer;
 	

@@ -17,8 +17,6 @@ public class ICustomerServiceImpl implements ICustomerService {
 	@Autowired
 	ICustomerRepository cRepo;
 
-	
-
 	@Override
 	public Customer insertCustomer(Customer customer) {
 		Customer insertedCustomer=cRepo.save(customer);

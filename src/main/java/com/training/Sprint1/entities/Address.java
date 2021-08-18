@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 public class Address{
 	private String addr;
 	
+	
+	
 	private String city;
 	
 	private String state;

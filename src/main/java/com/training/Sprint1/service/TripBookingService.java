@@ -153,6 +153,7 @@ public class TripBookingService implements ITripBookingService{
 		return retVal.getDistanceInKm();
 	}
 
+	
 	@Override
 	public TripBooking addUnassignedTripBooking(Long id, TripBooking tripBooking) {
 		TripBooking trip = null;
@@ -168,4 +169,6 @@ public class TripBookingService implements ITripBookingService{
 		return trip;
 	}
 
+	
+	
 }

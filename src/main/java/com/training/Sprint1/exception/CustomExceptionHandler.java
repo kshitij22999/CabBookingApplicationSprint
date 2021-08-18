@@ -20,6 +20,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class CustomExceptionHandler 
 
 {
+	
+	
 	@ExceptionHandler(AdminNotFoundException.class)
     public final ResponseEntity<Object> handleAdminNotFoundException(AdminNotFoundException ex, WebRequest request) {
         List<String> details = new ArrayList<>();

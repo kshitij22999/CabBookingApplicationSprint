@@ -29,6 +29,8 @@ public class CabController {
 	
 	
 	
+	
+	
 	@PostMapping(path="/add")
 	public ResponseEntity<Cab>insertCab(@RequestBody Cab cab){
 		Cab addedCab =  iCabService.addCab(cab);

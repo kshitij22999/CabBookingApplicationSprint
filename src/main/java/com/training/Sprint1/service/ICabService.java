@@ -11,6 +11,7 @@ import com.training.Sprint1.exception.CabNotFoundException;
 @Service
 
 public interface ICabService {
+	
 	public Cab insertCab(Cab cab);
 	//public List<Cab> addAll(List<Cab> cabList);
 	public Cab updateCab(Cab cab) throws CabNotFoundException ;
