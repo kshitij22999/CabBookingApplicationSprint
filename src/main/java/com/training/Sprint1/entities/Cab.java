@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -14,6 +15,9 @@ public class Cab {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long cabId;
+	
+	@OneToOne(mappedBy = "cab")
+	private Driver driver;
 	
 	private CarType carType;
 	private float perKmRate;
