@@ -26,49 +26,49 @@ import com.training.Sprint1.service.ITripBookingService;
 public class DriverController {
 
 	@Autowired
-	IDriverService service;
+	IDriverService driverService;
 	
 	@Autowired
 	ITripBookingService tripbookingService;
 	
 	@PostMapping("/drivers")
 	public ResponseEntity<Driver> addDriver(@RequestBody Driver driver){
-		Driver addedDriver = service.addDriver(driver);
-		return new ResponseEntity<Driver>(service.addDriver(addedDriver),HttpStatus.OK);
+		Driver addedDriver = driverService.addDriver(driver);
+		return new ResponseEntity<Driver>(driverService.addDriver(addedDriver),HttpStatus.OK);
 		
 	}
 	
 	@GetMapping("/drivers/{id}")
 	public ResponseEntity<Driver> getDriverById(@PathVariable("id") Long id) throws DriverDoesNotExistException{
-		return new ResponseEntity<Driver>(service.getDriverById(id), HttpStatus.OK);
+		return new ResponseEntity<Driver>(driverService.getDriverById(id), HttpStatus.OK);
 	}
 	
 	@GetMapping("/drivers")
 	public ResponseEntity <List<Driver>>getAllDrivers(){
 		
-		return new ResponseEntity<List<Driver>>(service.getAllDrivers(), HttpStatus.OK);
+		return new ResponseEntity<List<Driver>>(driverService.getAllDrivers(), HttpStatus.OK);
 	}
 	
 	@PutMapping("/drivers/update")
 	public ResponseEntity<Driver> updateDriver(@RequestBody Driver driver) throws DriverDoesNotExistException{
-		return new ResponseEntity<Driver>(service.updateDriver(driver), HttpStatus.OK);
+		return new ResponseEntity<Driver>(driverService.updateDriver(driver), HttpStatus.OK);
 	}
 	
 	
 	@DeleteMapping("/drivers")
 	public ResponseEntity<Driver> deleteDriver(@RequestBody Driver driver) throws DriverDoesNotExistException{
-		return new ResponseEntity<Driver>(service.deleteDriver(driver), HttpStatus.OK);
+		return new ResponseEntity<Driver>(driverService.deleteDriver(driver), HttpStatus.OK);
 	}
 	
 	@GetMapping("/drivers/best")
 	public ResponseEntity<List<Driver>> getBestDrivers(){
-	List<Driver> bestDrivers = service.getBestDrivers();
+	List<Driver> bestDrivers = driverService.getBestDrivers();
 	return new ResponseEntity<List<Driver>>(bestDrivers,HttpStatus.OK);
 	}
 	
 	@PutMapping("/drivers/accept/{id}")
 	public ResponseEntity<TripBooking> acceptBooking(@PathVariable("id") Long id,@RequestBody Driver driver){
-		TripBooking trip = service.acceptBooking(id,driver);
+		TripBooking trip = driverService.acceptBooking(id,driver);
 		return new ResponseEntity<TripBooking>(trip,HttpStatus.OK);
 	}
 	

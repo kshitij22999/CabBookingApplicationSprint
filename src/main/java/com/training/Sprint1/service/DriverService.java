@@ -9,11 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.training.Sprint1.entities.AvailabilityStatus;
+import com.training.Sprint1.entities.Cab;
 import com.training.Sprint1.entities.Driver;
 import com.training.Sprint1.entities.Status;
 import com.training.Sprint1.entities.TripBooking;
+import com.training.Sprint1.exception.CabNotFoundException;
 import com.training.Sprint1.exception.DriverDoesNotExistException;
 import com.training.Sprint1.exception.TripBookingNotFoundException;
+import com.training.Sprint1.repository.ICabRepository;
 import com.training.Sprint1.repository.IDriverRepository;
 import com.training.Sprint1.repository.ITripBookingRepository;
 
@@ -23,7 +26,7 @@ public class DriverService implements IDriverService{
 
 	
 	@Autowired
-	private IDriverRepository repo;
+	private IDriverRepository driverRepo;
 	
 	@Autowired
 	private ITripBookingRepository tripbookingRepo;
@@ -31,10 +34,17 @@ public class DriverService implements IDriverService{
 	@Autowired
 	private ITripBookingService tripbookingService;
 	
+	@Autowired
+	private ICabRepository cabRepo;
+	
+	@Autowired
+	private ICabService cabService;
+	
+	
 	
 	@Override
 	public Driver addDriver(Driver driver) {
-		Driver addedDriver = repo.save(driver);
+		Driver addedDriver = driverRepo.save(driver);
 		return addedDriver;
 	}
 	
@@ -42,7 +52,7 @@ public class DriverService implements IDriverService{
 	public Driver updateDriver(Driver driver){
 		Driver updatedDriver = null;
 		try {
-			updatedDriver = repo.findById(driver.getId()).orElseThrow(DriverDoesNotExistException::new);
+			updatedDriver = driverRepo.findById(driver.getId()).orElseThrow(DriverDoesNotExistException::new);
 		} catch (DriverDoesNotExistException e) {
 			
 			e.printStackTrace();
@@ -59,13 +69,13 @@ public class DriverService implements IDriverService{
 		updatedDriver.setUsername(driver.getUsername());
 		updatedDriver.setId(driver.getId());
 		
-		Driver dvr = repo.save(updatedDriver);
+		Driver dvr = driverRepo.save(updatedDriver);
 		return dvr;
 	}
 
 	@Override
 	public List<Driver> getAllDrivers() {
-		List<Driver> list = repo.findAll();
+		List<Driver> list = driverRepo.findAll();
 		return list;
 	}
 
@@ -73,8 +83,8 @@ public class DriverService implements IDriverService{
 	public Driver deleteDriver(Driver driver)  {
 		Driver deletedDriver = null;
 		try {
-		deletedDriver = repo.findById(driver.getId()).orElseThrow(DriverDoesNotExistException::new);
-		repo.delete(deletedDriver); 
+		deletedDriver = driverRepo.findById(driver.getId()).orElseThrow(DriverDoesNotExistException::new);
+		driverRepo.delete(deletedDriver); 
 		
 		} catch (DriverDoesNotExistException e) {
 
@@ -88,7 +98,7 @@ public class DriverService implements IDriverService{
 	@Override
 	public List<Driver> getBestDrivers() {
 		List<Driver> retVal=null;
-		retVal = repo.getBestDrivers();
+		retVal = driverRepo.getBestDrivers();
 		return retVal;
 	}
 
@@ -96,7 +106,7 @@ public class DriverService implements IDriverService{
 	public Driver getDriverById(Long id){
 		Driver dr=null;
 		try {
-			dr = repo.findById(id).orElseThrow(DriverDoesNotExistException::new);
+			dr =driverRepo.findById(id).orElseThrow(DriverDoesNotExistException::new);
 		} catch (DriverDoesNotExistException e) {
 			e.printStackTrace();
 		}
@@ -134,6 +144,11 @@ public class DriverService implements IDriverService{
 		return trip;
 	}
 
+	@Override
+	public Cab deleteCab(Long cabId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	
 	
