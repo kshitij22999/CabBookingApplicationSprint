@@ -31,8 +31,8 @@ public class CabService implements ICabService {
 			
 			e.printStackTrace();
 		}
-		updatedCab.setCarType(updatedCab.getCarType());
-		updatedCab.setPerKmRate(updatedCab.getPerKmRate());
+		updatedCab.setCarType(cab.getCarType());
+		updatedCab.setPerKmRate(cab.getPerKmRate());
 		
 		Cab cust = cRepo.save(updatedCab);
 		return cust;

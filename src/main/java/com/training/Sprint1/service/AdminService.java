@@ -3,7 +3,6 @@ package com.training.Sprint1.service;
 import java.time.LocalDateTime;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,21 +20,23 @@ public interface AdminService {
 
 	public List<Admin> getAllAdmin();
 	public Admin createAdmin(Admin admin);
-	public Optional<Admin>getAdminById(Long id);
+	public Admin getAdminById(Long id);
 	public Admin updateAdmin(Admin admin);
-	public void deleteAdmin(Admin admin);
+	public Admin deleteAdmin(Admin admin);
 	public Driver getDriverById(Long id);
 	List<Cab>getAllCabs();
 	List<Cab>viewCabsOfType(CarType carType);
 	List<Driver>getAllDrivers();
 	public Driver addDriver(Driver driver);
-	public void deleteDriver(Long driverId);
+	public Driver deleteDriver(Driver driver);
 	List<TripBooking>getAllTrips();
 	List<TripBooking>getTripsByCustomer(Customer customer);
 	List<TripBooking>getTripDateWise(LocalDateTime date);
 	
+
 	public Admin registerAdmin(Admin admin);
 	public Admin loginAdmin(Admin admin);
 	public Admin logoutAdmin(Admin admin);
 }
+
 

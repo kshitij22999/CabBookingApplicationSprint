@@ -17,7 +17,11 @@ import com.training.Sprint1.entities.Driver;
 import com.training.Sprint1.entities.LoginStatus;
 import com.training.Sprint1.entities.TripBooking;
 import com.training.Sprint1.exception.DriverDoesNotExistException;
+
 import com.training.Sprint1.exception.InvalidCredentials;
+
+import com.training.Sprint1.exception.AdminNotFoundException;
+
 import com.training.Sprint1.exception.CabNotFoundException;
 import com.training.Sprint1.exception.CustomerNotFoundException;
 import com.training.Sprint1.repository.AdminRepository;
@@ -50,8 +54,15 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public Optional<Admin> getAdminById(Long id) {
-			return adminRepository.findById(id);
+	public Admin getAdminById(Long id) {
+			Admin adm = null;;
+			try {
+				adm = adminRepository.findById(id).orElseThrow(AdminNotFoundException::new);
+			} catch (AdminNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return adm;
 	}
 
 	@Override
@@ -61,11 +72,21 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public void deleteAdmin(Admin admin) {
+	public Admin deleteAdmin(Admin admin) {
 		// TODO Auto-generated method stub
-		adminRepository.delete(admin);
-	}
+		Admin deletedAdmin = null;
+		try {
+		deletedAdmin = adminRepository.findById(admin.getId()).orElseThrow(AdminNotFoundException::new);
+		adminRepository.delete(deletedAdmin); 
+		
+		} catch (AdminNotFoundException e) {
 
+		e.printStackTrace();
+		}
+		
+		return deletedAdmin;
+	}
+    
 	@Override
     public Driver getDriverById(Long id) {
 		Driver temp=null;
@@ -116,10 +137,18 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public void deleteDriver(Long id) {
-		// TODO Auto-generated method stub
-		driverRepository.deleteById(id);
+	public Driver deleteDriver(Driver driver)  {
+		Driver deletedDriver = null;
+		try {
+		deletedDriver = driverRepository.findById(driver.getId()).orElseThrow(DriverDoesNotExistException::new);
+		driverRepository.delete(deletedDriver); 
 		
+		} catch (DriverDoesNotExistException e) {
+
+			e.printStackTrace();
+		}
+		
+		return deletedDriver;
 	}
     @Override 
     public List<TripBooking> getTripDateWise(LocalDateTime date) {

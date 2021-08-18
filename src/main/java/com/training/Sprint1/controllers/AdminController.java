@@ -84,14 +84,9 @@ public class AdminController {
 	    return ResponseEntity.ok(updatedAdmin);
     }
 	
-	@DeleteMapping("/admin/delete/{id}")
-	public Map<String,Boolean> deleteAdmin(@PathVariable(value="id") Long id) throws AdminNotFoundException
-	{
-		Admin admin = adminService.getAdminById(id).orElseThrow(()-> new AdminNotFoundException("No admin found with this id: "+id));
-	    adminService.deleteAdmin(admin);
-	    Map<String,Boolean> response = new HashMap<>();
-	    response.put("Deleted", Boolean.TRUE);
-	    return response;
+	@DeleteMapping("/admins/{id}")
+	public ResponseEntity<Admin> deleteAdmin(@RequestBody Admin admin) throws AdminNotFoundException{
+		return new ResponseEntity<Admin>(adminService.deleteAdmin(admin), HttpStatus.OK);
 	}
 	
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -162,15 +157,12 @@ public class AdminController {
 		
 	}
 	@DeleteMapping("/drivers/delete/{id}")
-	public ResponseEntity <Driver> deleteDriver(@RequestBody Driver driver)throws DriverDoesNotExistException  {
-		Driver dr = driverService.deleteDriver(driver);
-		if (dr==null)
-		{
-			return new ResponseEntity("Sorry! Driver id is not available", HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<Driver>(dr,HttpStatus.OK);
+	
+	public ResponseEntity<Driver> deleteDriver(@RequestParam Long id) throws DriverDoesNotExistException{
+		return new ResponseEntity<Driver>(driverService.deleteDriver(id), HttpStatus.OK);
 	}
 	
+
 	@PostMapping("/admin/register")
 	public ResponseEntity<Admin> registerAdmin(@RequestBody Admin admin){
 		Admin temp = adminService.registerAdmin(admin);
@@ -189,3 +181,4 @@ public class AdminController {
 		return new ResponseEntity<Admin>(temp,HttpStatus.OK);
 	}
 }
+
