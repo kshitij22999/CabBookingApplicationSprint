@@ -38,8 +38,6 @@ public class CustomerController {
 	@Autowired
 	ITripBookingService tripbookingService;
 
-	
-	
 	//Inserting Drivers
 	@PostMapping("/customers/insert")
 	public ResponseEntity<Customer> insertCustomer(@RequestBody Customer customer) {
@@ -81,18 +79,25 @@ public class CustomerController {
 		return new ResponseEntity<Customer>(customerService.viewCustomer(customerId), HttpStatus.OK);
 	}
 	
-
+	//Adding the trip by using id
 	@PostMapping("customers/book/{id}")
 	public ResponseEntity<TripBooking> addUnassignedTrip(@PathVariable("id") Long id,@RequestBody TripBooking tripbooking){
+		
+		logger.info("Adding Unassigned trips by id using Post Mapping via Tripbooking Controller");
+		
 		TripBooking trip = tripbookingService.addUnassignedTripBooking(id, tripbooking);
 		return new ResponseEntity<TripBooking>(trip,HttpStatus.OK);
 	}
 	
+	//Getting status of Booking by id
 	@GetMapping("customers/status/{id}")
 	public ResponseEntity<TripBooking> checkStatusOfBooking(@PathVariable("id") Long id){
+		logger.info("Getting Staus of Booking for Customer using Get Mapping via Tripbooking Controller");
+		
 		TripBooking trip = tripbookingService.getTripBookingById(id);
 		return new ResponseEntity<TripBooking>(trip,HttpStatus.OK);
 	}
+	
 	
 	@PostMapping("/customers/register")
 	public ResponseEntity<Customer> registerCustomer(@RequestBody Customer customer){
