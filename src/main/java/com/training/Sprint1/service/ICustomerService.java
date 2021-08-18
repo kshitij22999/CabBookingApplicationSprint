@@ -17,11 +17,11 @@ public interface ICustomerService {
 
 	public List<Customer> viewCustomers();
 
-	public Customer validateCustomer(String username, String password) throws CustomerNotFoundException;
-
 	Customer viewCustomer(Long customerId) throws CustomerNotFoundException;
 	
 	public Customer registerCustomer(Customer customer);
+	
 	public Customer loginCustomer(Customer customer);
+	
 	public Customer logoutCustomer(Customer customer);
 }

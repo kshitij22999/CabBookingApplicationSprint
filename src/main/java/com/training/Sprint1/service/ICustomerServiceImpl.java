@@ -12,10 +12,13 @@ import com.training.Sprint1.exception.CustomerNotFoundException;
 import com.training.Sprint1.exception.InvalidCredentials;
 import com.training.Sprint1.repository.ICustomerRepository;
 
+@SuppressWarnings("unused")
 @Service("customerService")
 public class ICustomerServiceImpl implements ICustomerService {
 	@Autowired
 	ICustomerRepository cRepo;
+
+	
 
 	@Override
 	public Customer insertCustomer(Customer customer) {
@@ -68,11 +71,7 @@ public class ICustomerServiceImpl implements ICustomerService {
 		return cust;
 	}
 
-	@Override
-	public Customer validateCustomer(String username, String password)throws CustomerNotFoundException {
-
-		return null;
-	}
+	
 
 	@Override
 	public Customer registerCustomer(Customer customer) {
