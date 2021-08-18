@@ -77,7 +77,7 @@ public void createAdminTest() {
 public void updateAdminTest() {
 	when(adminRepo.findById(admin1.getId())).thenReturn(Optional.of(admin1));
 	when(adminRepo.save(admin1)).thenReturn(admin1);
-	Assertions.assertEquals(admin1, adminService.updateAdmin(admin1));
+	Assertions.assertEquals(admin1, adminService.updateAdmin(admin1.getId(),admin1));
 }
 @Test
 public void getAdminByIdTest() {

@@ -61,7 +61,7 @@ public class AdminController {
 	@GetMapping("/admin/id/{id}")
 	public ResponseEntity<Admin> getAdminById(@PathVariable(value="id") Long id) throws AdminNotFoundException 
 	{
-		Admin admin = adminService.getAdminById(id).orElseThrow(()-> new AdminNotFoundException("No Admin found with this id: "+id));
+		Admin admin = adminService.getAdminById(id);
 		return ResponseEntity.ok().body(admin);
 	}
 	
@@ -73,15 +73,10 @@ public class AdminController {
 	
 	
 	@PutMapping("/admin/update/{id}")
-	public ResponseEntity<Admin> updateAdmin(@PathVariable(value="id") Long id,@RequestBody Admin updadmin) throws AdminNotFoundException
+	public ResponseEntity<Admin> updateAdmin(@PathVariable(value="id") Long id,@RequestBody Admin admin) throws AdminNotFoundException
 	{
-		Admin admin = adminService.getAdminById(id).orElseThrow(()-> new AdminNotFoundException("No admin found with this id: "+id));
-		       admin.setAddress(updadmin.getAddress());
-               admin.setEmail(updadmin.getEmail());
-               admin.setMobileNumber(updadmin.getMobileNumber());
-                
-                Admin updatedAdmin = adminService.updateAdmin(admin);
-	    return ResponseEntity.ok(updatedAdmin);
+		Admin updatedAdmin = adminService.updateAdmin(id,admin);
+	    return new ResponseEntity<Admin>(updatedAdmin, HttpStatus.OK);
     }
 	
 	@DeleteMapping("/admins/{id}")

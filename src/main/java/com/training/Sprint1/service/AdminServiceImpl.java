@@ -66,9 +66,18 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public Admin updateAdmin(Admin admin) {
-		// TODO Auto-generated method stub
-		return adminRepository.save(admin);
+	public Admin updateAdmin(Long id,Admin admin) {
+		Admin temp=null;
+		try {
+			temp = adminRepository.findById(id).orElseThrow(()-> new AdminNotFoundException("No admin found with this id: "+admin.getId()));
+			temp.setAddress(admin.getAddress());
+		    temp.setEmail(admin.getEmail());
+		    temp.setMobileNumber(admin.getMobileNumber());
+		} catch (AdminNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return adminRepository.save(temp);
 	}
 
 	@Override

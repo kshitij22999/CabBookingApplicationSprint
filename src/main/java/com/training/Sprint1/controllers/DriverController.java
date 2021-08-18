@@ -98,19 +98,19 @@ public class DriverController {
 	
 	@PostMapping("/drivers/register")
 	public ResponseEntity<Driver> registerDriver(@RequestBody Driver driver){
-		Driver temp = service.registerDriver(driver);
+		Driver temp = driverService.registerDriver(driver);
 		return new ResponseEntity<Driver>(temp,HttpStatus.OK);
 	}
 	
 	@PutMapping("/drivers/login")
 	public ResponseEntity<Driver> loginDriver(@RequestBody Driver driver){
-		Driver temp = service.loginDriver(driver);
+		Driver temp = driverService.loginDriver(driver);
 		return new ResponseEntity<Driver>(temp,HttpStatus.OK);
 	}
 	
 	@PutMapping("/drivers/logout")
 	public ResponseEntity<Driver> logoutDriver(@RequestBody Driver driver){
-		Driver temp = service.logoutDriver(driver);
+		Driver temp = driverService.logoutDriver(driver);
 		return new ResponseEntity<Driver>(temp,HttpStatus.OK);
 	}
 	

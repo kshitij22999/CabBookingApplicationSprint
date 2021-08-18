@@ -21,7 +21,7 @@ public interface AdminService {
 	public List<Admin> getAllAdmin();
 	public Admin createAdmin(Admin admin);
 	public Admin getAdminById(Long id);
-	public Admin updateAdmin(Admin admin);
+	public Admin updateAdmin(Long id,Admin admin);
 	public Admin deleteAdmin(Admin admin);
 	public Driver getDriverById(Long id);
 	List<Cab>getAllCabs();
