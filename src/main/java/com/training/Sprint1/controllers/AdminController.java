@@ -158,8 +158,8 @@ public class AdminController {
 	}
 	@DeleteMapping("/drivers/delete/{id}")
 	
-	public ResponseEntity<Driver> deleteDriver(@RequestBody Driver driver) throws DriverDoesNotExistException{
-		return new ResponseEntity<Driver>(driverService.deleteDriver(driver), HttpStatus.OK);
+	public ResponseEntity<Driver> deleteDriver(@RequestParam Long id) throws DriverDoesNotExistException{
+		return new ResponseEntity<Driver>(driverService.deleteDriver(id), HttpStatus.OK);
 	}
 	
 }
