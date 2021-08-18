@@ -49,13 +49,13 @@ public class DriverController {
 		return new ResponseEntity<List<Driver>>(service.getAllDrivers(), HttpStatus.OK);
 	}
 	
-	@PostMapping("/drivers/update")
+	@PutMapping("/drivers/update")
 	public ResponseEntity<Driver> updateDriver(@RequestBody Driver driver) throws DriverDoesNotExistException{
 		return new ResponseEntity<Driver>(service.updateDriver(driver), HttpStatus.OK);
 	}
 	
 	
-	@DeleteMapping("/drivers/{id}")
+	@DeleteMapping("/drivers")
 	public ResponseEntity<Driver> deleteDriver(@RequestBody Driver driver) throws DriverDoesNotExistException{
 		return new ResponseEntity<Driver>(service.deleteDriver(driver), HttpStatus.OK);
 	}

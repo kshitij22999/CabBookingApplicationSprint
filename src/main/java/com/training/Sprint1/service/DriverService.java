@@ -47,10 +47,17 @@ public class DriverService implements IDriverService{
 			
 			e.printStackTrace();
 		}
-		updatedDriver.setDriverName(updatedDriver.getDriverName());
-		updatedDriver.setRating(updatedDriver.getRating());
-		updatedDriver.setLisenceNo(updatedDriver.getLisenceNo());
-		updatedDriver.setVaccinationStatus(updatedDriver.getVaccinationStatus());
+		updatedDriver.setDriverName(driver.getDriverName());
+		updatedDriver.setRating(driver.getRating());
+		updatedDriver.setLisenceNo(driver.getLisenceNo());
+		updatedDriver.setVaccinationStatus(driver.getVaccinationStatus());
+		updatedDriver.setEmail(driver.getEmail());
+		updatedDriver.setMobileNumber(driver.getMobileNumber());
+		updatedDriver.setAddress(driver.getAddress());
+		updatedDriver.setAvailabilityStatus(driver.getAvailabilityStatus());
+		updatedDriver.setPassword(driver.getPassword());
+		updatedDriver.setUsername(driver.getUsername());
+		updatedDriver.setId(driver.getId());
 		
 		Driver dvr = repo.save(updatedDriver);
 		return dvr;
