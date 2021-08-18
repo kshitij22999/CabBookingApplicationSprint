@@ -16,6 +16,7 @@ import com.training.Sprint1.entities.Customer;
 import com.training.Sprint1.entities.Driver;
 import com.training.Sprint1.entities.TripBooking;
 import com.training.Sprint1.exception.DriverDoesNotExistException;
+import com.training.Sprint1.exception.AdminNotFoundException;
 import com.training.Sprint1.exception.CabNotFoundException;
 import com.training.Sprint1.repository.AdminRepository;
 import com.training.Sprint1.repository.ICabRepository;
@@ -58,11 +59,21 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public void deleteAdmin(Admin admin) {
+	public Admin deleteAdmin(Admin admin) {
 		// TODO Auto-generated method stub
-		adminRepository.delete(admin);
-	}
+		Admin deletedAdmin = null;
+		try {
+		deletedAdmin = adminRepository.findById(admin.getId()).orElseThrow(AdminNotFoundException::new);
+		adminRepository.delete(deletedAdmin); 
+		
+		} catch (AdminNotFoundException e) {
 
+		e.printStackTrace();
+		}
+		
+		return deletedAdmin;
+	}
+    
 	@Override
     public Driver getDriverById(Long id) {
 		Driver temp=null;
@@ -113,10 +124,18 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public void deleteDriver(Long id) {
-		// TODO Auto-generated method stub
-		driverRepository.deleteById(id);
+	public Driver deleteDriver(Driver driver)  {
+		Driver deletedDriver = null;
+		try {
+		deletedDriver = driverRepository.findById(driver.getId()).orElseThrow(DriverDoesNotExistException::new);
+		driverRepository.delete(deletedDriver); 
 		
+		} catch (DriverDoesNotExistException e) {
+
+			e.printStackTrace();
+		}
+		
+		return deletedDriver;
 	}
     @Override 
     public List<TripBooking> getTripDateWise(LocalDateTime date) {
