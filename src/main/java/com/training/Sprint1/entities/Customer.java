@@ -16,9 +16,7 @@ import javax.persistence.Table;
 @Table(name="cba_customer5")
 @Entity
 public class Customer extends User {
-
-private String customerName;
-	
+	private String customerName;
 	@OneToMany(cascade = CascadeType.ALL,targetEntity = TripBooking.class)
 	@JoinColumn(referencedColumnName="id")
 	private List<TripBooking> tripBookings;
@@ -34,18 +32,16 @@ private String customerName;
 		this.tripBookings = tripBookings;
 	}
 
-	
+	public Customer() {
+		super();
+
+	}
 	public LoginStatus getAccountStatus() {
 		return accountStatus;
 	}
 
 	public void setAccountStatus(LoginStatus accountStatus) {
 		this.accountStatus = accountStatus;
-	}
-
-	public Customer() {
-		super();
-
 	}
 
 	public Customer(String username, String password, String mobileNumber, String email, Address address) {
@@ -58,16 +54,41 @@ private String customerName;
 
 		this.customerName = customerName;
 	}
+	public Customer(Long id, String mobileNumber, String email, Address address) {
+		super(id, mobileNumber, email, address);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Customer(Long id, String username, String password, String mobileNumber, String email, Address address) {
+		super(id, username, password, mobileNumber, email, address);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Customer(Long id, String username, String password) {
+		super(id, username, password);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Customer(Long id) {
+		super(id);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Customer(String username, String password) {
+		super(username, password);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Customer(String username) {
+		super(username);
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getCustomerName() {
 		return customerName;
 	}
 
 
-
-	public Customer(Long id, String username, String password, LoginStatus accountStatus) {
-		super(id, username, password);
-		this.accountStatus = accountStatus;
-	}
 
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
