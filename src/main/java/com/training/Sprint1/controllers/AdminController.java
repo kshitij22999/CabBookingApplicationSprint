@@ -161,9 +161,11 @@ public class AdminController {
 		return new ResponseEntity<Driver>(dr, HttpStatus.NOT_FOUND);
 		
 	}
-	@DeleteMapping("/drivers/delete/{id}")
-	public ResponseEntity <Driver> deleteDriver(@RequestBody Driver driver)throws DriverDoesNotExistException  {
-		Driver dr = driverService.deleteDriver(driver);
+	@DeleteMapping("/drivers/delete")
+	public ResponseEntity <Driver> deleteDriver(@RequestParam Long id)throws DriverDoesNotExistException  {
+		
+		Driver dr = driverService.getDriverById(id); 
+		driverService.deleteCab(dr.getId());
 		if (dr==null)
 		{
 			return new ResponseEntity("Sorry! Driver id is not available", HttpStatus.NOT_FOUND);

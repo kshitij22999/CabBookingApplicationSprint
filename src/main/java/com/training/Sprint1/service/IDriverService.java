@@ -18,7 +18,7 @@ public interface IDriverService {
 	
 	public Driver addDriver(Driver driver);
 	public Driver updateDriver(Driver driver) throws DriverDoesNotExistException;
-	public Driver deleteDriver(Driver driver)  throws DriverDoesNotExistException;
+	public Driver deleteDriver(Long id)  throws DriverDoesNotExistException;
 	public List<Driver> getAllDrivers();
 	public List<Driver> getBestDrivers();
 	public Driver getDriverById(Long id) throws DriverDoesNotExistException;

@@ -80,20 +80,17 @@ public class DriverService implements IDriverService{
 	}
 
 	@Override
-	public Driver deleteDriver(Driver driver)  {
+	public Driver deleteDriver(Long id)  {
 		Driver deletedDriver = null;
 		try {
-		deletedDriver = driverRepo.findById(driver.getId()).orElseThrow(DriverDoesNotExistException::new);
-		driverRepo.delete(deletedDriver); 
-		
+			deletedDriver = driverRepo.findById(id).orElseThrow(DriverDoesNotExistException::new);
 		} catch (DriverDoesNotExistException e) {
-
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		driverRepo.delete(deletedDriver);
 		return deletedDriver;
 	}
-	
 
 	@Override
 	public List<Driver> getBestDrivers() {
@@ -145,9 +142,18 @@ public class DriverService implements IDriverService{
 	}
 
 	@Override
-	public Cab deleteCab(Long cabId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Cab deleteCab(Long cabId)  {
+		Cab deletedCab = null;
+		try {
+		deletedCab = cabRepo.findById(cabId).orElseThrow(CabNotFoundException::new);
+		 cabRepo.delete(deletedCab); 
+		
+		} catch (CabNotFoundException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return deletedCab;
 	}
 
 	

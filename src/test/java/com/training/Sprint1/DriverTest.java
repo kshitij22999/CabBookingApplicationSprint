@@ -98,7 +98,7 @@ class DriverTest {
 	@Test
 	public void deleteDriverTest() {
 		when(repo.findById(d1.getId())).thenReturn(Optional.of(d1));
-		Assertions.assertEquals(d1 , service.deleteDriver(d1));
+		Assertions.assertEquals(d1 , service.deleteDriver(d1.getId()));
 	}
 	
 	@Test

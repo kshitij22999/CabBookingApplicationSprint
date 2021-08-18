@@ -2,7 +2,6 @@ package com.training.Sprint1.controllers;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.training.Sprint1.entities.Driver;
 import com.training.Sprint1.entities.TripBooking;
@@ -25,6 +25,7 @@ import com.training.Sprint1.service.ITripBookingService;
 @RequestMapping("/rest/api")
 public class DriverController {
 
+	
 	@Autowired
 	IDriverService driverService;
 	
@@ -55,9 +56,9 @@ public class DriverController {
 	}
 	
 	
-	@DeleteMapping("/drivers")
-	public ResponseEntity<Driver> deleteDriver(@RequestBody Driver driver) throws DriverDoesNotExistException{
-		return new ResponseEntity<Driver>(driverService.deleteDriver(driver), HttpStatus.OK);
+	@DeleteMapping("/drivers/{id}")
+	public ResponseEntity<Driver> deleteDriver(@RequestParam Long id) throws DriverDoesNotExistException{
+		return new ResponseEntity<Driver>(driverService.deleteDriver(id), HttpStatus.OK);
 	}
 	
 	@GetMapping("/drivers/best")
