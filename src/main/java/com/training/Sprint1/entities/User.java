@@ -9,7 +9,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @MappedSuperclass
-@Table(name="cba_user5")
+@Table(name="cba_user6")
 public class User{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

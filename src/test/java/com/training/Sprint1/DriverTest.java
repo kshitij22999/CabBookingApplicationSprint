@@ -113,7 +113,7 @@ class DriverTest {
 	
 	@Test
 	public void getBadDriversTest() {
-		when(repo.getBestDrivers()).thenReturn(badDrivers);
+		when(repo.getBadDrivers()).thenReturn(badDrivers);
 		Assertions.assertEquals(1, service.getBadDrivers().size());
 	}
 }
