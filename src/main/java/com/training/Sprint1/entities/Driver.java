@@ -12,7 +12,7 @@ import javax.persistence.Table;
 	
 
 @Entity
-@Table(name="cba_driver5")
+@Table(name="cba_driver6")
 public class Driver extends User{ 
 	
 	private String driverName;

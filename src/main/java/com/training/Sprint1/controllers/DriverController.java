@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.training.Sprint1.entities.Customer;
 import com.training.Sprint1.entities.Driver;
 import com.training.Sprint1.entities.TripBooking;
 import com.training.Sprint1.exception.DriverDoesNotExistException;
@@ -74,7 +72,7 @@ public class DriverController {
 	
 	//Deleting Driver
 	@DeleteMapping("/drivers/{id}")
-	public ResponseEntity<Driver> deleteDriver(@RequestParam Long id) throws DriverDoesNotExistException{
+	public ResponseEntity<Driver> deleteDriver(@PathVariable Long id) throws DriverDoesNotExistException{
 		logger.info("Driver is getting deleted using Delete Mapping via Driver Controller");
 		
 		return new ResponseEntity<Driver>(driverService.deleteDriver(id), HttpStatus.OK);
@@ -88,6 +86,15 @@ public class DriverController {
 	List<Driver> bestDrivers = driverService.getBestDrivers();
 	return new ResponseEntity<List<Driver>>(bestDrivers,HttpStatus.OK);
 	}
+	
+	//Getting Bad Drivers
+		@GetMapping("/drivers/bad")
+		public ResponseEntity<List<Driver>> getBadDrivers(){
+			logger.info("All Drivers having rating <= 3 are being fetched using Get Mapping via Driver Controller");
+			
+		List<Driver> badDrivers = driverService.getBadDrivers();
+		return new ResponseEntity<List<Driver>>(badDrivers,HttpStatus.OK);
+		}
 	
 	//Accepting 
 	@PutMapping("/drivers/accept/{id}")

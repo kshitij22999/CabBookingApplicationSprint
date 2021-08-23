@@ -11,10 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.training.Sprint1.entities.AvailabilityStatus;
 
-import com.training.Sprint1.entities.Customer;
-
-import com.training.Sprint1.entities.Cab;
-
 import com.training.Sprint1.entities.Driver;
 import com.training.Sprint1.entities.LoginStatus;
 import com.training.Sprint1.entities.Status;
@@ -22,12 +18,9 @@ import com.training.Sprint1.entities.TripBooking;
 
 import com.training.Sprint1.exception.CustomerNotFoundException;
 
-import com.training.Sprint1.exception.CabNotFoundException;
-
 import com.training.Sprint1.exception.DriverDoesNotExistException;
 import com.training.Sprint1.exception.InvalidCredentials;
 import com.training.Sprint1.exception.TripBookingNotFoundException;
-import com.training.Sprint1.repository.ICabRepository;
 import com.training.Sprint1.repository.IDriverRepository;
 import com.training.Sprint1.repository.ITripBookingRepository;
 
@@ -44,9 +37,6 @@ public class DriverService implements IDriverService{
 	
 	@Autowired
 	private ITripBookingService tripbookingService;
-	
-	@Autowired
-	private ICabRepository cabRepo;
 	
 	
 	@Override
@@ -89,15 +79,15 @@ public class DriverService implements IDriverService{
 
 	@Override
 	public Driver deleteDriver(Long id)  {
-		Driver deletedDriver = null;
+		Driver driver=null;
 		try {
-			deletedDriver = driverRepo.findById(id).orElseThrow(DriverDoesNotExistException::new);
+			driver = driverRepo.findById(id).orElseThrow(DriverDoesNotExistException::new);
 		} catch (DriverDoesNotExistException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		driverRepo.delete(deletedDriver);
-		return deletedDriver;
+		driverRepo.delete(driver);
+		return driver;
 	}
 
 	@Override
@@ -118,16 +108,6 @@ public class DriverService implements IDriverService{
 		return dr;
 	}
 
-	@Override
-	public void startTrip(Driver driver) {
-		driver.setAvailabilityStatus(AvailabilityStatus.Busy);		
-		
-	}
-
-	@Override
-	public void endTrip(Driver driver) {
-	driver.setAvailabilityStatus(AvailabilityStatus.Available);	
-	}
 
 	@Override
 	public TripBooking acceptBooking(Long id,Driver temp) {
@@ -199,26 +179,12 @@ public class DriverService implements IDriverService{
 		return retCust;
 	}
 
-
-	public Cab deleteCab(Long cabId)  {
-		Cab deletedCab = null;
-		try {
-		deletedCab = cabRepo.findById(cabId).orElseThrow(CabNotFoundException::new);
-		 cabRepo.delete(deletedCab); 
-		
-		} catch (CabNotFoundException e) {
-			
-			e.printStackTrace();
-		}
-		
-		return deletedCab;
-	}
-
 	@Override
 	public List<Driver> getBadDrivers() {
 		List<Driver> badDrivers = driverRepo.getBadDrivers();
 		return badDrivers;
 	}
+
 
 }
 

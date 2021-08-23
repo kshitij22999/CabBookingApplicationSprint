@@ -11,10 +11,10 @@ import com.training.Sprint1.entities.Driver;
 @Repository
 public interface IDriverRepository extends JpaRepository<Driver ,Long> {
 
-	@Query("SELECT d FROM Driver d where d.rating <=3")
+	@Query(" FROM Driver d where d.rating <=3")
 	public List<Driver> getBadDrivers();
 	
-	@Query("SELECT d FROM Driver d where d.rating >=4.5")
+	@Query(" FROM Driver d where d.rating >=4.5")
 	public List<Driver> getBestDrivers();
 	
 	
