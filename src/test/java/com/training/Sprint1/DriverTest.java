@@ -111,11 +111,6 @@ class DriverTest {
 		Assertions.assertEquals(1, service.getBestDrivers().size());
 	}
 	
-	@Test
-	public void getBadDriversTest() {
-		when(repo.getBestDrivers()).thenReturn(badDrivers);
-		Assertions.assertEquals(1, service.getBadDrivers().size());
-	}
 }
 
 	

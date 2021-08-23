@@ -61,11 +61,7 @@ public class CabService implements ICabService {
 		List<Cab> list = cRepo.findAll();
 		return list;}
 	
-	@Override
-	public int countCabs(CarType carType) {
-		int count= cRepo.countCabsOfType(carType);
-		return count;
-	}
+
 
 	@Override
 	public List<Cab> viewCabsOfType(CarType carType) {

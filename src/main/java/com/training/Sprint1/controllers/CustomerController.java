@@ -99,18 +99,21 @@ public class CustomerController {
 	
 	@PostMapping("/customers/register")
 	public ResponseEntity<Customer> registerCustomer(@RequestBody Customer customer){
+		logger.info("Customer is regestering in DB");
 		Customer temp = customerService.registerCustomer(customer);
 		return new ResponseEntity<Customer>(temp,HttpStatus.OK);
 	}
 	
 	@PutMapping("/customers/login")
 	public ResponseEntity<Customer> loginCustomer(@RequestBody Customer customer){
+		logger.info("Customer is logging in");
 		Customer temp = customerService.loginCustomer(customer);
 		return new ResponseEntity<Customer>(temp,HttpStatus.OK);
 	}
 	
 	@PutMapping("/customers/logout")
 	public ResponseEntity<Customer> logoutCustomer(@RequestBody Customer customer){
+		logger.info("Customer is logging out");
 		Customer temp = customerService.logoutCustomer(customer);
 		return new ResponseEntity<Customer>(temp,HttpStatus.OK);
 	}

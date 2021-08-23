@@ -43,7 +43,6 @@ public class TripBookingService implements ITripBookingService{
 	@Override
 	public TripBooking addTripBooking(TripBooking tripbooking) {
 		TripBooking newBooking = tripBookingRepo.save(tripbooking);
-		System.out.println(newBooking+"****************");
 		return newBooking;
 	}
 	
@@ -161,6 +160,7 @@ public class TripBookingService implements ITripBookingService{
 			tripBooking.setStatus(Status.NOT_ALLOCATED);
 			Customer c = customerRepo.findById(id).orElseThrow(CustomerNotFoundException::new);
 			tripBooking.setCustomer(c);
+			
 			trip = tripBookingRepo.save(tripBooking);
 		} catch (CustomerNotFoundException e) {
 			// TODO Auto-generated catch block

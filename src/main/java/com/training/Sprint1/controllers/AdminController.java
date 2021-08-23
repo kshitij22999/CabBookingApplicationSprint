@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +43,9 @@ import com.training.Sprint1.service.TripBookingService;
 @RestController
 @RequestMapping("/api")
 public class AdminController {
+	
+	final static Logger logger = LoggerFactory.getLogger(AdminController.class);
+	
 	@Autowired
 	private AdminService adminService;
 	
@@ -55,6 +60,7 @@ public class AdminController {
 	
 	@PostMapping("/admin/newadmin")
 	public Admin createAdmin(@RequestBody Admin admin) { 
+		logger.info("adding new admin into DB");
 		return adminService.createAdmin(admin);
 	}
 	
@@ -62,14 +68,16 @@ public class AdminController {
 	
 	@GetMapping("/admin/id/{id}")
 	public ResponseEntity<Admin> getAdminById(@PathVariable(value="id") Long id) throws AdminNotFoundException 
-	{
+	{	
+		logger.info("getting admin based on id");
 		Admin admin = adminService.getAdminById(id);
 		return ResponseEntity.ok().body(admin);
 	}
 	
 	@GetMapping("/admin/all")
 	public List<Admin> getAllAdmin()
-	{
+	{	
+		logger.info("adding all admins from DB");
 		return adminService.getAllAdmin();
 	}
 	
@@ -79,12 +87,14 @@ public class AdminController {
 	@PutMapping("/admin/update/{id}")
 	public ResponseEntity<Admin> updateAdmin(@PathVariable(value="id") Long id,@RequestBody Admin admin) throws AdminNotFoundException
 	{
+		logger.info("updating admin based on id");
 		Admin updatedAdmin = adminService.updateAdmin(id,admin);
 	    return new ResponseEntity<Admin>(updatedAdmin, HttpStatus.OK);
     }
 	
 	@DeleteMapping("/admins/{id}")
 	public ResponseEntity<Admin> deleteAdmin(@RequestBody Admin admin) throws AdminNotFoundException{
+		logger.info("deleting admin from DB");
 		return new ResponseEntity<Admin>(adminService.deleteAdmin(admin), HttpStatus.OK);
 	}
 	
@@ -125,13 +135,15 @@ public class AdminController {
 	@GetMapping("/tripBooking/customer/{customer}")
 	public ResponseEntity<List<TripBooking>> getTripsByCustomer(@RequestBody Customer customer) throws TripBookingNotFoundException
 	{
+		logger.info("getting trips based on customer");
 		return new ResponseEntity<List<TripBooking>>(tripBookingService.getTripsByCustomer(customer), HttpStatus.OK);
 		 
 	}
 	
 	@GetMapping("/tripBookings/LocalDateTime/{date}")
 	public ResponseEntity<List<TripBooking>> getTripDateWise(@RequestParam LocalDateTime date) throws TripBookingNotFoundException
-	{
+	{	
+		logger.info("getting tripbookings datewise");
 		List<TripBooking>trb=tripBookingService.getTripDateWise(date);
 		return new ResponseEntity<List<TripBooking>>(trb,HttpStatus.OK);
 		
@@ -164,18 +176,21 @@ public class AdminController {
 
 	@PostMapping("/admin/register")
 	public ResponseEntity<Admin> registerAdmin(@RequestBody Admin admin){
+		logger.info("registering new admin");
 		Admin temp = adminService.registerAdmin(admin);
 		return new ResponseEntity<Admin>(temp,HttpStatus.OK);
 	}
 	
 	@PutMapping("/admin/login")
 	public ResponseEntity<Admin> loginAdmin(@RequestBody Admin admin){
+		logger.info("admin is logging in");
 		Admin temp = adminService.loginAdmin(admin);
 		return new ResponseEntity<Admin>(temp,HttpStatus.OK);
 	}
 	
 	@PutMapping("/admin/logout")
 	public ResponseEntity<Admin> logoutCustomer(@RequestBody Admin admin){
+		logger.info("admin is logging out");
 		Admin temp = adminService.logoutAdmin(admin);
 		return new ResponseEntity<Admin>(temp,HttpStatus.OK);
 	}

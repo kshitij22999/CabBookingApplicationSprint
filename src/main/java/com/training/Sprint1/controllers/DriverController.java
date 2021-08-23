@@ -100,20 +100,31 @@ public class DriverController {
 	
 	@PostMapping("/drivers/register")
 	public ResponseEntity<Driver> registerDriver(@RequestBody Driver driver){
+		logger.info("New driver is registered");
 		Driver temp = driverService.registerDriver(driver);
 		return new ResponseEntity<Driver>(temp,HttpStatus.OK);
 	}
 	
 	@PutMapping("/drivers/login")
 	public ResponseEntity<Driver> loginDriver(@RequestBody Driver driver){
+		logger.info("Driver is logging in.");
 		Driver temp = driverService.loginDriver(driver);
 		return new ResponseEntity<Driver>(temp,HttpStatus.OK);
 	}
 	
 	@PutMapping("/drivers/logout")
 	public ResponseEntity<Driver> logoutDriver(@RequestBody Driver driver){
+		logger.info("Driver is logging out.");
 		Driver temp = driverService.logoutDriver(driver);
 		return new ResponseEntity<Driver>(temp,HttpStatus.OK);
+	}
+	
+	@GetMapping("/drivers/bad")
+	public ResponseEntity<List<Driver>> getBadDrivers(){
+		logger.info("All Drivers having rating <= 3 are being fetched using Get Mapping via Driver Controller");
+		
+	List<Driver> badDrivers = driverService.getBadDrivers();
+	return new ResponseEntity<List<Driver>>(badDrivers,HttpStatus.OK);
 	}
 	
 

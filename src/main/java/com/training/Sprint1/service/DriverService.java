@@ -1,6 +1,7 @@
 
 package com.training.Sprint1.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -50,6 +51,7 @@ public class DriverService implements IDriverService{
 	
 	@Override
 	public Driver addDriver(Driver driver) {
+		driver.setAvailabilityStatus(AvailabilityStatus.Available);
 		Driver addedDriver = driverRepo.save(driver);
 		return addedDriver;
 	}
@@ -128,19 +130,26 @@ public class DriverService implements IDriverService{
 	}
 
 	@Override
-	public TripBooking acceptBooking(Long id,Driver driver) {
+	public TripBooking acceptBooking(Long id,Driver temp) {
 		TripBooking trip = null;
+		Driver driver = null;
 		try {
 			trip = tripbookingRepo.findById(id).orElseThrow(TripBookingNotFoundException::new);
+			driver = driverRepo.findById(temp.getId()).orElseThrow(DriverDoesNotExistException::new);
 			if(driver.getAvailabilityStatus()==AvailabilityStatus.Available) {
 			driver.setAvailabilityStatus(AvailabilityStatus.Busy);
 			trip.setDriver(driver);
 			trip.setCab(driver.getCab());
 			trip.setStatus(Status.ALLOCATED);
+			trip.setFromDateTime(LocalDateTime.now());
+			trip.setToDateTime(LocalDateTime.now().plusHours(2));
 			Float bill = tripbookingService.calculateBill(trip);
 			trip.setBill(bill);
 			}
 		} catch (TripBookingNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch (DriverDoesNotExistException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -203,6 +212,12 @@ public class DriverService implements IDriverService{
 		}
 		
 		return deletedCab;
+	}
+
+	@Override
+	public List<Driver> getBadDrivers() {
+		List<Driver> badDrivers = driverRepo.getBadDrivers();
+		return badDrivers;
 	}
 
 }

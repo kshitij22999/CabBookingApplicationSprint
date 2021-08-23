@@ -18,7 +18,6 @@ public interface ICabService {
 	public Cab deleteCab(Long cabId) throws CabNotFoundException;
 	public List<Cab> viewCabsOfType(CarType carType);
 	public List<Cab> getAllCabs();
-	public int countCabs(CarType carType);
 	public Cab addCab(Cab cab);
 	public Cab getByCabId(Long cabId) throws CabNotFoundException;
 	
