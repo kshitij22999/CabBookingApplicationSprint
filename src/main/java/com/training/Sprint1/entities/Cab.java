@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="cba_cab6")
+@Table(name="cba_cabdemo")
 public class Cab {
 	
 	@Id

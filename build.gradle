@@ -22,7 +22,10 @@ dependencies {
 	implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 	// https://mvnrepository.com/artifact/org.hibernate/hibernate-validator
 	implementation group: 'org.hibernate', name: 'hibernate-validator', version: '6.1.0.Final'
-
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security'
+// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+implementation group: 'io.jsonwebtoken', name: 'jjwt',version: '0.9.0'
 	
 }
 

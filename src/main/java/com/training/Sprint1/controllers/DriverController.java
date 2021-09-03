@@ -126,13 +126,7 @@ public class DriverController {
 		return new ResponseEntity<Driver>(temp,HttpStatus.OK);
 	}
 	
-	@GetMapping("/drivers/bad")
-	public ResponseEntity<List<Driver>> getBadDrivers(){
-		logger.info("All Drivers having rating <= 3 are being fetched using Get Mapping via Driver Controller");
-		
-	List<Driver> badDrivers = driverService.getBadDrivers();
-	return new ResponseEntity<List<Driver>>(badDrivers,HttpStatus.OK);
-	}
+
 	
 
 }

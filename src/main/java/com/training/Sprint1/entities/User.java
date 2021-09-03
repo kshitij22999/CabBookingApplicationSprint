@@ -1,15 +1,24 @@
 package com.training.Sprint1.entities;
+import java.util.Set;
+
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@MappedSuperclass
-@Table(name="cba_user6")
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Table(name="cba_userdemo")
 public class User{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,6 +30,12 @@ public class User{
 	private String email;
 	@Embedded
 	private Address address;
+	
+	 @ManyToMany(fetch = FetchType.EAGER)
+	 @JoinTable(name = "proj_user_rolesdemo", joinColumns = {
+	            @JoinColumn(name = "USER_ID") }, inverseJoinColumns = {
+	            @JoinColumn(name = "ROLE_ID") })
+	 private Set<Role> roles;
 	
 	public Long getId() {
 		return id;
@@ -70,6 +85,14 @@ public class User{
 	}
 	
 	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
 	public User() {
 		super();
 	}
@@ -132,6 +155,12 @@ public class User{
 	public User(Long id) {
 		super();
 		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", mobileNumber=" + mobileNumber
+				+ ", email=" + email + ", address=" + address + ", roles=" + roles + "]";
 	}
 
 	

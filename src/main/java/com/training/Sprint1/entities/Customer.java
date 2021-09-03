@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @SuppressWarnings("unused")
-@Table(name="cba_customer6")
+@Table(name="cba_customerdemo")
 @Entity
 public class Customer extends User {
 	private String customerName;

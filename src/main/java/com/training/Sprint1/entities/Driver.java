@@ -12,7 +12,7 @@ import javax.persistence.Table;
 	
 
 @Entity
-@Table(name="cba_driver6")
+@Table(name="cba_driverdemo")
 public class Driver extends User{ 
 	
 	private String driverName;
@@ -236,11 +236,16 @@ public class Driver extends User{
 	}
 
 
+	
+
+
+
+
 	@Override
 	public String toString() {
 		return "Driver [driverName=" + driverName + ", lisenceNo=" + lisenceNo + ", rating=" + rating + ", cab=" + cab
 				+ ", tripbooking=" + tripbooking + ", vaccinationStatus=" + vaccinationStatus + ", availabilityStatus="
-				+ availabilityStatus + "]";
+				+ availabilityStatus + ", accountStatus=" + accountStatus + "]";
 	}
 
 

@@ -7,7 +7,7 @@ import com.training.Sprint1.entities.User;
 
 @SuppressWarnings("unused")
 @Entity
-@Table(name="cba_admin6")
+@Table(name="cba_admindemo")
 public class Admin extends User{
 	
 	@Enumerated
