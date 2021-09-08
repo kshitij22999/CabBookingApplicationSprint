@@ -2,24 +2,29 @@
 package com.training.Sprint1.service;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.training.Sprint1.entities.AvailabilityStatus;
 
 import com.training.Sprint1.entities.Driver;
 import com.training.Sprint1.entities.LoginStatus;
+import com.training.Sprint1.entities.Role;
 import com.training.Sprint1.entities.Status;
 import com.training.Sprint1.entities.TripBooking;
-
+import com.training.Sprint1.entities.User;
 import com.training.Sprint1.exception.CustomerNotFoundException;
 
 import com.training.Sprint1.exception.DriverDoesNotExistException;
 import com.training.Sprint1.exception.InvalidCredentials;
+import com.training.Sprint1.exception.RoleNotFoundException;
 import com.training.Sprint1.exception.TripBookingNotFoundException;
 import com.training.Sprint1.repository.IDriverRepository;
 import com.training.Sprint1.repository.ITripBookingRepository;
@@ -38,6 +43,11 @@ public class DriverService implements IDriverService{
 	@Autowired
 	private ITripBookingService tripbookingService;
 	
+	@Autowired
+	private BCryptPasswordEncoder bcryptEncoder;
+	
+	@Autowired
+	RoleService roleService;
 	
 	@Override
 	public Driver addDriver(Driver driver) {
@@ -183,6 +193,32 @@ public class DriverService implements IDriverService{
 	public List<Driver> getBadDrivers() {
 		List<Driver> badDrivers = driverRepo.getBadDrivers();
 		return badDrivers;
+	}
+
+	@Override
+	public Driver getDriverByUsername(String username) {
+		Driver driver = driverRepo.findByUsername(username);
+		return driver;
+	}
+	
+	@Override
+    public Driver save(Driver user) throws RoleNotFoundException {
+	    Driver driver = new Driver();
+	    driver.setUsername(user.getUsername());
+	    driver.setPassword(bcryptEncoder.encode(user.getPassword()));
+	    Set<Role> roles= user.getRoles();
+	    Set<Role> newSetOfRoles =  new HashSet<Role>();
+	    
+	    for(Role r:roles) {
+	    	
+	    	newSetOfRoles.add(roleService.findRoleById(r.getId()));
+	    }
+	    driver.setRoles(newSetOfRoles);
+	    user.setAvailabilityStatus(AvailabilityStatus.Available);
+	    System.out.println(newSetOfRoles+"************************");
+		  Driver savedUser = driverRepo.save(user);
+		  System.out.println(savedUser+"**************************");
+		  return savedUser;
 	}
 
 

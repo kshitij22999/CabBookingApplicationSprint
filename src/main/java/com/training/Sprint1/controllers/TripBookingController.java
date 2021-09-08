@@ -55,7 +55,7 @@ public class TripBookingController {
 		return new ResponseEntity<TripBooking>(newVal,HttpStatus.OK);
 	}
 	
-	@PutMapping("/tripbooings/update")
+	@PutMapping("/tripbookings")
 	public ResponseEntity<TripBooking> updateTripBooking(@RequestBody TripBooking tripbooking){
 		logger.info("updating given booking");
 		TripBooking newVal = tripbookingService.updateTripBooking(tripbooking);
@@ -77,6 +77,12 @@ public class TripBookingController {
 		TripBooking trip = tripbookingService.deleteTripBooking(id);
 		return new ResponseEntity<TripBooking>(trip,HttpStatus.OK);
 		
+	}
+	
+	@GetMapping("/tripbookings/free")
+	public ResponseEntity<List<TripBooking>> getNotAllocatedList(){
+		List<TripBooking> lstBooking = tripbookingService.getNotAllocatedList();
+		return new ResponseEntity<List<TripBooking>>(lstBooking,HttpStatus.OK);
 	}
 	
 }

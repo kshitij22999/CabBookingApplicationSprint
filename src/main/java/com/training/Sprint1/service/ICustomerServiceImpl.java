@@ -1,15 +1,21 @@
 package com.training.Sprint1.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.tomcat.util.net.Acceptor.AcceptorState;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.training.Sprint1.entities.Customer;
 import com.training.Sprint1.entities.LoginStatus;
+import com.training.Sprint1.entities.Role;
+import com.training.Sprint1.entities.User;
 import com.training.Sprint1.exception.CustomerNotFoundException;
 import com.training.Sprint1.exception.InvalidCredentials;
+import com.training.Sprint1.exception.RoleNotFoundException;
 import com.training.Sprint1.repository.ICustomerRepository;
 
 @SuppressWarnings("unused")
@@ -17,6 +23,13 @@ import com.training.Sprint1.repository.ICustomerRepository;
 public class ICustomerServiceImpl implements ICustomerService {
 	@Autowired
 	ICustomerRepository cRepo;
+	
+	@Autowired
+	RoleService roleService;
+	
+	@Autowired
+	private BCryptPasswordEncoder bcryptEncoder;
+
 
 	
 
@@ -113,6 +126,26 @@ public class ICustomerServiceImpl implements ICustomerService {
 			e.printStackTrace();
 		}
 		return retCust;
+	}
+	
+	@Override
+    public Customer save(Customer user) throws RoleNotFoundException {
+	    Customer newUser = new Customer();
+	    newUser.setUsername(user.getUsername());
+	    newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+	    Set<Role> roles= user.getRoles();
+	    Set<Role> newSetOfRoles =  new HashSet<Role>();
+	    
+	    for(Role r:roles) {
+	    	
+	    	newSetOfRoles.add(roleService.findRoleById(r.getId()));
+	    }
+	    newUser.setRoles(newSetOfRoles);
+	    
+	    System.out.println(newSetOfRoles+"************************");
+		  Customer savedUser = cRepo.save(user);
+		  System.out.println(savedUser+"**************************");
+		  return savedUser;
 	}
 
 	

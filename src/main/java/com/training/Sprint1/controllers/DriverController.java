@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.training.Sprint1.entities.Driver;
 import com.training.Sprint1.entities.TripBooking;
 import com.training.Sprint1.exception.DriverDoesNotExistException;
+import com.training.Sprint1.exception.RoleNotFoundException;
 import com.training.Sprint1.service.IDriverService;
 import com.training.Sprint1.service.ITripBookingService;
 
@@ -108,7 +109,13 @@ public class DriverController {
 	@PostMapping("/drivers/register")
 	public ResponseEntity<Driver> registerDriver(@RequestBody Driver driver){
 		logger.info("New driver is registered");
-		Driver temp = driverService.registerDriver(driver);
+		Driver temp=null;
+		try {
+			temp = driverService.save(driver);
+		} catch (RoleNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return new ResponseEntity<Driver>(temp,HttpStatus.OK);
 	}
 	
@@ -126,7 +133,17 @@ public class DriverController {
 		return new ResponseEntity<Driver>(temp,HttpStatus.OK);
 	}
 	
-
+	@GetMapping("/drivers/{username}")
+	public ResponseEntity<Driver> getDriverByUsername(@PathVariable("username") String username){
+		Driver driver = driverService.getDriverByUsername(username);
+		return new ResponseEntity<Driver>(driver,HttpStatus.OK);
+	}
+	
+	@GetMapping("/drivers/endtrip/{id}")
+	public ResponseEntity<TripBooking> endTrip(@PathVariable("id") Long id){
+		TripBooking trip = tripbookingService.endTrip(id);
+		return new ResponseEntity<TripBooking>(trip,HttpStatus.OK);
+	}
 	
 
 }

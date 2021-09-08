@@ -1,5 +1,5 @@
 package com.training.Sprint1.entities;
 
 public enum Status {
-	ALLOCATED,NOT_ALLOCATED
+	ALLOCATED,NOT_ALLOCATED,COMPLETE
 }

@@ -52,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	System.out.println("in configure method of websecurity************************");
         http.cors().and().csrf().disable().
                 authorizeRequests()
-                .antMatchers("/token/generate-token", "/signup").permitAll()
+                .antMatchers("/token/generate-token", "/signup","/rest/api/drivers/register","/rest/api/customers/register","/rest/api/admin/register").permitAll() //add urls here
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()

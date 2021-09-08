@@ -13,6 +13,7 @@ import com.training.Sprint1.entities.CarType;
 import com.training.Sprint1.entities.Customer;
 import com.training.Sprint1.entities.Driver;
 import com.training.Sprint1.entities.TripBooking;
+import com.training.Sprint1.exception.RoleNotFoundException;
 
 @Service
 @Transactional
@@ -38,6 +39,7 @@ public interface AdminService {
 	public Admin registerAdmin(Admin admin);
 	public Admin loginAdmin(Admin admin);
 	public Admin logoutAdmin(Admin admin);
+	Admin save(Admin user) throws RoleNotFoundException;
 }
 
 

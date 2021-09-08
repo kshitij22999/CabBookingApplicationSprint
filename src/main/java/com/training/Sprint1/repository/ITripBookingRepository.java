@@ -23,6 +23,8 @@ public interface ITripBookingRepository extends JpaRepository<TripBooking, Long>
 	
 	@Query(value="from TripBooking where fromDateTime>:date and toDateTime<=:date")
 	public List<TripBooking> getTripDateWise(@Param("date") LocalDateTime date);
+	
+	
 
 		
 }

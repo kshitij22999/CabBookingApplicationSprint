@@ -17,6 +17,8 @@ public interface IDriverRepository extends JpaRepository<Driver ,Long> {
 	@Query(" FROM Driver d where d.rating >=4.5")
 	public List<Driver> getBestDrivers();
 	
+	public Driver findByUsername(String username);
+	
 	
 
 }

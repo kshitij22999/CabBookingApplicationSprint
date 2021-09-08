@@ -25,5 +25,7 @@ public interface ITripBookingService {
 	List<TripBooking> getTripsByCustomer(Customer customer);
 	Float getDistanceInKm(TripBooking tripbooking);
 	TripBooking getTripBookingById(Long id);
+	public List<TripBooking> getNotAllocatedList();
+	TripBooking endTrip(Long id);
 
 }

@@ -1,11 +1,13 @@
 package com.training.Sprint1.service;
 
 import java.time.LocalDateTime;
-
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,11 +17,13 @@ import com.training.Sprint1.entities.CarType;
 import com.training.Sprint1.entities.Customer;
 import com.training.Sprint1.entities.Driver;
 import com.training.Sprint1.entities.LoginStatus;
+import com.training.Sprint1.entities.Role;
 import com.training.Sprint1.entities.TripBooking;
+import com.training.Sprint1.entities.User;
 import com.training.Sprint1.exception.DriverDoesNotExistException;
 
 import com.training.Sprint1.exception.InvalidCredentials;
-
+import com.training.Sprint1.exception.RoleNotFoundException;
 import com.training.Sprint1.exception.AdminNotFoundException;
 
 import com.training.Sprint1.exception.CabNotFoundException;
@@ -41,6 +45,13 @@ public class AdminServiceImpl implements AdminService{
     private ICabRepository cabRepository;
 @Autowired
     private IDriverRepository driverRepository;
+
+@Autowired
+RoleService roleService;
+
+@Autowired
+private BCryptPasswordEncoder bcryptEncoder;
+
 
 	@Override
 	public List<Admin> getAllAdmin() {
@@ -207,6 +218,27 @@ public class AdminServiceImpl implements AdminService{
 		}
 		return retCust;
 	}
+	
+	@Override
+    public Admin save(Admin user) throws RoleNotFoundException {
+	    Admin newUser = new Admin();
+	    newUser.setUsername(user.getUsername());
+	    newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+	    Set<Role> roles= user.getRoles();
+	    Set<Role> newSetOfRoles =  new HashSet<Role>();
+	    
+	    for(Role r:roles) {
+	    	
+	    	newSetOfRoles.add(roleService.findRoleById(r.getId()));
+	    }
+	    newUser.setRoles(newSetOfRoles);
+	    
+	    System.out.println(newSetOfRoles+"************************");
+		  Admin savedUser = adminRepository.save(user);
+		  System.out.println(savedUser+"**************************");
+		  return savedUser;
+	}
+
    
     
 

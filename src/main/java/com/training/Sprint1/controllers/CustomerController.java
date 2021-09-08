@@ -21,6 +21,7 @@ import com.training.Sprint1.entities.Customer;
 import com.training.Sprint1.entities.Driver;
 import com.training.Sprint1.entities.TripBooking;
 import com.training.Sprint1.exception.CustomerNotFoundException;
+import com.training.Sprint1.exception.RoleNotFoundException;
 import com.training.Sprint1.service.ICustomerService;
 import com.training.Sprint1.service.ITripBookingService;
 
@@ -81,7 +82,7 @@ public class CustomerController {
 	@PostMapping("customers/book/{id}")
 	public ResponseEntity<TripBooking> addUnassignedTrip(@PathVariable("id") Long id,@RequestBody TripBooking tripbooking){
 		
-		logger.info("Adding Unassigned trips by id using Post Mapping via Tripbooking Controller");
+		logger.info("Adding Unassigned trips by id using Post Mapping via Tripbooking service");
 		
 		TripBooking trip = tripbookingService.addUnassignedTripBooking(id, tripbooking);
 		return new ResponseEntity<TripBooking>(trip,HttpStatus.OK);
@@ -90,7 +91,7 @@ public class CustomerController {
 	//Getting status of Booking by id
 	@GetMapping("customers/status/{id}")
 	public ResponseEntity<TripBooking> checkStatusOfBooking(@PathVariable("id") Long id){
-		logger.info("Getting Staus of Booking for Customer using Get Mapping via Tripbooking Controller");
+		logger.info("Getting Staus of Booking for Customer using Get Mapping via Tripbooking service");
 		
 		TripBooking trip = tripbookingService.getTripBookingById(id);
 		return new ResponseEntity<TripBooking>(trip,HttpStatus.OK);
@@ -100,7 +101,13 @@ public class CustomerController {
 	@PostMapping("/customers/register")
 	public ResponseEntity<Customer> registerCustomer(@RequestBody Customer customer){
 		logger.info("Customer is regestering in DB");
-		Customer temp = customerService.registerCustomer(customer);
+		Customer temp=null;
+		try {
+			temp = customerService.save(customer);
+		} catch (RoleNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return new ResponseEntity<Customer>(temp,HttpStatus.OK);
 	}
 	

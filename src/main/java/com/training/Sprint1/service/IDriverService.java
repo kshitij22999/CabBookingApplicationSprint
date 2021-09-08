@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.training.Sprint1.entities.Driver;
 import com.training.Sprint1.entities.TripBooking;
+import com.training.Sprint1.entities.User;
 import com.training.Sprint1.exception.DriverDoesNotExistException;
+import com.training.Sprint1.exception.RoleNotFoundException;
 
 @Service
 @Transactional
@@ -26,6 +28,8 @@ public interface IDriverService {
 	public Driver registerDriver(Driver driver);
 	public Driver loginDriver(Driver driver);
 	public Driver logoutDriver(Driver driver);
+	public Driver getDriverByUsername(String username);
+	Driver save(Driver user) throws RoleNotFoundException;
 	
 
 	

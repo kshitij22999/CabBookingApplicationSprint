@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.training.Sprint1.entities.Customer;
 import com.training.Sprint1.exception.CustomerNotFoundException;
+import com.training.Sprint1.exception.RoleNotFoundException;
 
 @Service
 public interface ICustomerService {
@@ -24,4 +25,6 @@ public interface ICustomerService {
 	public Customer loginCustomer(Customer customer);
 	
 	public Customer logoutCustomer(Customer customer);
+
+	Customer save(Customer user) throws RoleNotFoundException;
 }

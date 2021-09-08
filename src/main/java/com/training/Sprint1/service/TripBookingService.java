@@ -160,6 +160,7 @@ public class TripBookingService implements ITripBookingService{
 			tripBooking.setStatus(Status.NOT_ALLOCATED);
 			Customer c = customerRepo.findById(id).orElseThrow(CustomerNotFoundException::new);
 			tripBooking.setCustomer(c);
+			tripBooking.setFromDateTime(LocalDateTime.now());
 			
 			trip = tripBookingRepo.save(tripBooking);
 		} catch (CustomerNotFoundException e) {
@@ -169,6 +170,31 @@ public class TripBookingService implements ITripBookingService{
 		return trip;
 	}
 
-	
+	@Override
+	public List<TripBooking> getNotAllocatedList() {
+		List<TripBooking> temp_trips = null;
+		
+		temp_trips = tripBookingRepo.findAll();
+		
+		for(TripBooking t:temp_trips) {
+			if(t.getStatus()==Status.ALLOCATED) {
+				temp_trips.remove(t);
+			}
+		}
+		return temp_trips;
+	}
+
+	@Override
+	public TripBooking endTrip(Long id) {
+		TripBooking trip = null;
+		try {
+			trip = tripBookingRepo.findById(id).orElseThrow(TripBookingNotFoundException::new);
+			trip.setStatus(Status.COMPLETE);
+		} catch (TripBookingNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return trip;
+	}
 	
 }
