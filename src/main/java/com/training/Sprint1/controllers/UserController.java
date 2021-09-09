@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,6 +51,11 @@ public class UserController {
     public User deleteUser(@PathVariable(value = "id") Long id){
         userService.delete(id);
         return new User(id);
+    }
+    
+    @RequestMapping(value="/user/username/{username}", method = RequestMethod.GET)
+    public UserDetails loadByUsername(@PathVariable(value="username") String username) {
+    	return userService.loadUserByUsername(username);
     }
 
 }

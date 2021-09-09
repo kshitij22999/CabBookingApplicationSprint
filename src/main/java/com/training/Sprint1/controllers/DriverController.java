@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +23,7 @@ import com.training.Sprint1.exception.DriverDoesNotExistException;
 import com.training.Sprint1.exception.RoleNotFoundException;
 import com.training.Sprint1.service.IDriverService;
 import com.training.Sprint1.service.ITripBookingService;
-
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600,allowedHeaders={"Authorization","Access-Control-Request-Headers","Content-Type","Access-Control-Allow-Origin","Access-Control-Allow-Credentials","Access-Control-Allow-Headers"})
 @Controller
 @RequestMapping("/rest/api")
 public class DriverController {
