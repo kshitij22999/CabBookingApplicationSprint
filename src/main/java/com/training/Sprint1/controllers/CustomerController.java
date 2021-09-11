@@ -126,4 +126,10 @@ public class CustomerController {
 		Customer temp = customerService.logoutCustomer(customer);
 		return new ResponseEntity<Customer>(temp,HttpStatus.OK);
 	}
+	
+	@GetMapping("/customers/username/{username}")
+	public ResponseEntity<Customer> loadCustomerByUsername(@PathVariable("username") String username){
+		Customer customer = customerService.getCustomerByUsername(username);
+		return new ResponseEntity<Customer>(customer,HttpStatus.OK);
+	}
 }

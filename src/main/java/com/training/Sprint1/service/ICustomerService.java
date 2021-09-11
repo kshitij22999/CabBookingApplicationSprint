@@ -27,4 +27,6 @@ public interface ICustomerService {
 	public Customer logoutCustomer(Customer customer);
 
 	Customer save(Customer user) throws RoleNotFoundException;
+
+	public Customer getCustomerByUsername(String username);
 }

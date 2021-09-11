@@ -14,6 +14,7 @@ import com.training.Sprint1.entities.TripBooking;
 @SuppressWarnings("unused")
 @Repository
 public interface ICustomerRepository extends  JpaRepository<Customer,Long> {
-
+	
+	public Customer findByUsername(String username);
 }
 

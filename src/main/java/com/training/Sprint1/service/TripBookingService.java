@@ -42,6 +42,7 @@ public class TripBookingService implements ITripBookingService{
 	
 	@Override
 	public TripBooking addTripBooking(TripBooking tripbooking) {
+		tripbooking.setStatus(Status.NOT_ALLOCATED);
 		TripBooking newBooking = tripBookingRepo.save(tripbooking);
 		return newBooking;
 	}
@@ -173,15 +174,15 @@ public class TripBookingService implements ITripBookingService{
 	@Override
 	public List<TripBooking> getNotAllocatedList() {
 		List<TripBooking> temp_trips = null;
-		
+		List<TripBooking> trips = new ArrayList<TripBooking>();
 		temp_trips = tripBookingRepo.findAll();
 		
 		for(TripBooking t:temp_trips) {
-			if(t.getStatus()==Status.ALLOCATED) {
-				temp_trips.remove(t);
+			if(t.getStatus()==Status.NOT_ALLOCATED) {
+				trips.add(t);
 			}
 		}
-		return temp_trips;
+		return trips;
 	}
 
 	@Override

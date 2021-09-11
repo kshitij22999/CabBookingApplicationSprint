@@ -134,7 +134,7 @@ public class DriverController {
 		return new ResponseEntity<Driver>(temp,HttpStatus.OK);
 	}
 	
-	@GetMapping("/drivers/{username}")
+	@GetMapping("/drivers/username/{username}")
 	public ResponseEntity<Driver> getDriverByUsername(@PathVariable("username") String username){
 		Driver driver = driverService.getDriverByUsername(username);
 		return new ResponseEntity<Driver>(driver,HttpStatus.OK);

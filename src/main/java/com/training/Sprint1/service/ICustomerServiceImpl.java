@@ -148,6 +148,12 @@ public class ICustomerServiceImpl implements ICustomerService {
 		  return savedUser;
 	}
 
+	@Override
+	public Customer getCustomerByUsername(String username) {
+		Customer customer = cRepo.findByUsername(username);
+		return customer;
+	}
+
 	
 	
 }
